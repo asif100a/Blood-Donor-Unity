@@ -4,12 +4,18 @@ import districts from './components/district.json';
 import upazilas from './components/upazila.json';
 import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
+import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 
 const Register = () => {
     const blooGroup = [' A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [selectedUpazilas, setSelectedUpazilas] = useState([]);
+
+    const axiosPublic = useAxiosPublic();
+
+    // Image hostring url
+    const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMAGE_UPLOAD_API}`
 
     // Get the selected district for the upazila selection
     const handleSelectDistrict = (e) => {
@@ -35,12 +41,21 @@ const Register = () => {
         formState: { errors },
     } = useForm();
 
-    const onSubmit = (data, e) => {
+    const onSubmit = async(data) => {
         console.table(data);
+        console.log(data?.image[0])
+        const imageFile = data?.image[0];
 
-        // const form = e.target;
-        // const blood_group = form.blood_group.value;
-        // console.log(blood_group)
+        // Upload the image on the imgBB & get the image url
+        const { data: imgHostingData } = await axiosPublic.post(imageHostingUrl, { image: imageFile }, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        });
+        // console.log(imgHostingData?.data?.display_url);
+        const hostedImage = imgHostingData?.data?.display_url;
+
+        // 
     }
 
     return (
@@ -98,7 +113,7 @@ const Register = () => {
                                 name="image"
                                 type="file"
                                 placeholder='Your image'
-                                // {...register("image", { required: true })}
+                                {...register("image", { required: true })}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                             />
                         </div>
@@ -144,10 +159,10 @@ const Register = () => {
                             Select your upazila
                         </label>
                         <div className="mt-2">
-                            <select 
-                            name='upazila'
-                            {...register("upazila", { required: true })}
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
+                            <select
+                                name='upazila'
+                                {...register("upazila", { required: true })}
+                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
                                 <option disabled selected>Choose your upazila</option>
                                 {
                                     selectedUpazilas?.map((upazila, i) => <option key={i} value={upazila?.name}>{upazila?.name}</option>)
