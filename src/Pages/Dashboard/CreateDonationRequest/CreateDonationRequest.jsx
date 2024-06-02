@@ -1,14 +1,52 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import TimePicker from 'react-time-picker';
+import 'react-time-picker/dist/TimePicker.css';
+import 'react-clock/dist/Clock.css';
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const CreateDonationRequest = () => {
     const [districts, setDistricts] = useState([]);
+    const [upazilas, setUpazilas] = useState([]);
+    const [selectedDistrict, setSelectedDistrict] = useState('');
+    const [selectedUpazilas, setSelectedUpazilas] = useState([]);
+    const [validationError, setValidationError] = useState('');
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [time, setTime] = useState('10:00');
+
+    const axiosSecure = useAxiosSecure();
 
     useEffect(() => {
         fetch('/district.json')
             .then(res => res.json())
             .then(data => setDistricts(data));
+
+        fetch('/upazila.json')
+            .then(res => res.json())
+            .then(data => setUpazilas(data));
     }, []);
+
+
+    useEffect(() => {
+        // Find the selected district's info
+        const findedDistrict = districts.find(district => district?.name === selectedDistrict);
+        console.log(findedDistrict);
+
+        // Filter the specific upazilas for the district
+        const filteredUpazilas = upazilas.filter(upazila => upazila?.district_id === findedDistrict?.id);
+        setSelectedUpazilas(filteredUpazilas);
+    }, [districts, selectedDistrict, upazilas]);
+
+    console.log(selectedUpazilas);
+
+    // Select the specific district to show it's upazilas
+    const handleSelectDistrict = (e) => {
+        setSelectedDistrict(e.target.value);
+    };
+
+
 
     const {
         register,
@@ -18,11 +56,37 @@ const CreateDonationRequest = () => {
 
 
     const onSubmit = async (data) => {
+        // Reset the validation error
+        setValidationError('');
+
+        if (data?.blood_group === 'choose_blood') {
+            return setValidationError('Please choose 1 category');
+        }
+        else if (data?.district === 'choose_district') {
+            return setValidationError('Please choose 1 category');
+        }
+        else if (data?.upazila === 'choose_upazila') {
+            return setValidationError('Please choose 1 category');
+        }
+
         console.table(data);
+        console.table({ selectedDate, time });
+
+        // Save donation request data to the database
+        try {
+            const {data: donationRequestData} = await axiosSecure.post('/donation-requests', {...data, selectedDate, time});
+            console.log(donationRequestData);
+
+        } catch (err) {
+            console.error(err);
+        }
     };
 
     return (
         <div>
+            <div>
+                <h1 className="text-4xl font-semibold text-center">Create a donation request</h1>
+            </div>
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" action="#" method="POST">
                     <div>
@@ -67,7 +131,7 @@ const CreateDonationRequest = () => {
                             <input
                                 id="recipient_name"
                                 name="recipient_name"
-                                type="file"
+                                type="name"
                                 placeholder='Recipient name'
                                 {...register("recipient_name", { required: true })}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
@@ -77,33 +141,14 @@ const CreateDonationRequest = () => {
                     </div>
 
                     <div>
-                        <label htmlFor="image" className="block text-sm font-medium leading-6 text-gray-900">
-                            Select your blood group
-                        </label>
-                        <div className="mt-2">
-                            <select
-                                name='blood_group'
-                                {...register("blood_group", { required: true })}
-                                defaultValue={'choose_blood'}
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
-                                <option disabled value={'choose_blood'}>Choose your blood group</option>
-                                {/* {
-                                    blooGroup.map((group, i) => <option key={i} value={group}>{group}</option>)
-                                } */}
-                            </select>
-                            {/* {validationError && <p className="text-orange-600">{validationError}</p>} */}
-                        </div>
-                    </div>
-
-                    <div>
-                        <label htmlFor="image" className="block text-sm font-medium leading-6 text-gray-900">
+                        <label htmlFor="district" className="block text-sm font-medium leading-6 text-gray-900">
                             Select your district
                         </label>
                         <div className="mt-2">
                             <select
                                 name='district'
                                 {...register("district", { required: true })}
-                                // onChange={(e) => handleSelectDistrict(e)}
+                                onChange={(e) => handleSelectDistrict(e)}
                                 defaultValue={'choose_district'}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
                                 <option disabled value={'choose_district'}>Choose your district</option>
@@ -111,12 +156,12 @@ const CreateDonationRequest = () => {
                                     districts.map(district => <option key={district?.id} value={district?.name}>{district?.name}</option>)
                                 }
                             </select>
-                            {/* {validationError && <p className="text-orange-600">{validationError}</p>} */}
+                            {validationError && <p className="text-orange-600">{validationError}</p>}
                         </div>
                     </div>
 
                     <div>
-                        <label htmlFor="image" className="block text-sm font-medium leading-6 text-gray-900">
+                        <label htmlFor="upazila" className="block text-sm font-medium leading-6 text-gray-900">
                             Select your upazila
                         </label>
                         <div className="mt-2">
@@ -126,60 +171,105 @@ const CreateDonationRequest = () => {
                                 defaultValue={'choose_upazila'}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
                                 <option disabled value={'choose_upazila'}>Choose your upazila</option>
-                                {/* {
+                                {
                                     selectedUpazilas?.map((upazila, i) => <option key={i} value={upazila?.name}>{upazila?.name}</option>)
-                                } */}
+                                }
                             </select>
-                            {/* {validationError && <p className="text-orange-600">{validationError}</p>} */}
+                            {validationError && <p className="text-orange-600">{validationError}</p>}
                         </div>
                     </div>
 
                     <div>
                         <div className="flex items-center justify-between">
-                            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                                Password
+                            <label htmlFor="hospital_name" className="block text-sm font-medium leading-6 text-gray-900">
+                                Hospital name
                             </label>
-                            <div className="text-sm">
-                                <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                                    Forgot password?
-                                </a>
-                            </div>
                         </div>
                         <div className="mt-2">
                             <input
-                                id="password"
-                                name="password"
-                                type="password"
-                                placeholder='Password'
-                                {...register("password", {
-                                    required: true,
-                                    minLength: 6,
-                                    maxLength: 32,
-                                    pattern:
-                                        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/
-                                })}
+                                id="hospital_name"
+                                name="hospital_name"
+                                type="text"
+                                placeholder='Hospital name'
+                                {...register("hospital_name", { required: true, })}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                             />
-                            {errors.password && <span className="text-orange-600">This field is required</span>}
-                            {errors.password?.type === 'pattern' && <p className="text-orange-600">Password must be at least 6 character, 1 uppercase, 1 lowercas, 1 number and 1 special character</p>}
+                            {errors.hospital_name && <span className="text-orange-600">This field is required</span>}
                         </div>
                     </div>
                     <div>
                         <div className="flex items-center justify-between">
-                            <label htmlFor="confirm_password" className="block text-sm font-medium leading-6 text-gray-900">
-                                Confirm confirm_password
+                            <label htmlFor="full_address" className="block text-sm font-medium leading-6 text-gray-900">
+                                Full address
                             </label>
                         </div>
                         <div className="mt-2">
                             <input
-                                id="confirm_password"
-                                name="confirm_password"
+                                id="full_address"
+                                name="full_address"
                                 type="password"
-                                placeholder='Confirm password'
-                                {...register("confirm_password", { required: true })}
+                                placeholder='Full address'
+                                {...register("full_address", { required: true })}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                             />
-                            {errors.confirm_password && <span className="text-orange-600">This field is required</span>}
+                            {errors.full_address && <span className="text-orange-600">This field is required</span>}
+                        </div>
+                    </div>
+
+                    <div>
+                        <div className="flex items-center justify-between">
+                            <label htmlFor="donation_date" className="block text-sm font-medium leading-6 text-gray-900">
+                                Donation date
+                            </label>
+                        </div>
+                        <div className="mt-2">
+                            <DatePicker
+                                selected={selectedDate}
+                                onChange={(date) => setSelectedDate(date)}
+                                minDate={new Date()}
+                                dateFormat={'dd/MM/yyyy'}
+                                showYearDropdown
+                                scrollableMonthYearDropdown
+                                className="block w-[24rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3" />
+                            {errors.donation_date && <span className="text-orange-600">This field is required</span>}
+                        </div>
+                    </div>
+
+                    <div>
+                        <div className="flex items-center justify-between">
+                            <label htmlFor="donation_time" className="block text-sm font-medium leading-6 text-gray-900">
+                                Donation time
+                            </label>
+                        </div>
+                        <div className="mt-2">
+                            <TimePicker
+                                onChange={setTime}
+                                value={time}
+                                disableClock={true}
+                                format="hh:mm a"
+                                hourPlaceholder="hh"
+                                minutePlaceholder="mm"
+                                className="block w-[24rem] rounded-md border-0" />
+                            {errors.donation_date && <span className="text-orange-600">This field is required</span>}
+                        </div>
+                    </div>
+
+                    <div>
+                        <div className="flex items-center justify-between">
+                            <label htmlFor="request_message" className="block text-sm font-medium leading-6 text-gray-900">
+                                Request message
+                            </label>
+                        </div>
+                        <div className="mt-2">
+                            <textarea
+                                id="request_message"
+                                name="request_message"
+                                type="password"
+                                placeholder='Request message'
+                                {...register("request_message", { required: true })}
+                                className="textarea textarea-primary block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+                            ></textarea>
+                            {errors.request_message && <span className="text-orange-600">This field is required</span>}
                         </div>
                     </div>
 
