@@ -5,14 +5,18 @@ import upazilas from './components/upazila.json';
 import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
+import useAuth from '../../../Hooks/useAuth';
+import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
     const blooGroup = [' A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [selectedUpazilas, setSelectedUpazilas] = useState([]);
+    const [validationError, setValidationError] = useState('');
 
     const axiosPublic = useAxiosPublic();
+    const {registerUser} = useAuth();
 
     // Image hostring url
     const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMAGE_UPLOAD_API}`
@@ -43,6 +47,17 @@ const Register = () => {
 
     const onSubmit = async(data) => {
         console.table(data);
+
+        if(data?.blood_group === 'choose_blood') {
+            return setValidationError('Please choose 1 category');
+        }
+        else if(data?.district === 'choose_district') {
+            return setValidationError('Please choose 1 category');
+        }
+        else if(data?.upazila === 'choose_upazila') {
+            return setValidationError('Please choose 1 category');
+        }
+
         console.log(data?.image[0])
         const imageFile = data?.image[0];
 
@@ -52,10 +67,24 @@ const Register = () => {
                 'content-type': 'multipart/form-data'
             }
         });
-        // console.log(imgHostingData?.data?.display_url);
         const hostedImage = imgHostingData?.data?.display_url;
 
-        // 
+        const email = data?.email;
+        const password = data?.password;
+        const name = data?.name;
+
+        // Register user to the firebase
+        try{
+            const result = await registerUser(email, password);
+            await updateProfile(result?.user, {
+                displayName: name,
+                photoURL: hostedImage 
+            })
+            console.log(result);
+
+        } catch(err) {
+            console.error(err);
+        }
     }
 
     return (
@@ -84,6 +113,7 @@ const Register = () => {
                                 {...register("name", { required: true })}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                             />
+                            {errors.name && <span className="text-orange-600">This field is required</span>}
                         </div>
                     </div>
 
@@ -100,6 +130,7 @@ const Register = () => {
                                 {...register("email", { required: true })}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                             />
+                            {errors.email && <span className="text-orange-600">This field is required</span>}
                         </div>
                     </div>
 
@@ -116,6 +147,7 @@ const Register = () => {
                                 {...register("image", { required: true })}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                             />
+                            {errors.image && <span className="text-orange-600">This field is required</span>}
                         </div>
                     </div>
 
@@ -127,12 +159,14 @@ const Register = () => {
                             <select
                                 name='blood_group'
                                 {...register("blood_group", { required: true })}
+                                defaultValue={'choose_blood'}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
-                                <option disabled selected>Choose your blood group</option>
+                                <option disabled value={'choose_blood'}>Choose your blood group</option>
                                 {
                                     blooGroup.map((group, i) => <option key={i} value={group}>{group}</option>)
                                 }
                             </select>
+                            {validationError && <p className="text-orange-600">{validationError}</p>}
                         </div>
                     </div>
 
@@ -145,12 +179,14 @@ const Register = () => {
                                 name='district'
                                 {...register("district", { required: true })}
                                 onChange={(e) => handleSelectDistrict(e)}
+                                defaultValue={'choose_district'}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
-                                <option disabled selected>Choose your district</option>
+                                <option disabled value={'choose_district'}>Choose your district</option>
                                 {
                                     districts.map(district => <option key={district?.id} value={district?.name}>{district?.name}</option>)
                                 }
                             </select>
+                            {validationError && <p className="text-orange-600">{validationError}</p>}
                         </div>
                     </div>
 
@@ -162,12 +198,14 @@ const Register = () => {
                             <select
                                 name='upazila'
                                 {...register("upazila", { required: true })}
+                                defaultValue={'choose_upazila'}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
-                                <option disabled selected>Choose your upazila</option>
+                                <option disabled value={'choose_upazila'}>Choose your upazila</option>
                                 {
                                     selectedUpazilas?.map((upazila, i) => <option key={i} value={upazila?.name}>{upazila?.name}</option>)
                                 }
                             </select>
+                            {validationError && <p className="text-orange-600">{validationError}</p>}
                         </div>
                     </div>
 
@@ -191,6 +229,7 @@ const Register = () => {
                                 {...register("password", { required: true })}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                             />
+                            {errors.password && <span className="text-orange-600">This field is required</span>}
                         </div>
                     </div>
                     <div>
@@ -208,6 +247,7 @@ const Register = () => {
                                 {...register("confirm_password", { required: true })}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                             />
+                            {errors.confirm_password && <span className="text-orange-600">This field is required</span>}
                         </div>
                     </div>
 
