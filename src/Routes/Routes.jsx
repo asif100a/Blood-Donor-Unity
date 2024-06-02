@@ -10,6 +10,7 @@ import Funds from "../Pages/Funds/Funds";
 import PrivatePage from "../ProtectedPage/PrivatePage";
 import SearchPage from "../Pages/SearchPage/SearchPage";
 import Dashboard from "../Layout/Dashboard";
+import CreateDonationRequest from "../Pages/Dashboard/CreateDonationRequest/CreateDonationRequest";
 
 const Routes = createBrowserRouter([
     {
@@ -42,7 +43,13 @@ const Routes = createBrowserRouter([
         ]
     }, {
         path: '/dashboard',
-        element: <Dashboard />
+        element: <Dashboard />,
+        children: [
+            {
+                path: '/dashboard/create_donation_request',
+                element: <CreateDonationRequest />
+            }
+        ]
     }
 ]);
 
