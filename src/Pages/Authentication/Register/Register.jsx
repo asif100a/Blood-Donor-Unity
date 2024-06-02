@@ -14,6 +14,7 @@ const Register = () => {
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [selectedUpazilas, setSelectedUpazilas] = useState([]);
     const [validationError, setValidationError] = useState('');
+    const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
     const axiosPublic = useAxiosPublic();
     const {registerUser} = useAuth();
@@ -45,8 +46,12 @@ const Register = () => {
         formState: { errors },
     } = useForm();
 
+    
     const onSubmit = async(data) => {
         console.table(data);
+        // Reset the validation error
+        setValidationError('');
+        setConfirmPasswordError('');
 
         if(data?.blood_group === 'choose_blood') {
             return setValidationError('Please choose 1 category');
@@ -56,6 +61,9 @@ const Register = () => {
         }
         else if(data?.upazila === 'choose_upazila') {
             return setValidationError('Please choose 1 category');
+        }
+        else if(data?.password !== data?.confirm_password) {
+            return setConfirmPasswordError('Please give confirm password as the same password');
         }
 
         console.log(data?.image[0])
@@ -226,10 +234,17 @@ const Register = () => {
                                 name="password"
                                 type="password"
                                 placeholder='Password'
-                                {...register("password", { required: true })}
+                                {...register("password", { 
+                                    required: true, 
+                                    minLength: 6, 
+                                    maxLength: 32, 
+                                    pattern: 
+                                        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/
+                                     })}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                             />
                             {errors.password && <span className="text-orange-600">This field is required</span>}
+                            {errors.password?.type === 'pattern' && <p className="text-orange-600">Password must be at least 6 character, 1 uppercase, 1 lowercas, 1 number and 1 special character</p>}
                         </div>
                     </div>
                     <div>
@@ -248,6 +263,7 @@ const Register = () => {
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                             />
                             {errors.confirm_password && <span className="text-orange-600">This field is required</span>}
+                            {confirmPasswordError && <p className='text-orange-600'>{confirmPasswordError}</p>}
                         </div>
                     </div>
 

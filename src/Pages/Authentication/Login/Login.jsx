@@ -1,7 +1,34 @@
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/Blood.png';
+import { useForm } from 'react-hook-form';
+import useAuth from '../../../Hooks/useAuth';
+import toast from 'react-hot-toast';
 
 const Login = () => {
+    const { loginUser } = useAuth();
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
+
+    const onSubmit = async (data) => {
+        console.table(data);
+
+        // Login the user
+        try {
+            const result = await loginUser(data?.email, data?.password);
+            console.log(result?.user);
+
+        } catch (err) {
+            console.error(err.message);
+            if (err?.message === 'Firebase: Error (auth/invalid-credential).') {
+                return toast.error('Invalid email or password')
+            }
+        }
+    };
+
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -14,7 +41,7 @@ const Login = () => {
             </div>
 
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                <form className="space-y-6" action="#" method="POST">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" action="#" method="POST">
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                             Email address
@@ -24,10 +51,11 @@ const Login = () => {
                                 id="email"
                                 name="email"
                                 type="email"
-                                autoComplete="email"
-                                required
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                placeholder='Your email'
+                                {...register("email", { required: true })}
+                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                             />
+                            {errors.email && <span className="text-red-500">This field is required</span>}
                         </div>
                     </div>
 
@@ -47,10 +75,11 @@ const Login = () => {
                                 id="password"
                                 name="password"
                                 type="password"
-                                autoComplete="current-password"
-                                required
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                placeholder='Your password'
+                                {...register("password", { required: true })}
+                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                             />
+                            {errors.password && <span className="text-red-500">This field is required</span>}
                         </div>
                     </div>
 

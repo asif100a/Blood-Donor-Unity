@@ -30,6 +30,7 @@ const AuthProvider = ({ children }) => {
     // State change of user
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            console.log(currentUser);
             setUser(currentUser);
             setIsPending(false);
         });
@@ -44,6 +45,8 @@ const AuthProvider = ({ children }) => {
         user,
         isPending,
         registerUser,
+        loginUser,
+        logoutUser,
     };
 
     return (

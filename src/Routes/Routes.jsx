@@ -6,6 +6,10 @@ import Login from "../Pages/Authentication/Login/Login";
 import Register from "../Pages/Authentication/Register/Register";
 import DonationRequests from "../Pages/DonationRequests/DonationRequests";
 import Blogs from "../Pages/Blogs/Blogs";
+import Funds from "../Pages/Funds/Funds";
+import PrivatePage from "../ProtectedPage/PrivatePage";
+import SearchPage from "../Pages/SearchPage/SearchPage";
+import Dashboard from "../Layout/Dashboard";
 
 const Routes = createBrowserRouter([
     {
@@ -28,8 +32,17 @@ const Routes = createBrowserRouter([
             }, {
                 path: '/blogs',
                 element: <Blogs />
+            }, {
+                path: '/funds',
+                element: <PrivatePage><Funds /></PrivatePage>
+            }, {
+                path: '/search_page',
+                element: <SearchPage />
             }
         ]
+    }, {
+        path: '/dashboard',
+        element: <Dashboard />
     }
 ]);
 

@@ -1,13 +1,25 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from '../../assets/Blood.png'
+import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Navber = () => {
+    const { user, logoutUser } = useAuth();
+
     const NavLinks = <>
         <li><NavLink to={'/'} className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Home</NavLink></li>
         <li><NavLink to={'/donation_requests'} className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Donation requests</NavLink></li>
         <li><NavLink to={'/blogs'} className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Blogs</NavLink></li>
-        <li><NavLink to={'/fundings'} className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Blogs</NavLink></li>
+
+        {
+            user && <li><NavLink to={'/funds'} className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Funds</NavLink></li>
+        }
     </>;
+
+    const handleLogout = async() => {
+        await logoutUser();
+        toast.success('You have logged out');
+    };
 
     return (
         <nav className="relative bg-white shadow dark:bg-gray-800">
@@ -38,18 +50,31 @@ const Navber = () => {
                         </ul>
 
                         <div className="flex items-center gap-3 mt-4 lg:mt-0">
-                            <Link to={'/login'}><button className="btn">Login</button></Link>
 
-                            <div className="avatar hidden">
-                                <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                    <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                                </div>
-                            </div>
+
+                            {
+                                user ? <>
+                                    <div title={user?.displayName} className="dropdown dropdown-end">
+                                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                            <div className="w-10 rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2">
+                                                <img src={user?.photoURL} />
+                                            </div>
+                                        </div>
+                                        <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                                            <li><Link>Dashboard</Link></li>
+                                            <li onClick={handleLogout}><a>Logout</a></li>
+                                        </ul>
+                                    </div>
+                                </> :
+                                    <>
+                                        <Link to={'/login'}><button className="btn">Login</button></Link>
+                                    </>
+                            }
                         </div>
                     </div>
                 </div>
             </div>
-        </nav>
+        </nav >
     );
 };
 
