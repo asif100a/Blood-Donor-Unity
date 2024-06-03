@@ -20,7 +20,9 @@ const Sidebar = () => {
 
             <div className="flex flex-col justify-between flex-1 mt-6">
                 <nav>
-                   <DonorLinks />
+                    <ol className='menu'>
+                        <DonorLinks />
+                    </ol>
                 </nav>
 
                 <nav>

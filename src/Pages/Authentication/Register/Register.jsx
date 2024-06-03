@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../../assets/Blood.png';
 import districts from './components/district.json';
 import upazilas from './components/upazila.json';
@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 import useAuth from '../../../Hooks/useAuth';
 import { updateProfile } from 'firebase/auth';
+import toast from 'react-hot-toast';
 
 const Register = () => {
     const blooGroup = [' A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
@@ -18,6 +19,7 @@ const Register = () => {
 
     const axiosPublic = useAxiosPublic();
     const {registerUser} = useAuth();
+    const navigate = useNavigate();
 
     // Image hostring url
     const imageHostingUrl = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMAGE_UPLOAD_API}`
@@ -44,6 +46,7 @@ const Register = () => {
         register,
         handleSubmit,
         formState: { errors },
+        reset
     } = useForm();
 
     
@@ -89,6 +92,9 @@ const Register = () => {
                 photoURL: hostedImage 
             })
             console.log(result);
+            reset();
+            toast.success('You have registered successfully');
+            navigate('/');
 
         } catch(err) {
             console.error(err);

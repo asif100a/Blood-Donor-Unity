@@ -6,6 +6,7 @@ import TimePicker from 'react-time-picker';
 import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const CreateDonationRequest = () => {
     const [districts, setDistricts] = useState([]);
@@ -52,6 +53,7 @@ const CreateDonationRequest = () => {
         register,
         handleSubmit,
         formState: { errors },
+        reset
     } = useForm();
 
 
@@ -71,11 +73,16 @@ const CreateDonationRequest = () => {
 
         console.table(data);
         console.table({ selectedDate, time });
+        const donation_status = 'pending'
 
         // Save donation request data to the database
         try {
-            const {data: donationRequestData} = await axiosSecure.post('/donation-requests', {...data, selectedDate, time});
+            const {data: donationRequestData} = await axiosSecure.post('/donation-requests', {...data, selectedDate, time, donation_status});
             console.log(donationRequestData);
+            reset();
+            setSelectedDate(new Date());
+            setTime('10:00')
+            toast.success('Donation request created successfully');
 
         } catch (err) {
             console.error(err);
@@ -142,7 +149,7 @@ const CreateDonationRequest = () => {
 
                     <div>
                         <label htmlFor="district" className="block text-sm font-medium leading-6 text-gray-900">
-                            Select your district
+                            {"Recipient's"} district
                         </label>
                         <div className="mt-2">
                             <select
@@ -162,7 +169,7 @@ const CreateDonationRequest = () => {
 
                     <div>
                         <label htmlFor="upazila" className="block text-sm font-medium leading-6 text-gray-900">
-                            Select your upazila
+                        {"Recipient's"} upazila
                         </label>
                         <div className="mt-2">
                             <select
@@ -207,7 +214,7 @@ const CreateDonationRequest = () => {
                             <input
                                 id="full_address"
                                 name="full_address"
-                                type="password"
+                                type="text"
                                 placeholder='Full address'
                                 {...register("full_address", { required: true })}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
@@ -276,8 +283,8 @@ const CreateDonationRequest = () => {
                     <div>
                         <input
                             type="submit"
-                            value={'Register now'}
-                            className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            value={'Create donation request'}
+                            className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:cursor-pointer"
                         />
                     </div>
                 </form>
