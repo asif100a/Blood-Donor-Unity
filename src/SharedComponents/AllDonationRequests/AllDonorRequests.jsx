@@ -1,4 +1,5 @@
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import LoadingSpiner from '../LoadingSpiner/LoadingSpiner';
 import RequestTbody from './components/RequestTbody';
 import { useQuery } from '@tanstack/react-query';
 
@@ -12,6 +13,10 @@ const AllDonorRequests = () => {
             return data;
         }
     });
+
+    if(isPending) {
+        return <LoadingSpiner />
+    }
 
     return (
         <div className="overflow-x-auto">

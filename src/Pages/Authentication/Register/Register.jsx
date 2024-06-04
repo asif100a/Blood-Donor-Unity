@@ -18,7 +18,7 @@ const Register = () => {
     const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
     const axiosPublic = useAxiosPublic();
-    const {registerUser} = useAuth();
+    const { registerUser } = useAuth();
     const navigate = useNavigate();
 
     // Image hostring url
@@ -49,23 +49,23 @@ const Register = () => {
         reset
     } = useForm();
 
-    
-    const onSubmit = async(data) => {
+
+    const onSubmit = async (data) => {
         console.table(data);
         // Reset the validation error
         setValidationError('');
         setConfirmPasswordError('');
 
-        if(data?.blood_group === 'choose_blood') {
+        if (data?.blood_group === 'choose_blood') {
             return setValidationError('Please choose 1 category');
         }
-        else if(data?.district === 'choose_district') {
+        else if (data?.district === 'choose_district') {
             return setValidationError('Please choose 1 category');
         }
-        else if(data?.upazila === 'choose_upazila') {
+        else if (data?.upazila === 'choose_upazila') {
             return setValidationError('Please choose 1 category');
         }
-        else if(data?.password !== data?.confirm_password) {
+        else if (data?.password !== data?.confirm_password) {
             return setConfirmPasswordError('Please give confirm password as the same password');
         }
 
@@ -83,21 +83,32 @@ const Register = () => {
         const email = data?.email;
         const password = data?.password;
         const name = data?.name;
+        const date = new Date();
+        const role = 'donor';
 
         // Register user to the firebase
-        try{
+        try {
             const result = await registerUser(email, password);
             await updateProfile(result?.user, {
                 displayName: name,
-                photoURL: hostedImage 
+                photoURL: hostedImage
             })
             console.log(result);
-            reset();
-            toast.success('You have registered successfully');
-            navigate('/');
 
-        } catch(err) {
-            console.error(err);
+            // Save user data to the database
+            const { data: userData } = await axiosPublic.post('/users', { ...data, image: hostedImage, registerDate: date, role });
+            console.log(userData);
+            if (userData?.insertedId) {
+                reset();
+                toast.success('You have registered successfully');
+                navigate('/');
+            }
+
+        } catch (err) {
+            console.error(err.message);
+            if(err?.message === 'Firebase: Error (auth/email-already-in-use).') {
+                return toast.error('You have already registered');
+            }
         }
     }
 
@@ -240,13 +251,13 @@ const Register = () => {
                                 name="password"
                                 type="password"
                                 placeholder='Password'
-                                {...register("password", { 
-                                    required: true, 
-                                    minLength: 6, 
-                                    maxLength: 32, 
-                                    pattern: 
+                                {...register("password", {
+                                    required: true,
+                                    minLength: 6,
+                                    maxLength: 32,
+                                    pattern:
                                         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/
-                                     })}
+                                })}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                             />
                             {errors.password && <span className="text-orange-600">This field is required</span>}

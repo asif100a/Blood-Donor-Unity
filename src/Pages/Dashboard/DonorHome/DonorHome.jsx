@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import WelcomeSection from "../../../SharedComponents/WelcomeSection/WelcomeSection";
 import RequestTRow from "./components/RequestTRow";
 import { Link } from "react-router-dom";
+import LoadingSpiner from "../../../SharedComponents/LoadingSpiner/LoadingSpiner";
 
 const DonorHome = () => {
     const axiosSecure = useAxiosSecure();
@@ -17,6 +18,10 @@ const DonorHome = () => {
 
     // Filter the recent donation requests
     // const filterdRecentData = donationRequests.
+
+    if (isPending) {
+        return <LoadingSpiner smallLoader={true} />
+    }
 
     return (
         <div>
