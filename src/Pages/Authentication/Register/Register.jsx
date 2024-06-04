@@ -85,6 +85,7 @@ const Register = () => {
         const name = data?.name;
         const date = new Date();
         const role = 'donor';
+        const status = 'active';
 
         // Register user to the firebase
         try {
@@ -96,7 +97,7 @@ const Register = () => {
             console.log(result);
 
             // Save user data to the database
-            const { data: userData } = await axiosPublic.post('/users', { ...data, image: hostedImage, registerDate: date, role });
+            const { data: userData } = await axiosPublic.post('/users', { ...data, image: hostedImage, registerDate: date, role, status });
             console.log(userData);
             if (userData?.insertedId) {
                 reset();

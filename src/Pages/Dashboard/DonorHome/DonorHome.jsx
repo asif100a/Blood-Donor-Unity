@@ -87,7 +87,7 @@ const DonorHome = () => {
 
     return (
         <div>
-          <WelcomeSection />  
+          <WelcomeSection title={'Donor Dashboard Your Lifesaving Hub'} description={"Welcome to the Donor Dashboard! Here, you're the heartbeat of our mission. Track your contributions, schedule donations, and stay connected with our community of lifesavers. Thank you for your invaluable support in helping save lives through blood donation."} />  
 
           <div className="mt-3 mb-6">
             <h1 className="text-4xl font-semibold text-center">Recent donation requests</h1>

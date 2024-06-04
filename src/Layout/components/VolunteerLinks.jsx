@@ -5,7 +5,7 @@ const VolunteerLinks = () => {
     return (
         <>
             <li>
-                <NavLink to={'donor_home'} className="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-md dark:bg-gray-800 dark:text-gray-200">
+                <NavLink to={'volunteer_home'} end className="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-md dark:bg-gray-800 dark:text-gray-200">
                     <FcHome className='w-5 h-5' />
 
                     <span className="mx-4 font-medium">Volunteer Home</span>
