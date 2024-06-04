@@ -3,7 +3,7 @@ import { FaRegEdit } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
-const RequestTRow = ({ data, index }) => {
+const RequestTRow = ({ data, index, handleDelete }) => {
     console.log(data);
     const {
         _id,
@@ -65,7 +65,9 @@ const RequestTRow = ({ data, index }) => {
                     <Link to={`/dashboard/edit_donor_request/${_id}`}><button className='btn bg-white border-none shadow-none hover:bg-white'><FaRegEdit className='h-5 w-5 hover:transform hover:scale-125 text-green-600' /></button></Link>
                 </td>
                 <td>
-                    <button className="btn bg-white border-none shadow-none hover:bg-white"><MdDeleteForever className='h-6 w-6 hover:transform hover:scale-125 text-red-600' /></button>
+                    <button 
+                    onClick={() => handleDelete(_id)}
+                    className="btn bg-white border-none shadow-none hover:bg-white"><MdDeleteForever className='h-6 w-6 hover:transform hover:scale-125 text-red-600' /></button>
                 </td>
             </tr>
         </>
@@ -75,7 +77,7 @@ const RequestTRow = ({ data, index }) => {
 RequestTRow.propTypes = {
     data: PropTypes.object,
     index: PropTypes.number,
-    handleEdit: PropTypes.func
+    handleDelete: PropTypes.func
 };
 
 export default RequestTRow;
