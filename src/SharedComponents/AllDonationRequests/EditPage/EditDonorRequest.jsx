@@ -8,7 +8,7 @@ import 'react-clock/dist/Clock.css';
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import useAuth from "../../../Hooks/useAuth";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 const EditDonorRequest = () => {
     const [districts, setDistricts] = useState([]);
@@ -16,29 +16,30 @@ const EditDonorRequest = () => {
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [selectedUpazilas, setSelectedUpazilas] = useState([]);
     const [validationError, setValidationError] = useState('');
-    const [selectedDate, setSelectedDate] = useState(new Date());
-    const [time, setTime] = useState('10:00');
 
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
+    const navigate = useNavigate();
     // Get the field data from the database
     const requestData = useLoaderData();
     console.log(requestData);
     const {
         _id,
-        requester_name, 
-        requester_email, 
-        recipient_name, 
-        district, 
-        upazila, 
-        hospital_name, 
-        full_address, 
+        requester_name,
+        requester_email,
+        recipient_name,
+        district,
+        upazila,
+        hospital_name,
+        full_address,
         request_message,
         selectedDate: previous_date,
         time: previous_time,
-        donation_status 
     } = requestData;
     console.log(upazila)
+
+    const [selectedDate, setSelectedDate] = useState(previous_date);
+    const [time, setTime] = useState(previous_time);
 
     useEffect(() => {
         fetch('/district.json')
@@ -73,7 +74,6 @@ const EditDonorRequest = () => {
         register,
         handleSubmit,
         formState: { errors },
-        reset
     } = useForm();
 
 
@@ -98,12 +98,12 @@ const EditDonorRequest = () => {
 
         // Save donation request data to the database
         try {
-            const { data: donationRequestData } = await axiosSecure.patch('/donation-requests', { ...data, selectedDate, time, donation_status });
+            const { data: donationRequestData } = await axiosSecure.patch(`/donation-requests/${_id}`, { ...data, selectedDate, time, donation_status });
             console.log(donationRequestData);
-            reset();
-            setSelectedDate(new Date());
-            setTime('10:00')
-            toast.success('Donation request created successfully');
+            if (donationRequestData?.modifiedCount > 0) {
+                toast.success('Donation request updated successfully');
+                navigate('/dashboard/my_donation_requests')
+            }
 
         } catch (err) {
             console.error(err);
@@ -126,7 +126,7 @@ const EditDonorRequest = () => {
                                 id="requester_name"
                                 name="requester_name"
                                 type="text"
-                                value={user?.displayName}
+                                value={requester_name}
                                 placeholder='Rrequester name'
                                 {...register("requester_name", { required: true })}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
@@ -144,7 +144,7 @@ const EditDonorRequest = () => {
                                 id="requester_email"
                                 name="requester_email"
                                 type="email"
-                                value={user?.email}
+                                value={requester_email}
                                 placeholder='Requester email'
                                 {...register("requester_email", { required: true })}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
@@ -182,6 +182,7 @@ const EditDonorRequest = () => {
                                 defaultValue={district}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
                                 <option disabled value={'choose_district'}>Choose your district</option>
+                                <option value={district}>{district}</option>
                                 {
                                     districts.map(district => <option key={district?.id} value={district?.name}>{district?.name}</option>)
                                 }
@@ -198,11 +199,11 @@ const EditDonorRequest = () => {
                             <select
                                 name='upazila'
                                 {...register("upazila", { required: true })}
-                                defaultValue={'selected_upazila'}
+                                defaultValue={upazila}
                                 // value={upazila}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
                                 <option disabled value={'choose_upazila'}>Choose your upazila</option>
-                                {selectedUpazilas?.length > 0 || <option value={'selected_upazila'}>{upazila}</option>}
+                                {selectedUpazilas?.length > 0 || <option value={upazila}>{upazila}</option>}
                                 {
                                     selectedUpazilas?.map((upazila, i) => <option key={i} value={upazila?.name}>{upazila?.name}</option>)
                                 }
@@ -256,7 +257,7 @@ const EditDonorRequest = () => {
                         </div>
                         <div className="mt-2">
                             <DatePicker
-                                selected={previous_date}
+                                selected={selectedDate}
                                 onChange={(date) => setSelectedDate(date)}
                                 minDate={new Date()}
                                 dateFormat={'dd/MM/yyyy'}
@@ -276,7 +277,7 @@ const EditDonorRequest = () => {
                         <div className="mt-2">
                             <TimePicker
                                 onChange={setTime}
-                                value={previous_time}
+                                value={time}
                                 disableClock={true}
                                 format="hh:mm a"
                                 hourPlaceholder="hh"
