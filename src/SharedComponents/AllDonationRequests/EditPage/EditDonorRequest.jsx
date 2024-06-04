@@ -8,8 +8,9 @@ import 'react-clock/dist/Clock.css';
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import useAuth from "../../../Hooks/useAuth";
+import { useLoaderData, useParams } from "react-router-dom";
 
-const CreateDonationRequest = () => {
+const EditDonorRequest = () => {
     const [districts, setDistricts] = useState([]);
     const [upazilas, setUpazilas] = useState([]);
     const [selectedDistrict, setSelectedDistrict] = useState('');
@@ -19,7 +20,25 @@ const CreateDonationRequest = () => {
     const [time, setTime] = useState('10:00');
 
     const axiosSecure = useAxiosSecure();
-    const {user} = useAuth();
+    const { user } = useAuth();
+    // Get the field data from the database
+    const requestData = useLoaderData();
+    console.log(requestData);
+    const {
+        _id,
+        requester_name, 
+        requester_email, 
+        recipient_name, 
+        district, 
+        upazila, 
+        hospital_name, 
+        full_address, 
+        request_message,
+        selectedDate: previous_date,
+        time: previous_time,
+        donation_status 
+    } = requestData;
+    console.log(upazila)
 
     useEffect(() => {
         fetch('/district.json')
@@ -48,7 +67,6 @@ const CreateDonationRequest = () => {
     const handleSelectDistrict = (e) => {
         setSelectedDistrict(e.target.value);
     };
-
 
 
     const {
@@ -80,7 +98,7 @@ const CreateDonationRequest = () => {
 
         // Save donation request data to the database
         try {
-            const {data: donationRequestData} = await axiosSecure.post('/donation-requests', {...data, selectedDate, time, donation_status});
+            const { data: donationRequestData } = await axiosSecure.patch('/donation-requests', { ...data, selectedDate, time, donation_status });
             console.log(donationRequestData);
             reset();
             setSelectedDate(new Date());
@@ -95,7 +113,7 @@ const CreateDonationRequest = () => {
     return (
         <div>
             <div>
-                <h1 className="text-4xl font-semibold text-center">Create a donation request</h1>
+                <h1 className="text-4xl font-semibold text-center">Edit your donation request</h1>
             </div>
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" action="#" method="POST">
@@ -144,7 +162,7 @@ const CreateDonationRequest = () => {
                                 id="recipient_name"
                                 name="recipient_name"
                                 type="name"
-                                placeholder='Recipient name'
+                                defaultValue={recipient_name}
                                 {...register("recipient_name", { required: true })}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                             />
@@ -161,7 +179,7 @@ const CreateDonationRequest = () => {
                                 name='district'
                                 {...register("district", { required: true })}
                                 onChange={(e) => handleSelectDistrict(e)}
-                                defaultValue={'choose_district'}
+                                defaultValue={district}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
                                 <option disabled value={'choose_district'}>Choose your district</option>
                                 {
@@ -174,15 +192,17 @@ const CreateDonationRequest = () => {
 
                     <div>
                         <label htmlFor="upazila" className="block text-sm font-medium leading-6 text-gray-900">
-                        {"Recipient's"} upazila
+                            {"Recipient's"} upazila
                         </label>
                         <div className="mt-2">
                             <select
                                 name='upazila'
                                 {...register("upazila", { required: true })}
-                                defaultValue={'choose_upazila'}
+                                defaultValue={'selected_upazila'}
+                                // value={upazila}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
                                 <option disabled value={'choose_upazila'}>Choose your upazila</option>
+                                {selectedUpazilas?.length > 0 || <option value={'selected_upazila'}>{upazila}</option>}
                                 {
                                     selectedUpazilas?.map((upazila, i) => <option key={i} value={upazila?.name}>{upazila?.name}</option>)
                                 }
@@ -202,7 +222,7 @@ const CreateDonationRequest = () => {
                                 id="hospital_name"
                                 name="hospital_name"
                                 type="text"
-                                placeholder='Hospital name'
+                                defaultValue={hospital_name}
                                 {...register("hospital_name", { required: true, })}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                             />
@@ -220,7 +240,7 @@ const CreateDonationRequest = () => {
                                 id="full_address"
                                 name="full_address"
                                 type="text"
-                                placeholder='Full address'
+                                defaultValue={full_address}
                                 {...register("full_address", { required: true })}
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                             />
@@ -236,7 +256,7 @@ const CreateDonationRequest = () => {
                         </div>
                         <div className="mt-2">
                             <DatePicker
-                                selected={selectedDate}
+                                selected={previous_date}
                                 onChange={(date) => setSelectedDate(date)}
                                 minDate={new Date()}
                                 dateFormat={'dd/MM/yyyy'}
@@ -256,7 +276,7 @@ const CreateDonationRequest = () => {
                         <div className="mt-2">
                             <TimePicker
                                 onChange={setTime}
-                                value={time}
+                                value={previous_time}
                                 disableClock={true}
                                 format="hh:mm a"
                                 hourPlaceholder="hh"
@@ -277,7 +297,7 @@ const CreateDonationRequest = () => {
                                 id="request_message"
                                 name="request_message"
                                 type="password"
-                                placeholder='Request message'
+                                defaultValue={request_message}
                                 {...register("request_message", { required: true })}
                                 className="textarea textarea-primary block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                             ></textarea>
@@ -298,4 +318,4 @@ const CreateDonationRequest = () => {
     );
 };
 
-export default CreateDonationRequest;
+export default EditDonorRequest;

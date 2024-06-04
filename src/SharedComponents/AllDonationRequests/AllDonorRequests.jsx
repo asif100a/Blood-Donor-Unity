@@ -1,3 +1,4 @@
+import useAuth from '../../Hooks/useAuth';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import LoadingSpiner from '../LoadingSpiner/LoadingSpiner';
 import RequestTbody from './components/RequestTbody';
@@ -5,16 +6,19 @@ import { useQuery } from '@tanstack/react-query';
 
 const AllDonorRequests = () => {
     const axiosSecure = useAxiosSecure();
+    const { user } = useAuth();
 
     const { data: donationRequests = [], isError, error, isPending } = useQuery({
-        queryKey: ['donationRequests'],
+        queryKey: ['donationRequests', user?.email],
         queryFn: async () => {
-            const { data } = await axiosSecure('/donation-requests');
+            const { data } = await axiosSecure(`/donation-requests/${user?.email}`);
             return data;
         }
     });
 
-    if(isPending) {
+    console.log(donationRequests)
+
+    if (isPending) {
         return <LoadingSpiner />
     }
 

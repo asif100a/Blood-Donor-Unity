@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
 import { FaRegEdit } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 const RequestTRow = ({ data, index }) => {
     console.log(data);
     const {
+        _id,
         requester_name, 
         requester_email, 
         recipient_name, 
@@ -60,7 +62,7 @@ const RequestTRow = ({ data, index }) => {
                 <td>{donation_status}</td>
                 <td>{}</td>
                 <td>
-                    <button className='btn bg-white border-none shadow-none hover:bg-white'><FaRegEdit className='h-5 w-5 hover:transform hover:scale-125 text-green-600' /></button>
+                    <Link to={`/dashboard/edit_donor_request/${_id}`}><button className='btn bg-white border-none shadow-none hover:bg-white'><FaRegEdit className='h-5 w-5 hover:transform hover:scale-125 text-green-600' /></button></Link>
                 </td>
                 <td>
                     <button className="btn bg-white border-none shadow-none hover:bg-white"><MdDeleteForever className='h-6 w-6 hover:transform hover:scale-125 text-red-600' /></button>
@@ -72,7 +74,8 @@ const RequestTRow = ({ data, index }) => {
 
 RequestTRow.propTypes = {
     data: PropTypes.object,
-    index: PropTypes.number
+    index: PropTypes.number,
+    handleEdit: PropTypes.func
 };
 
 export default RequestTRow;

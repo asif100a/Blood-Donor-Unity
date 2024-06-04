@@ -4,20 +4,23 @@ import WelcomeSection from "../../../SharedComponents/WelcomeSection/WelcomeSect
 import RequestTRow from "./components/RequestTRow";
 import { Link } from "react-router-dom";
 import LoadingSpiner from "../../../SharedComponents/LoadingSpiner/LoadingSpiner";
+import useAuth from "../../../Hooks/useAuth";
 
 const DonorHome = () => {
     const axiosSecure = useAxiosSecure();
+    const {user} = useAuth();
 
     const { data: recentRequests = [], isError, error, isPending } = useQuery({
-        queryKey: ['recentRequests'],
+        queryKey: ['recentRequests', user?.email],
         queryFn: async () => {
-            const { data } = await axiosSecure('/recent-requests');
+            const { data } = await axiosSecure(`/recent-requests/${user?.email}`);
             return data;
         }
     });
 
     // Filter the recent donation requests
     // const filterdRecentData = donationRequests.
+    console.log(recentRequests)
 
     if (isPending) {
         return <LoadingSpiner smallLoader={true} />

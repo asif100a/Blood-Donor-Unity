@@ -13,6 +13,7 @@ import Dashboard from "../Layout/Dashboard";
 import CreateDonationRequest from "../Pages/Dashboard/CreateDonationRequest/CreateDonationRequest";
 import MyDonationRequests from "../Pages/Dashboard/MyDonationRequests/MyDonationRequests";
 import DonorHome from "../Pages/Dashboard/DonorHome/DonorHome";
+import EditDonorRequest from "../SharedComponents/AllDonationRequests/EditPage/EditDonorRequest";
 
 const Routes = createBrowserRouter([
     {
@@ -57,6 +58,10 @@ const Routes = createBrowserRouter([
             }, {
                 path: '/dashboard/donor_home',
                 element: <DonorHome />
+            }, {
+                path: '/dashboard/edit_donor_request/:id',
+                element: <EditDonorRequest />,
+                loader: ({params}) => fetch(`${import.meta.env.VITE_URL}/donation-requests-field/${params?.id}`)
             }
         ]
     }
