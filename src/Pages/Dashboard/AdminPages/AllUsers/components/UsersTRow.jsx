@@ -2,14 +2,23 @@ import PropTypes from 'prop-types';
 
 const UsersTRow = ({
     user,
-    handleBlockUser,
-    handleUnblockUser,
-    handleMakeDonor,
-    handleMakeVolunteer,
-    handleMakeAdmin
+    handleSelectedActivity,
+    handleSelectedRole,
+    isDisable
 }) => {
-    console.log(user);
     const { _id, name, email, image, role, status } = user;
+    console.log(isDisable)
+
+    // Handle the changes of activitey selection
+    const handleActivity = (e) => {
+        handleSelectedActivity(e.target.value, email);
+    };
+
+    // Handle the role of user
+    const handleRole = (e) => {
+        handleSelectedRole(e.target.value, email);
+    }
+
     return (
         <>
             <tr>
@@ -44,25 +53,29 @@ const UsersTRow = ({
                     <select
                         name="activity"
                         id="activity"
+                        disabled={isDisable === email ? true : false}
+                        onChange={handleActivity}
                         defaultValue={'change_status'}
                         className="select select-info w-fit h-8 min-h-8"
                     >
                         <option disabled value="change_status">Change status</option>
-                        <option onClick={handleBlockUser} value="block">Block</option>
-                        <option onClick={handleUnblockUser} value="unblock">Unblock</option>
+                        <option value="block">Block</option>
+                        <option value="unblock">Unblock</option>
                     </select>
                 </td>
                 <td>
                     <select
                         name="activity"
                         id="activity"
+                        disabled={isDisable === email ? true : false}
+                        onChange={handleRole}
                         defaultValue={'change_role'}
                         className="select select-secondary w-fit h-8 min-h-8"
                     >
                         <option disabled value="change_role">Change role</option>
-                        <option onClick={handleMakeDonor} value="donor">Donor</option>
-                        <option onClick={handleMakeVolunteer} value="volunteer">Volunteer</option>
-                        <option onClick={handleMakeAdmin} value="admin">Admin</option>
+                        <option value="donor">Donor</option>
+                        <option value="volunteer">Volunteer</option>
+                        <option value="admin">Admin</option>
                     </select>
                 </td>
             </tr>
@@ -72,11 +85,9 @@ const UsersTRow = ({
 
 UsersTRow.propTypes = {
     user: PropTypes.object,
-    handleBlockUser: PropTypes.func,
-    handleUnblockUser: PropTypes.func,
-    handleMakeDonor: PropTypes.func,
-    handleMakeVolunteer: PropTypes.func,
-    handleMakeAdmin: PropTypes.func,
+    handleSelectedActivity: PropTypes.func,
+    handleSelectedRole: PropTypes.func,
+    isDisable: PropTypes.string
 };
 
 export default UsersTRow;

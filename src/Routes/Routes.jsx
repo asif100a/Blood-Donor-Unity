@@ -52,6 +52,7 @@ const Routes = createBrowserRouter([
     }, {
         path: '/dashboard',
         element: <Dashboard />,
+        errorElement: <ErrorPage />,
         children: [
             // For admin
             {
