@@ -57,7 +57,7 @@ const Navber = () => {
                                     <div title={user?.displayName} className="dropdown dropdown-end">
                                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                             <div className="w-10 rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2">
-                                                <img src={user?.photoURL} />
+                                                <img referrerPolicy="no-referrer" src={user?.photoURL} />
                                             </div>
                                         </div>
                                         <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">

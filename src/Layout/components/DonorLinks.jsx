@@ -1,7 +1,8 @@
 import { FcDonate, FcHome, FcInspection } from "react-icons/fc";
 import { NavLink } from "react-router-dom";
 
-const DonorLinks = () => {
+const DonorLinks = ({status}) => {
+    console.log(status)
     return (
         <>
             <li>
@@ -21,7 +22,7 @@ const DonorLinks = () => {
             </li>
 
             <li>
-                <NavLink to={'/dashboard/create_donation_request'} className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href="#">
+                <NavLink to={status === 'blocked' ? 'block_page' : 'create_donation_request'} className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href="#">
                     <FcInspection className='w-6 h-6' />
 
                     <span className="mx-4 font-medium">Create Donation Request</span>

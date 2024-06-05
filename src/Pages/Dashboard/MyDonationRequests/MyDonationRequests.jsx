@@ -1,6 +1,8 @@
+import useAuth from "../../../Hooks/useAuth";
 import AllDonorRequests from "../../../SharedComponents/AllDonationRequests/AllDonorRequests";
 
 const MyDonationRequests = () => {
+    const {user} = useAuth();
 
     return (
         <div>
@@ -9,7 +11,7 @@ const MyDonationRequests = () => {
                 <button className="btn">Sort by</button>
             </div>
             <div>
-                <AllDonorRequests />
+                <AllDonorRequests email={user?.email} />
             </div>
         </div>
     );

@@ -45,7 +45,7 @@ const UsersTRow = ({
                 </td>
                 <td>
                     <div className='flex gap-2 items-center justify-center'>
-                        <p className='w-2 h-2 bg-green-500'></p>
+                        <p className={`w-2 h-2 ${status === 'active' ? 'bg-green-500' : 'bg-red-500'}`}></p>
                         <p>{status}</p>
                     </div>
                 </td>

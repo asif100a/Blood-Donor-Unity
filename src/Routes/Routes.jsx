@@ -19,6 +19,8 @@ import AdminRoute from "./AdminRoute";
 import AllUsers from "../Pages/Dashboard/AdminPages/AllUsers/AllUsers";
 import AllBloodDonationRequests from "../Pages/Dashboard/AdminPages/AllBloodDonationRequests/AllBloodDonationRequests";
 import ContentManagement from "../Pages/Dashboard/AdminPages/ContentManagement/ContentManagement";
+import BlockPage from "../Pages/ErrorPage/BlockPage";
+import BlockRoute from "../ProtectedPage/BlockRoute";
 
 const Routes = createBrowserRouter([
     {
@@ -71,17 +73,20 @@ const Routes = createBrowserRouter([
             // For donator
             {
                 path: '/dashboard/donor_home',
-                element: <DonorHome />
+                element: <PrivatePage><DonorHome /></PrivatePage>
             }, {
                 path: '/dashboard/create_donation_request',
-                element: <CreateDonationRequest />
+                element: <PrivatePage><BlockRoute><CreateDonationRequest /></BlockRoute></PrivatePage>
             }, {
                 path: '/dashboard/my_donation_requests',
-                element: <MyDonationRequests />
+                element: <PrivatePage><MyDonationRequests /></PrivatePage>
             },  {
                 path: '/dashboard/edit_donor_request/:id',
-                element: <EditDonorRequest />,
+                element: <PrivatePage><EditDonorRequest /></PrivatePage>,
                 loader: ({params}) => fetch(`${import.meta.env.VITE_URL}/donation-requests-field/${params?.id}`)
+            }, {
+                path: '/dashboard/block_page',
+                element: <PrivatePage><BlockPage /></PrivatePage>
             }
         ]
     }

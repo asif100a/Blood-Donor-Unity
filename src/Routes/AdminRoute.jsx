@@ -3,10 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../Hooks/useAuth";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import LoadingSpiner from "../SharedComponents/LoadingSpiner/LoadingSpiner";
+import { Navigate, useLocation } from "react-router-dom";
 
 const AdminRoute = ({children}) => {
     const { user, isPending } = useAuth();
     const axiosSecure = useAxiosSecure();
+    const location = useLocation();
 
     // Fetch the user based on the logged user email
     const { data, isError, error, isLoading } = useQuery({
@@ -24,13 +26,16 @@ const AdminRoute = ({children}) => {
         return <LoadingSpiner />
     }
 
-    if(user && role === 'admin') {
-        return children;
-    }
-
     if(isError) {
         console.error(error);
     }
+    
+    if(user && role === 'admin') {
+        return children;
+    } else{
+        <Navigate state={{from: location?.pathname}} to={'/login'} replace={true} />
+    }
+
 };
 
 AdminRoute.propTypes = {

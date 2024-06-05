@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../../../assets/Blood.png';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../Hooks/useAuth';
@@ -6,6 +6,10 @@ import toast from 'react-hot-toast';
 
 const Login = () => {
     const { loginUser } = useAuth();
+    const location = useLocation();
+    const navigate = useNavigate();
+    console.log(location);
+    const to = location?.state?.from;
 
     const {
         register,
@@ -20,6 +24,8 @@ const Login = () => {
         try {
             const result = await loginUser(data?.email, data?.password);
             console.log(result?.user);
+            toast.success('You have successfully logged in');
+            navigate(to ? to : '/')
 
         } catch (err) {
             console.error(err.message);
