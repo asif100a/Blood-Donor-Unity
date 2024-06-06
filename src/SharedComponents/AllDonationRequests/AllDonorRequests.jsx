@@ -62,13 +62,6 @@ const AllDonorRequests = ({ email, volunteer, admin }) => {
                 /* Read more about handling dismissals below */
                 result.dismiss === Swal.DismissReason.cancel
             ) {
-                // swalWithBootstrapButtons.fire({
-                //     title: "Cancelled",
-                //     text: "You have canceled delete oparation",
-                //     icon: "error",
-                //     timer: 1500,
-                //     showConfirmButton: false
-                // });;
                 toast.error('You have canceled delete oparation')
             }
         });

@@ -60,31 +60,32 @@ const RequestTbody = ({ data, index, handleDelete, volunteer, admin, handleChang
                 <td>{upazila}, {district}</td>
                 <td>{donation_date}</td>
                 <td>{donation_time}</td>
-                {
-                    (volunteer || admin) && <td className='flex gap-2 items-center'><p className={`${donation_status === 'pending' && 'bg-yellow-400'} ${donation_status === 'in progress' && 'bg-blue-400'}  ${donation_status === 'complete' && 'bg-green-500'} w-2 h-2`}></p><p>{donation_status}</p></td>
-                }
-                <td>{ }</td>
-                <td>
-                    <select
-                        name='status'
-                        onChange={handleChange}
-                        defaultValue={'change_status'}
-                        className="select select-info w-fit h-8 min-h-8"
-                    >
-                        <option disabled value={'change_status'}>Change status</option>
-                        <option>pending</option>
-                        <option>in progress</option>
-                        <option>complete</option>
-                    </select>
+                <td className='flex gap-2 items-center'>
+                    <p className={`${donation_status === 'pending' && 'bg-yellow-400'} ${donation_status === 'in progress' && 'bg-blue-400'}  ${donation_status === 'complete' && 'bg-green-500'} w-2 h-2`}></p><p>{donation_status}</p>
                 </td>
+                <td>{ }</td>
+                {
+                    (volunteer || admin) && <td>
+                        <select
+                            name='status'
+                            onChange={handleChange}
+                            defaultValue={'change_status'}
+                            className="select select-info w-fit h-8 min-h-8"
+                        >
+                            <option disabled value={'change_status'}>Change status</option>
+                            <option>pending</option>
+                            <option>in progress</option>
+                            <option>complete</option>
+                        </select>
+                    </td>
+                }
                 <td>
-                    <Link disabled={volunteer} to={`/dashboard/edit_donor_request/${_id}`}><button className='btn bg-white border-none shadow-none hover:bg-white'><FaRegEdit className='h-5 w-5 hover:transform hover:scale-125 text-green-600' /></button></Link>
+                    <Link to={volunteer ? '' : `/dashboard/edit_donor_request/${_id}`}><button className={`${volunteer && 'cursor-not-allowed '}btn bg-white border-none shadow-none hover:bg-white`}><FaRegEdit className='h-5 w-5 hover:transform hover:scale-125 text-green-600' /></button></Link>
                 </td>
                 <td>
                     <button
-                        disabled={volunteer}
-                        onClick={() => handleDelete(_id)}
-                        className="btn bg-white border-none shadow-none hover:bg-white"><MdDeleteForever className='h-6 w-6 hover:transform hover:scale-125 text-red-600' /></button>
+                        onClick={volunteer ? '' : () => handleDelete(_id)}
+                        className={`${volunteer && 'cursor-not-allowed '} btn bg-white border-none shadow-none hover:bg-white`}><MdDeleteForever className='h-6 w-6 hover:transform hover:scale-125 text-red-600' /></button>
                 </td>
             </tr>
         </>

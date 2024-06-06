@@ -24,6 +24,7 @@ import BlockRoute from "../ProtectedPage/BlockRoute";
 import AddBlogs from "../Pages/Dashboard/AdminPages/ContentManagement/components/AddBlogs";
 import VolunteerHome from "../Pages/Dashboard/VolunteerPages/VolunteerHome/VolunteerHome";
 import AllRequestsForBlood from "../Pages/Dashboard/VolunteerPages/AllRequestsForBlood/AllRequestsForBlood";
+import ContentManageVol from "../Pages/Dashboard/VolunteerPages/VolunteerHome/ContentManageVol/ContentManageVol";
 
 const Routes = createBrowserRouter([
     {
@@ -83,6 +84,9 @@ const Routes = createBrowserRouter([
             }, {
                 path: '/dashboard/all_requests_for_blood',
                 element: <AllRequestsForBlood />
+            }, {
+                path: '/dashboard/content_manage_vol',
+                element: <ContentManageVol />
             },
             // For donator
             {
