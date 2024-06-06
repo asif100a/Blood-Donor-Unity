@@ -97,7 +97,7 @@ const Register = () => {
             console.log(result);
 
             // Save user data to the database
-            const { data: userData } = await axiosPublic.post('/users', { ...data, image: hostedImage, registerDate: date, role, status });
+            const { data: userData } = await axiosPublic.post('/users', { ...data, image: hostedImage, registerDate: date, role, status});
             console.log(userData);
             if (userData?.insertedId) {
                 reset();

@@ -5,7 +5,7 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 import LoadingSpiner from "../SharedComponents/LoadingSpiner/LoadingSpiner";
 import { Navigate, useLocation } from "react-router-dom";
 
-const AdminRoute = ({children}) => {
+const AdminRoute = ({ children }) => {
     const { user, isPending } = useAuth();
     const axiosSecure = useAxiosSecure();
     const location = useLocation();
@@ -14,26 +14,28 @@ const AdminRoute = ({children}) => {
     const { data, isError, error, isLoading } = useQuery({
         queryKey: ['user', user?.email],
         queryFn: async () => {
-            const { data: savedUser } = await axiosSecure(`/users/${user?.email}`);
-            return savedUser;
+            if (user?.email) {
+                const { data: savedUser } = await axiosSecure(`/users/${user?.email}`);
+                return savedUser;
+            }
         }
     });
 
     console.log(data);
     const role = data?.role;
 
-    if(isPending || isLoading) {
+    if (isPending || isLoading) {
         return <LoadingSpiner />
     }
 
-    if(isError) {
+    if (isError) {
         console.error(error);
     }
-    
-    if(user && role === 'admin') {
+
+    if (user && role === 'admin') {
         return children;
-    } else{
-        <Navigate state={{from: location?.pathname}} to={'/login'} replace={true} />
+    } else {
+        <Navigate state={{ from: location?.pathname }} to={'/login'} replace={true} />
     }
 
 };
