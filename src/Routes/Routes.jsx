@@ -22,6 +22,8 @@ import ContentManagement from "../Pages/Dashboard/AdminPages/ContentManagement/C
 import BlockPage from "../Pages/ErrorPage/BlockPage";
 import BlockRoute from "../ProtectedPage/BlockRoute";
 import AddBlogs from "../Pages/Dashboard/AdminPages/ContentManagement/components/AddBlogs";
+import VolunteerHome from "../Pages/Dashboard/VolunteerPages/VolunteerHome/VolunteerHome";
+import AllRequestsForBlood from "../Pages/Dashboard/VolunteerPages/AllRequestsForBlood/AllRequestsForBlood";
 
 const Routes = createBrowserRouter([
     {
@@ -73,6 +75,14 @@ const Routes = createBrowserRouter([
             }, {
                 path: '/dashboard/content_management/add_blog',
                 element: <AddBlogs />
+            },
+            // For volunteer
+            {
+                path: '/dashboard/volunteer_home',
+                element: <VolunteerHome />
+            }, {
+                path: '/dashboard/all_requests_for_blood',
+                element: <AllRequestsForBlood />
             },
             // For donator
             {

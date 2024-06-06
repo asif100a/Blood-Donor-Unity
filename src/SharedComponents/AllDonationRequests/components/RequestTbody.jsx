@@ -3,26 +3,22 @@ import { FaRegEdit } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
-const RequestTbody = ({ data, index, handleDelete }) => {
+const RequestTbody = ({ data, index, handleDelete, volunteer, admin, handleChangeStatus }) => {
     console.log(data);
     const {
         _id,
-        requester_name, 
-        requester_email, 
-        recipient_name, 
-        district, 
-        upazila, 
-        hospital_name, 
-        full_address, 
+        requester_name,
+        requester_email,
+        recipient_name,
+        district,
+        upazila,
+        hospital_name,
+        full_address,
         request_message,
         selectedDate,
         time,
-        donation_status 
+        donation_status
     } = data;
-
-    const options = {
-
-    };
 
     // Get the readable date 
     const donation_date = new Date(selectedDate).toLocaleDateString('en-GB');
@@ -48,9 +44,14 @@ const RequestTbody = ({ data, index, handleDelete }) => {
         // Finally return the 12 hour time
         return time12;
     };
-
     const donation_time = convertInto12Hour(time);
-    
+
+    // Get selected value from the field
+    const handleChange = (e) => {
+        const value = e.target.value;
+        handleChangeStatus(value, _id)
+    };
+
     return (
         <>
             <tr>
@@ -59,15 +60,31 @@ const RequestTbody = ({ data, index, handleDelete }) => {
                 <td>{upazila}, {district}</td>
                 <td>{donation_date}</td>
                 <td>{donation_time}</td>
-                <td>{donation_status}</td>
-                <td>{}</td>
+                {
+                    (volunteer || admin) && <td className='flex gap-2 items-center'><p className={`${donation_status === 'pending' && 'bg-yellow-400'} ${donation_status === 'in progress' && 'bg-blue-400'}  ${donation_status === 'complete' && 'bg-green-500'} w-2 h-2`}></p><p>{donation_status}</p></td>
+                }
+                <td>{ }</td>
                 <td>
-                    <Link to={`/dashboard/edit_donor_request/${_id}`}><button className='btn bg-white border-none shadow-none hover:bg-white'><FaRegEdit className='h-5 w-5 hover:transform hover:scale-125 text-green-600' /></button></Link>
+                    <select
+                        name='status'
+                        onChange={handleChange}
+                        defaultValue={'change_status'}
+                        className="select select-info w-fit h-8 min-h-8"
+                    >
+                        <option disabled value={'change_status'}>Change status</option>
+                        <option>pending</option>
+                        <option>in progress</option>
+                        <option>complete</option>
+                    </select>
                 </td>
                 <td>
-                    <button 
-                    onClick={() => handleDelete(_id)}
-                    className="btn bg-white border-none shadow-none hover:bg-white"><MdDeleteForever className='h-6 w-6 hover:transform hover:scale-125 text-red-600' /></button>
+                    <Link disabled={volunteer} to={`/dashboard/edit_donor_request/${_id}`}><button className='btn bg-white border-none shadow-none hover:bg-white'><FaRegEdit className='h-5 w-5 hover:transform hover:scale-125 text-green-600' /></button></Link>
+                </td>
+                <td>
+                    <button
+                        disabled={volunteer}
+                        onClick={() => handleDelete(_id)}
+                        className="btn bg-white border-none shadow-none hover:bg-white"><MdDeleteForever className='h-6 w-6 hover:transform hover:scale-125 text-red-600' /></button>
                 </td>
             </tr>
         </>
@@ -77,7 +94,10 @@ const RequestTbody = ({ data, index, handleDelete }) => {
 RequestTbody.propTypes = {
     data: PropTypes.object,
     index: PropTypes.number,
-    handleDelete: PropTypes.func
+    handleDelete: PropTypes.func,
+    volunteer: PropTypes.bool,
+    admin: PropTypes.bool,
+    handleChangeStatus: PropTypes.func
 };
 
 export default RequestTbody;
