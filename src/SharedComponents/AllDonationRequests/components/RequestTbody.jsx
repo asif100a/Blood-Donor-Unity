@@ -80,12 +80,12 @@ const RequestTbody = ({ data, index, handleDelete, volunteer, admin, handleChang
                     </td>
                 }
                 <td>
-                    <Link to={volunteer ? '' : `/dashboard/edit_donor_request/${_id}`}><button className={`${volunteer && 'cursor-not-allowed '}btn bg-white border-none shadow-none hover:bg-white`}><FaRegEdit className='h-5 w-5 hover:transform hover:scale-125 text-green-600' /></button></Link>
+                    <Link to={volunteer ? '' : `/dashboard/edit_donor_request/${_id}`}><button className={`${volunteer && 'cursor-not-allowed'}btn bg-white border-none shadow-none hover:bg-white`}><FaRegEdit className={`h-5 w-5 hover:transform hover:scale-125 text-green-600 ${volunteer && 'opacity-60 cursor-not-allowed'}`} /></button></Link>
                 </td>
                 <td>
                     <button
                         onClick={volunteer ? '' : () => handleDelete(_id)}
-                        className={`${volunteer && 'cursor-not-allowed '} btn bg-white border-none shadow-none hover:bg-white`}><MdDeleteForever className='h-6 w-6 hover:transform hover:scale-125 text-red-600' /></button>
+                        className={`${volunteer && 'cursor-not-allowed opacity-60'} btn bg-white border-none shadow-none hover:bg-white`}><MdDeleteForever className='h-6 w-6 hover:transform hover:scale-125 text-red-600' /></button>
                 </td>
             </tr>
         </>

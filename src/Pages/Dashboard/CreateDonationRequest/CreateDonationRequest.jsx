@@ -8,6 +8,7 @@ import 'react-clock/dist/Clock.css';
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import useAuth from "../../../Hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const CreateDonationRequest = () => {
     const [districts, setDistricts] = useState([]);
@@ -20,6 +21,7 @@ const CreateDonationRequest = () => {
 
     const axiosSecure = useAxiosSecure();
     const {user} = useAuth();
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch('/district.json')
@@ -86,6 +88,7 @@ const CreateDonationRequest = () => {
             setSelectedDate(new Date());
             setTime('10:00')
             toast.success('Donation request created successfully');
+            navigate('/dashboard/my_donation_requests')
 
         } catch (err) {
             console.error(err);

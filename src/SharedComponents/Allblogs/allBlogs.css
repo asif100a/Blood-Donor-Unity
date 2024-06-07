@@ -1,0 +1,9 @@
+/* Custom button for disable button */
+.custom-button{
+    transition: none;
+    animation: none;
+    transform: none;
+}
+.custom-button:focus{
+    outline: none;
+}

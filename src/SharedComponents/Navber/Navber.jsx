@@ -2,9 +2,11 @@ import { Link, NavLink } from "react-router-dom";
 import logo from '../../assets/Blood.png'
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import useLoggedUser from "../../Hooks/useLoggedUser";
 
 const Navber = () => {
     const { user, logoutUser } = useAuth();
+    const loggedUser = useLoggedUser();
 
     const NavLinks = <>
         <li><NavLink to={'/'} className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Home</NavLink></li>
@@ -16,7 +18,7 @@ const Navber = () => {
         }
     </>;
 
-    const handleLogout = async() => {
+    const handleLogout = async () => {
         await logoutUser();
         toast.success('You have logged out');
     };
@@ -61,7 +63,15 @@ const Navber = () => {
                                             </div>
                                         </div>
                                         <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-                                            <li><Link to={'/dashboard'}>Dashboard</Link></li>
+                                            { 
+                                              loggedUser?.role === 'donor' &&  <li><Link to={'/dashboard/donor_home'}>Dashboard</Link></li>
+                                            }
+                                            { 
+                                              loggedUser?.role === 'volunteer' &&  <li><Link to={'/dashboard/volunteer_home'}>Dashboard</Link></li>
+                                            }
+                                            { 
+                                              loggedUser?.role === 'admin' &&  <li><Link to={'/dashboard/admin_home'}>Dashboard</Link></li>
+                                            }
                                             <li onClick={handleLogout}><a>Logout</a></li>
                                         </ul>
                                     </div>

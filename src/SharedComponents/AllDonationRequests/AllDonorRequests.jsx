@@ -3,28 +3,56 @@ import toast from 'react-hot-toast';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import LoadingSpiner from '../LoadingSpiner/LoadingSpiner';
 import RequestTbody from './components/RequestTbody';
-import { useQuery } from '@tanstack/react-query';
+// import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import { FaAngleDown } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
 
 const AllDonorRequests = ({ email, volunteer, admin }) => {
     console.log(email)
     console.log(volunteer);
     console.log(admin)
     const axiosSecure = useAxiosSecure();
+    const [donationRequests, setDonationRequests] = useState([]);
+    const [isPending, setIspending] = useState(true);
+    const [sortedValue, setSortedValue] = useState('');
 
-    const { data: donationRequests = [], isError, error, isPending, refetch } = useQuery({
-        queryKey: ['donationRequests', email],
-        queryFn: async () => {
+    // const { data: donationRequests = [], isError, error, isPending, refetch } = useQuery({
+    //     queryKey: ['donationRequests', email],
+    //     queryFn: async () => {
+    //         if (email) {
+    //             const { data } = await axiosSecure(`/donation-requests/${email}?status=${sortedValue}`);
+    //             return data;
+
+    //         } else {
+    //             const { data } = await axiosSecure(`/donation-requests`);
+    //             return data;
+    //         }
+    //     }
+    // });
+
+    useEffect(() => {
+        const donationRequestsData = async () => {
             if (email) {
-                const { data } = await axiosSecure(`/donation-requests/${email}`);
-                return data;
+                const { data } = await axiosSecure(`/donation-requests/${email}?status=${sortedValue}`);
+                setDonationRequests(data);
+                setIspending(false);
 
             } else {
-                const { data } = await axiosSecure(`/donation-requests`);
-                return data;
+                const { data } = await axiosSecure(`/donation-requests?status=${sortedValue}`);
+                setDonationRequests(data);
+                setIspending(false);
             }
-        }
-    });
+        };
+        donationRequestsData();
+
+    }, [axiosSecure, email, sortedValue]);
+
+    // Handle dropdown sort by content
+    const handleDropdown = (status) => {
+        console.log(status);
+        setSortedValue(status);
+    };
 
     // Delete an data
     const handleDelete = (id) => {
@@ -51,7 +79,7 @@ const AllDonorRequests = ({ email, volunteer, admin }) => {
                     console.log(data);
                     if (data?.deletedCount > 0) {
                         toast.success('You have deleted a donation request');
-                        refetch();
+                        // refetch();
                     }
                 } catch (err) {
                     console.error(err);
@@ -76,7 +104,7 @@ const AllDonorRequests = ({ email, volunteer, admin }) => {
             console.log(data);
             if (data?.modifiedCount > 0) {
                 toast.success('Status changed successfully');
-                refetch();
+                // refetch();
             }
 
         } catch (err) {
@@ -84,19 +112,30 @@ const AllDonorRequests = ({ email, volunteer, admin }) => {
         }
     };
 
-    console.log(donationRequests);
-    if (isError) {
-        console.error(error);
-    }
 
+    // Set loading spiner if data is pending
     if (isPending) {
         return <LoadingSpiner />
     }
 
     return (
         <div>
-            <div className='my-6 text-center'>
-                <button className='btn'>Sort by</button>
+            <div className="mb-12 text-center">
+                <div className="dropdown ">
+                    <button className="relative inline-flex items-center justify-center p-4 px-12 py-3 overflow-hidden font-medium text-red-600 transition duration-300 ease-out border-2 border-green-500 rounded-full shadow-md group">
+                        <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-green-500 group-hover:translate-x-0 ease">
+                            <FaAngleDown className="w-6 h-6" />
+                        </span>
+                        <span className="absolute flex items-center justify-center w-full h-full text-red-600 transition-all duration-300 transform group-hover:translate-x-full ease">Sort by</span>
+                        <span className="relative invisible">Sort by</span>
+                    </button>
+
+                    <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 -right-6">
+                        <li onClick={() => handleDropdown('pending')}><a>pending</a></li>
+                        <li onClick={() => handleDropdown('in progress')}><a>in progress</a></li>
+                        <li onClick={() => handleDropdown('complete')}><a>complete</a></li>
+                    </ul>
+                </div>
             </div>
 
             <div className="overflow-x-auto">

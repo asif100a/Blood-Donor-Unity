@@ -1,4 +1,4 @@
-import { Link, Routes, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/Blood.png'
 import { FaHouseDamage } from 'react-icons/fa';
 import DonorLinks from './DonorLinks';
@@ -8,7 +8,7 @@ import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import VolunteerLinks from './VolunteerLinks';
 import AdminLinks from './AdminLinks';
 import toast from 'react-hot-toast';
-import { BiLogOut } from 'react-icons/bi';
+import { BiLogOut } from 'react-icons/bi';;
 
 const Sidebar = () => {
     const { user, logoutUser } = useAuth();
@@ -17,7 +17,7 @@ const Sidebar = () => {
     console.log(user)
 
     // Fetch the user based on the logged user email
-    const { data, isError, error, isLoading, refetch } = useQuery({
+    const { data, isError, error, refetch } = useQuery({
         queryKey: ['user', user?.email],
         queryFn: async () => {
             const { data: savedUser } = await axiosSecure(`/users/${user?.email}`);
