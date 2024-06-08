@@ -25,6 +25,7 @@ import AddBlogs from "../Pages/Dashboard/AdminPages/ContentManagement/components
 import VolunteerHome from "../Pages/Dashboard/VolunteerPages/VolunteerHome/VolunteerHome";
 import AllRequestsForBlood from "../Pages/Dashboard/VolunteerPages/AllRequestsForBlood/AllRequestsForBlood";
 import ContentManageVol from "../Pages/Dashboard/VolunteerPages/VolunteerHome/ContentManageVol/ContentManageVol";
+import DonationRequestDetails from "../Pages/DonationRequests/components/DonationRequestDetails/DonationRequestDetails";
 
 const Routes = createBrowserRouter([
     {
@@ -44,6 +45,10 @@ const Routes = createBrowserRouter([
             }, {
                 path: '/donation_requests',
                 element: <DonationRequests />
+            }, {
+                path: '/donation_request_details/:id',
+                element: <PrivatePage><DonationRequestDetails /></PrivatePage>,
+                loader: ({params}) => fetch(`${import.meta.env.VITE_URL}/pending-requests/${params.id}`)
             }, {
                 path: '/blogs',
                 element: <Blogs />

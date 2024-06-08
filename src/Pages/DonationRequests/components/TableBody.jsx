@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const TableBody = ({i, request}) => {
     console.log(request);
@@ -8,9 +9,9 @@ const TableBody = ({i, request}) => {
     const request_date = new Date(selectedDate).toLocaleDateString('en-GB');
 
     // Convert time to readable time
-    const readableTime = (time) => {
+    const getReadableTime = (time24) => {
         // Separate hour and munite
-        const [hour24, munite] = time.split(':').map(Number);
+        const [hour24, munite] = time24.split(':').map(Number);
 
         // Get the period of time
         const period = hour24 >= 12 ? 'PM' : 'AM';
@@ -19,8 +20,15 @@ const TableBody = ({i, request}) => {
         const hour12 = hour24 % 12 || 12;
 
         // Formate the munite
-        
+        const formatedMunite = munite.toString().padStart(2, '0');
+
+        // Get the formated 12 hour time
+        const time12 = `${hour12}:${formatedMunite} ${period}`;
+
+        return time12;
     };
+
+    const request_time = getReadableTime(time);
 
     return (
         <>
@@ -29,10 +37,9 @@ const TableBody = ({i, request}) => {
                 <td>{recipient_name}</td>
                 <td>{upazila}, {district}</td>
                 <td>{request_date}</td>
-                <td>{}</td>
+                <td>{request_time}</td>
                 <td>
-                    <button
-                        className={`btn`}>View details</button>
+                    <Link to={`/donation_request_details/${_id}`}><button className={`btn`}>View details</button></Link>
                 </td>
             </tr>
         </>
