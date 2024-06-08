@@ -11,7 +11,7 @@ const Banner = () => {
 
             </div> */}
 
-            <div className='w-fit h-fit p-6 border bg-white bg-opacity-50 rounded-2xl mx-auto text-center'>
+            <div className='w-fit h-fit p-6 border bg-white bg-opacity-55 rounded-2xl mx-auto text-center'>
                 <h1 className='text-6xl font-semibold flex flex-col w-[56rem]'>
                     <span className='text-red-500'>Blood Donor Unity</span>
                     <span className='text-gray-900'>Empowering Lives, One Donation at a Time</span>
