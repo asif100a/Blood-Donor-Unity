@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useQuery } from "@tanstack/react-query";
+// import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { Link } from "react-router-dom";
 import { FaAngleDown, FaRegEdit } from "react-icons/fa";
@@ -7,62 +7,76 @@ import { MdDeleteForever } from "react-icons/md";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import LoadingSpiner from "../LoadingSpiner/LoadingSpiner";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import './allBlogs.css';
+import useRefresh from "../../Hooks/useRefresh";
 
 const Allblogs = ({ volunteer }) => {
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
-    const [currentStatus, setCurrentStatus] = useState('');
-    console.log(volunteer);
+    const refresh = useRefresh();
+    // console.log(volunteer);
+
+    const [blogs, setBlogs] = useState([]);
+    const [isPending, setIsPending] = useState(true);
     const [sortedValue, setSortedValue] = useState('');
 
-    const { data: blogs = [], isError, error, isPending, refetch } = useQuery({
-        queryKey: ['blogs'],
-        queryFn: async () => {
-            const { data } = await axiosPublic.get('/blogs');
-            return data;
-        }
-    });
-    console.log(blogs);
+    // const { data: blogs = [], isError, error, isPending, refetch } = useQuery({
+    //     queryKey: ['blogs'],
+    //     queryFn: async () => {
+    //         const { data } = await axiosPublic.get('/blogs');
+    //         return data;
+    //     }
+    // });
+    // console.log(blogs);
+
+    useEffect(() => {
+        BlogData();
+        
+    }, [sortedValue]);
+
+    const BlogData = async() => {
+        const {data} = await axiosPublic.get(`/blogs?status=${sortedValue}`);
+        console.log(data);
+        setBlogs(data);
+        setIsPending(false);
+    }
 
     if (isPending) {
         return <LoadingSpiner />;
     }
-    if (isError) {
-        console.error(error);
-    }
+    // if (isError) {
+    //     console.error(error);
+    // }
 
     // Sort the blog
     const handleDropdown = (status) => {
         console.log(status);
         setSortedValue(status);
+        console.log('sorted value:', sortedValue)
     };
 
     // Publish the blog
     const handlePublishBlog = async (id, status) => {
-        if (status === 'draft') {
-            setCurrentStatus('published');
-        }
-        else if (status === 'published') {
-            setCurrentStatus('draft');
-        }
-        console.log(currentStatus);
+        const newStatus = status === 'draft' ? 'published' : 'draft';
+
+        console.log('status:', status)
+        console.log('newStatus:', newStatus);
 
         // Update data to the database
-        if (currentStatus) {
             try {
-                const { data } = await axiosSecure.patch(`/blogs/${id}`, { status: currentStatus });
+                const { data } = await axiosSecure.patch(`/blogs/${id}`, { status: newStatus });
                 console.log(data);
                 if (data?.modifiedCount > 0) {
-                    toast.success('Blog published successfully');
-                    refetch();
+                    // Show the success message after finishing the action
+                    status === 'draft' ? toast.success('Blog published successfully') : toast.success('Blog drafted successfully')
+                    
+                    BlogData();
                 }
             } catch (err) {
                 console.error(err);
             }
-        }
     };
 
     // Delete the blog
@@ -90,7 +104,8 @@ const Allblogs = ({ volunteer }) => {
                     console.log(data);
                     if (data?.deletedCount > 0) {
                         toast.success('Blog deleted successfully');
-                        refetch();
+                        const updatedData = refresh(id, blogs);
+                        setBlogs(updatedData);
                     }
                 } catch (err) {
                     console.error(err);
@@ -110,20 +125,21 @@ const Allblogs = ({ volunteer }) => {
     return (
         <section className="bg-white dark:bg-gray-900">
             <div className="container px-6 py-10 mx-auto">
-                <div className="dropdown ">
-                    <button className="relative inline-flex items-center justify-center p-4 px-12 py-3 overflow-hidden font-medium text-red-600 transition duration-300 ease-out border-2 border-green-500 rounded-full shadow-md group">
-                        <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-green-500 group-hover:translate-x-0 ease">
-                            <FaAngleDown className="w-6 h-6" />
-                        </span>
-                        <span className="absolute flex items-center justify-center w-full h-full text-red-600 transition-all duration-300 transform group-hover:translate-x-full ease">Sort by</span>
-                        <span className="relative invisible">Sort by</span>
-                    </button>
+                <div className="mb-12 text-center">
+                    <div className="dropdown">
+                        <button className="relative inline-flex items-center justify-center p-4 px-12 py-3 overflow-hidden font-medium text-red-600 transition duration-300 ease-out border-2 border-green-500 rounded-full shadow-md group">
+                            <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-green-500 group-hover:translate-x-0 ease">
+                                <FaAngleDown className="w-6 h-6" />
+                            </span>
+                            <span className="absolute flex items-center justify-center w-full h-full text-red-600 transition-all duration-300 transform group-hover:translate-x-full ease">Sort by</span>
+                            <span className="relative invisible">Sort by</span>
+                        </button>
 
-                    <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 -right-6">
-                        <li onClick={() => handleDropdown('pending')}><a>pending</a></li>
-                        <li onClick={() => handleDropdown('in progress')}><a>in progress</a></li>
-                        <li onClick={() => handleDropdown('complete')}><a>complete</a></li>
-                    </ul>
+                        <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 -right-6">
+                            <li onClick={() => handleDropdown('draft')}><a>draft</a></li>
+                            <li onClick={() => handleDropdown('published')}><a>published</a></li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-4">
@@ -146,7 +162,7 @@ const Allblogs = ({ volunteer }) => {
                                     {/* <div className="mt-2 text-gray-500 dark:text-gray-400" dangerouslySetInnerHTML={{__html: blog?.content.split(0, 20)}}>
                                     </div> */}
 
-                                    <div className="flex items-center justify-between mt-4">
+                                    <div className="flex items-center justify-between mt-2">
                                         <Link to={''}><button className={`btn bg-white border-none shadow-none hover:bg-white`}><FaRegEdit className='h-5 w-5 hover:transform hover:scale-125 text-green-600' /></button></Link>
 
                                         <button
@@ -156,8 +172,8 @@ const Allblogs = ({ volunteer }) => {
 
                                     <div className="text-center">
                                         <button
-                                            onClick={volunteer ? '' : () => handlePublishBlog(blog?._id, blog?.status)}
-                                            className={`${volunteer ? 'cursor-not-allowed h-[3rem] min-h-[3rem] rounded-md' : 'btn'} w-full text-[16px] font-bold text-white ${blog?.status === 'draft' ? 'bg-green-500 hover:bg-green-700' : 'bg-orange-600 hover:bg-orange-700'} ${volunteer && blog?.status === 'draft' ? 'bg-green-700 hover:bg-green-700 custom-button' : 'bg-orange-700 hover:bg-orange-700 custom-button'}`}>{blog?.status === 'draft' ? 'Publish' : 'Unpublish'}</button>
+                                            onClick={volunteer ? null : () => handlePublishBlog(blog?._id, blog?.status)}
+                                            className={`${volunteer ? 'cursor-not-allowed h-[3rem] min-h-[3rem] rounded-md' : 'btn'} w-full text-[16px] font-bold text-white ${blog?.status === 'draft' ? 'bg-green-500 hover:bg-green-700' : 'bg-orange-600 hover:bg-orange-700'}`}>{blog?.status === 'draft' ? 'Publish' : 'Unpublish'}</button>
                                     </div>
                                 </div>
                             </div>

@@ -5,27 +5,51 @@ import toast from "react-hot-toast";
 import { useEffect, useState } from "react";
 import LoadingSpiner from "../../../../SharedComponents/LoadingSpiner/LoadingSpiner";
 import useAuth from "../../../../Hooks/useAuth";
+import { FaAngleDown } from "react-icons/fa";
 // import useUpdateSingleField from "../../../../Hooks/useUpdateSingleField";
 
 const AllUsers = () => {
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
+    const [users, setUsers] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const [isDisable, setIsDisable] = useState('');
     const [status, setStatus] = useState('');
+    const [sortedValue, setSortedValue] = useState('');
 
-    const { data: users = [], error, isError, isLoading, refetch } = useQuery({
-        queryKey: ['users'],
-        queryFn: async () => {
-            const { data } = await axiosSecure('/users');
-            return data;
-        }
-    });
-    console.log(users);
+    // const { data: users = [], error, isError, isLoading, refetch } = useQuery({
+    //     queryKey: ['users'],
+    //     queryFn: async () => {
+    //         const { data } = await axiosSecure('/users');
+    //         return data;
+    //     }
+    // });
+    // console.log(users);
 
     useEffect(() => {
+        fetchedData();
+
         // Disable changing for logged user to change him
         setIsDisable(`${user?.email}`);
-    }, [user?.email]);
+    }, [user?.email, sortedValue]);
+
+    const fetchedData = async() => {
+        try{
+            const {data} = await axiosSecure(`/users?status=${sortedValue}`);
+            console.log(data);
+            setUsers(data);
+            setIsLoading(false);
+
+        } catch(err) {
+            console.error(err);
+        }
+    };
+
+    // Set sort functiionality
+    const handleDropdown = (value) => {
+        console.log(value);
+        setSortedValue(value);
+    };
 
     // Change the user status
     const handleSelectedActivity = async (value, email) => {
@@ -48,7 +72,7 @@ const AllUsers = () => {
                 console.log(data);
                 if (data?.modifiedCount > 0) {
                     toast.success("User's status updated successfully");
-                    refetch();
+                    fetchedData();
                 }
 
             } catch (error) {
@@ -65,7 +89,7 @@ const AllUsers = () => {
             console.log(data);
             if(data?.modifiedCount > 0) {
                 toast.success("User's role updated successfully");
-                refetch();
+                fetchedData();
             }
         } catch(error) {
             console.error(error);
@@ -77,10 +101,23 @@ const AllUsers = () => {
     }
 
     return (
-        <div>
-            <h1>All users</h1>
-            <div className="my-6 text-center">
-                <button className="btn">Sort by</button>
+        <div className="mt-6">
+            <h1 className="text-4xl font-semibold text-center mb-6">All users</h1>
+            <div className="mb-12 text-center">
+                <div className="dropdown ">
+                    <button className="relative inline-flex items-center justify-center p-4 px-12 py-3 overflow-hidden font-medium text-red-600 transition duration-300 ease-out border-2 border-green-500 rounded-full shadow-md group">
+                        <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-green-500 group-hover:translate-x-0 ease">
+                            <FaAngleDown className="w-6 h-6" />
+                        </span>
+                        <span className="absolute flex items-center justify-center w-full h-full text-red-600 transition-all duration-300 transform group-hover:translate-x-full ease">Sort by</span>
+                        <span className="relative invisible">Sort by</span>
+                    </button>
+
+                    <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 -right-6">
+                        <li onClick={() => handleDropdown('active')}><a>active</a></li>
+                        <li onClick={() => handleDropdown('blocked')}><a>blocked</a></li>
+                    </ul>
+                </div>
             </div>
 
             <div className="overflow-x-auto">

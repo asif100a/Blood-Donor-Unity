@@ -84,7 +84,7 @@ const RequestTbody = ({ data, index, handleDelete, volunteer, admin, handleChang
                 </td>
                 <td>
                     <button
-                        onClick={volunteer ? '' : () => handleDelete(_id)}
+                        onClick={volunteer ? null : () => handleDelete(_id)}
                         className={`${volunteer && 'cursor-not-allowed opacity-60'} btn bg-white border-none shadow-none hover:bg-white`}><MdDeleteForever className='h-6 w-6 hover:transform hover:scale-125 text-red-600' /></button>
                 </td>
             </tr>

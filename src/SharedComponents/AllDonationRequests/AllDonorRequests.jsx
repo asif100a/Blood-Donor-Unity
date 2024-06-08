@@ -7,6 +7,7 @@ import RequestTbody from './components/RequestTbody';
 import Swal from 'sweetalert2';
 import { FaAngleDown } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
+import useRefresh from '../../Hooks/useRefresh';
 
 const AllDonorRequests = ({ email, volunteer, admin }) => {
     console.log(email)
@@ -16,6 +17,8 @@ const AllDonorRequests = ({ email, volunteer, admin }) => {
     const [donationRequests, setDonationRequests] = useState([]);
     const [isPending, setIspending] = useState(true);
     const [sortedValue, setSortedValue] = useState('');
+    // const [refetch, setRefetch] = useState(null);
+    const refresh = useRefresh();
 
     // const { data: donationRequests = [], isError, error, isPending, refetch } = useQuery({
     //     queryKey: ['donationRequests', email],
@@ -30,23 +33,25 @@ const AllDonorRequests = ({ email, volunteer, admin }) => {
     //         }
     //     }
     // });
+    // console.log(refetch)
 
     useEffect(() => {
-        const donationRequestsData = async () => {
-            if (email) {
-                const { data } = await axiosSecure(`/donation-requests/${email}?status=${sortedValue}`);
-                setDonationRequests(data);
-                setIspending(false);
-
-            } else {
-                const { data } = await axiosSecure(`/donation-requests?status=${sortedValue}`);
-                setDonationRequests(data);
-                setIspending(false);
-            }
-        };
         donationRequestsData();
 
-    }, [axiosSecure, email, sortedValue]);
+    }, [sortedValue]);
+
+    const donationRequestsData = async () => {
+        if (email) {
+            const { data } = await axiosSecure(`/donation-requests/${email}?status=${sortedValue}`);
+            setDonationRequests(data);
+            setIspending(false);
+
+        } else {
+            const { data } = await axiosSecure(`/donation-requests?status=${sortedValue}`);
+            setDonationRequests(data);
+            setIspending(false);
+        }
+    };
 
     // Handle dropdown sort by content
     const handleDropdown = (status) => {
@@ -79,7 +84,10 @@ const AllDonorRequests = ({ email, volunteer, admin }) => {
                     console.log(data);
                     if (data?.deletedCount > 0) {
                         toast.success('You have deleted a donation request');
-                        // refetch();
+                        
+                        const updatedData = refresh(id, donationRequests);
+                        setDonationRequests(updatedData);
+                        console.log('updated data', updatedData)
                     }
                 } catch (err) {
                     console.error(err);
@@ -104,7 +112,7 @@ const AllDonorRequests = ({ email, volunteer, admin }) => {
             console.log(data);
             if (data?.modifiedCount > 0) {
                 toast.success('Status changed successfully');
-                // refetch();
+                donationRequestsData();
             }
 
         } catch (err) {

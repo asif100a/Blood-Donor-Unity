@@ -9,10 +9,6 @@ const ContentManagement = () => {
                 <Link to={'/dashboard/content_management/add_blog'}><button className="btn">Add blog</button></Link>
             </div>
 
-            <div className="text-center my-5">
-                <button className="btn">Sort by</button>
-            </div>
-
             <div>
                 <Allblogs />
             </div>

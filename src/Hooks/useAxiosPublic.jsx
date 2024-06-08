@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const useAxiosPublic = () => {
-    const axiosPublic = axios.create({
-        baseURL: import.meta.env.VITE_URL
-    });
+const axiosPublic = axios.create({
+    baseURL: import.meta.env.VITE_URL
+});
 
+const useAxiosPublic = () => {
     return axiosPublic;
 };
 
