@@ -1,9 +1,14 @@
 import { useLoaderData } from "react-router-dom";
+import ModalForDonate from "./Modal/ModalForDonate";
+import { useState } from "react";
 
 const DonationRequestDetails = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
     const requestData = useLoaderData();
     console.log(requestData);
     const {
+        _id,
         requester_name,
         requester_email,
         recipient_name,
@@ -42,9 +47,20 @@ const DonationRequestDetails = () => {
 
     const request_time = getReadableTime(time);
 
+
+    // Open the donate modal
+    const handleOpenModal = () => {
+        setIsOpen(true);
+    };
+
+    // Close the donate modal
+    const handleCloseModal = () => {
+        setIsOpen(false);
+    };
+
     return (
         <section
-            className="bg-white pt-12 lg:pt-8 pb-12 lg:pb-[90px] relative z-20 overflow-hidden"
+            className="bg-white pt-12 lg:pt-8 pb-12 lg:pb-[90px] relative overflow-hidden"
         >
             <div className="container">
                 <div className="flex flex-wrap -mx-4">
@@ -65,21 +81,20 @@ const DonationRequestDetails = () => {
                     <div className="w-full md:w-1/2 lg:w-1/3 px-4">
                         <div
                             className="
-               bg-white
-               rounded-xl
-               relative
-               z-10
-               overflow-hidden
-               border border-primary border-opacity-20
-               shadow-pricing
-               py-10
-               px-8
-               sm:p-12
-               lg:py-10 lg:px-6
-               xl:p-12
-               mb-10
-               "
-                        >
+                                bg-white
+                                rounded-xl
+                                relative
+                                z-10
+                                overflow-hidden
+                                border border-primary border-opacity-20
+                                shadow-pricing
+                                py-10
+                                px-8
+                                sm:p-12
+                                lg:py-10 lg:px-6
+                                xl:p-12
+                                mb-10
+                                ">
                             <span className="text-primary font-semibold text-lg block mb-4">
                                 Personal
                             </span>
@@ -91,12 +106,11 @@ const DonationRequestDetails = () => {
                             </h2>
                             <p
                                 className="
-                  text-base text-body-color
-                  pb-8
-                  mb-8
-                  border-b border-[#F2F2F2]
-                  "
-                            >
+                                text-base text-body-color
+                                pb-8
+                                mb-8
+                                border-b border-[#F2F2F2]
+                                ">
                                 Perfect for using in a personal website or a client project.
                             </p>
                             <div className="mb-7">
@@ -134,25 +148,23 @@ const DonationRequestDetails = () => {
                                     <span className="font-bold">Requester email:</span> {requester_email}
                                 </p>
                             </div>
-                            <a
-                                href="#"
-                                className="
-                  w-full
-                  block
-                  text-base
-                  font-semibold
-                  text-primary
-                  bg-transparent
-                  border border-[#D4DEFF]
-                  rounded-md
-                  text-center
-                  p-4
-                  hover:text-white hover:bg-primary hover:border-primary
-                  transition
-                  "
-                            >
-                                Choose Personal
-                            </a>
+                            <button
+                                onClick={handleOpenModal}
+                                className="w-full block
+                                            text-base
+                                            font-semibold
+                                            border border-red-600
+                                            rounded-md
+                                            text-center
+                                            text-green-600
+                                            p-4
+                                            hover:text-white hover:bg-green-600 hover:border-primary
+                                            transition
+                                            ">
+                                Donate
+                            </button>
+                            <ModalForDonate isOpen={isOpen} onClose={handleCloseModal} id={_id} />
+
                             <div>
                                 <span className="absolute right-0 top-7 z-[-1]">
                                     <svg
