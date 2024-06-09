@@ -28,8 +28,8 @@ const DonorHome = () => {
         console.log(id);
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
-                confirmButton: "btn btn-success",
-                cancelButton: "btn btn-danger"
+                confirmButton: "btn btn-success text-[#ffffff]",
+                cancelButton: "btn btn-danger bg-[#ff0000] text-[#ffffff] ",
             },
             buttonsStyling: false
         });
@@ -48,11 +48,6 @@ const DonorHome = () => {
                     console.log(data);
                     if (data?.deletedCount > 0) {
                         toast.success('You have deleted a donation request');
-                        // swalWithBootstrapButtons.fire({
-                        //     title: "Deleted!",
-                        //     text: "Your file has been deleted.",
-                        //     icon: "success"
-                        //   });
                         refetch();
                     }
                 } catch (err) {
@@ -73,8 +68,6 @@ const DonorHome = () => {
                 });
             }
         });
-
-
     };
 
     if (isError) {

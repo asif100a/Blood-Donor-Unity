@@ -20,7 +20,7 @@ const DonationRequests = () => {
 
     return (
         <div className="px-32">
-            <h1 className="text-4xl font-semibold text-center my-6">Blood donation requests</h1>
+            <h1 className="text-4xl font-semibold text-center capitalize my-6">Blood donation requests</h1>
 
             <div className="overflow-x-auto">
                 <table className="table table-sm">

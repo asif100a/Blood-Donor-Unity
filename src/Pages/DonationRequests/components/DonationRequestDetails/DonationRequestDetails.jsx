@@ -1,17 +1,22 @@
 import { useLoaderData } from "react-router-dom";
 import ModalForDonate from "./Modal/ModalForDonate";
 import { useState } from "react";
+import useLoggedUser from "../../../../Hooks/useLoggedUser";
+import toast from "react-hot-toast";
+// import useAuth from "../../../../Hooks/useAuth";
 
 const DonationRequestDetails = () => {
+    const loggedUser = useLoggedUser();
+    // const {user} = useAuth();
     const [isOpen, setIsOpen] = useState(false);
 
     const requestData = useLoaderData();
-    console.log(requestData);
     const {
         _id,
         requester_name,
         requester_email,
         recipient_name,
+        blood_group,
         district,
         upazila,
         hospital_name,
@@ -21,6 +26,7 @@ const DonationRequestDetails = () => {
         time,
         donation_status
     } = requestData;
+    console.log(loggedUser.blood_group);
 
     // Convert selectedData to readable date
     const request_date = new Date(selectedDate).toLocaleDateString('en-GB');
@@ -50,6 +56,9 @@ const DonationRequestDetails = () => {
 
     // Open the donate modal
     const handleOpenModal = () => {
+        if(loggedUser?.blood_group !== blood_group) {
+            return toast.error(`Need '${blood_group}' blood. Your blood is '${loggedUser?.blood_group}'`);
+        }
         setIsOpen(true);
     };
 
@@ -115,7 +124,10 @@ const DonationRequestDetails = () => {
                             </p>
                             <div className="mb-7">
                                 <p className="text-base text-body-color leading-loose mb-1">
-                                    <span className="font-bold">Blood recipient name:</span> {recipient_name}
+                                    <span className="font-bold">Recipient name:</span> {recipient_name}
+                                </p>
+                                <p className="text-base text-body-color leading-loose mb-1">
+                                    <span className="font-bold">Blood group:</span> {blood_group}
                                 </p>
                                 <p className="text-base text-body-color leading-loose mb-1">
                                     <span className="font-bold">Location:</span> {upazila}, {district}
@@ -136,7 +148,7 @@ const DonationRequestDetails = () => {
                                     <span className="font-bold">Request message:</span> {request_message}
                                 </p>
 
-                                <hr />
+                                <hr className="my-3" />
 
                                 <p className="text-base text-body-color leading-loose mb-1">
                                     <span className="font-bold">Donation status:</span> {donation_status}

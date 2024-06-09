@@ -15,9 +15,13 @@ const CreateDonationRequest = () => {
     const [upazilas, setUpazilas] = useState([]);
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [selectedUpazilas, setSelectedUpazilas] = useState([]);
-    const [validationError, setValidationError] = useState('');
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [time, setTime] = useState('10:00');
+    const blooGroup = [' A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
+    const [validationError, setValidationError] = useState('');
+    const [bloodFieldError, setBloodFieldError] = useState('');
+    const [districtFieldError, setDistrictFieldError] = useState('');
+    const [upazilaFieldError, setUpazilaFieldError] = useState('');
 
     const axiosSecure = useAxiosSecure();
     const {user} = useAuth();
@@ -64,15 +68,18 @@ const CreateDonationRequest = () => {
     const onSubmit = async (data) => {
         // Reset the validation error
         setValidationError('');
+        setBloodFieldError('');
+        setDistrictFieldError('');
+        setUpazilaFieldError('');
 
         if (data?.blood_group === 'choose_blood') {
-            return setValidationError('Please choose 1 category');
+            return setBloodFieldError('Please choose 1 category');
         }
         else if (data?.district === 'choose_district') {
-            return setValidationError('Please choose 1 category');
+            return setDistrictFieldError('Please choose 1 category');
         }
         else if (data?.upazila === 'choose_upazila') {
-            return setValidationError('Please choose 1 category');
+            return setUpazilaFieldError('Please choose 1 category');
         }
 
         console.table(data);
@@ -156,6 +163,25 @@ const CreateDonationRequest = () => {
                     </div>
 
                     <div>
+                        <label htmlFor="image" className="block text-sm font-medium leading-6 text-gray-900">
+                            Recipient blood group
+                        </label>
+                        <div className="mt-2">
+                            <select
+                                name='blood_group'
+                                {...register("blood_group", { required: true })}
+                                defaultValue={'choose_blood'}
+                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
+                                <option disabled value={'choose_blood'}>Choose your blood group</option>
+                                {
+                                    blooGroup.map((group, i) => <option key={i} value={group}>{group}</option>)
+                                }
+                            </select>
+                            {bloodFieldError && <p className="text-orange-600">{bloodFieldError}</p>}
+                        </div>
+                    </div>
+
+                    <div>
                         <label htmlFor="district" className="block text-sm font-medium leading-6 text-gray-900">
                             {"Recipient's"} district
                         </label>
@@ -171,7 +197,7 @@ const CreateDonationRequest = () => {
                                     districts.map(district => <option key={district?.id} value={district?.name}>{district?.name}</option>)
                                 }
                             </select>
-                            {validationError && <p className="text-orange-600">{validationError}</p>}
+                            {districtFieldError && <p className="text-orange-600">{districtFieldError}</p>}
                         </div>
                     </div>
 
@@ -190,7 +216,7 @@ const CreateDonationRequest = () => {
                                     selectedUpazilas?.map((upazila, i) => <option key={i} value={upazila?.name}>{upazila?.name}</option>)
                                 }
                             </select>
-                            {validationError && <p className="text-orange-600">{validationError}</p>}
+                            {upazilaFieldError && <p className="text-orange-600">{upazilaFieldError}</p>}
                         </div>
                     </div>
 

@@ -64,8 +64,8 @@ const AllDonorRequests = ({ email, volunteer, admin }) => {
         console.log(id);
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
-                confirmButton: "btn btn-success",
-                cancelButton: "btn btn-danger"
+                confirmButton: "btn btn-success text-[#ffffff]",
+                cancelButton: "btn btn-danger bg-[#ff0000] text-[#ffffff] ",
             },
             buttonsStyling: false
         });

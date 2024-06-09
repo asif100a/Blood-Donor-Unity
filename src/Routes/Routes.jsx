@@ -26,6 +26,7 @@ import VolunteerHome from "../Pages/Dashboard/VolunteerPages/VolunteerHome/Volun
 import AllRequestsForBlood from "../Pages/Dashboard/VolunteerPages/AllRequestsForBlood/AllRequestsForBlood";
 import ContentManageVol from "../Pages/Dashboard/VolunteerPages/VolunteerHome/ContentManageVol/ContentManageVol";
 import DonationRequestDetails from "../Pages/DonationRequests/components/DonationRequestDetails/DonationRequestDetails";
+import BlogDetails from "../Pages/Blogs/components/BlogDetails";
 
 const Routes = createBrowserRouter([
     {
@@ -52,6 +53,10 @@ const Routes = createBrowserRouter([
             }, {
                 path: '/blogs',
                 element: <Blogs />
+            }, {
+                path: '/blog-details/:id',
+                element: <BlogDetails />,
+                loader: ({params}) => fetch(`${import.meta.env.VITE_URL}/published-blogs/${params.id}`)
             }, {
                 path: '/funds',
                 element: <PrivatePage><Funds /></PrivatePage>

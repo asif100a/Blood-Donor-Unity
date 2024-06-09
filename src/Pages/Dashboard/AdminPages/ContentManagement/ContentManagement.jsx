@@ -1,16 +1,12 @@
-import { Link } from "react-router-dom";
 import Allblogs from "../../../../SharedComponents/Allblogs/Allblogs";
 
 const ContentManagement = () => {
     return (
         <div>
-            <h1>Content Management</h1>
-            <div className="my-6 text-end">
-                <Link to={'/dashboard/content_management/add_blog'}><button className="btn">Add blog</button></Link>
-            </div>
+            <h1 className="text-4xl font-semibold text-center capitalize my-6">Manage Your content</h1>
 
             <div>
-                <Allblogs />
+                <Allblogs admin={true} />
             </div>
         </div>
     );

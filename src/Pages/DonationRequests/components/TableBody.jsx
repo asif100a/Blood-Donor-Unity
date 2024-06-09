@@ -39,7 +39,7 @@ const TableBody = ({i, request}) => {
                 <td>{request_date}</td>
                 <td>{request_time}</td>
                 <td>
-                    <Link to={`/donation_request_details/${_id}`}><button className={`btn`}>View details</button></Link>
+                    <Link to={`/donation_request_details/${_id}`}><button className={`btn bg-white hover:bg-white border-orange-600 text-green-600 font-semibold`}>View details</button></Link>
                 </td>
             </tr>
         </>
