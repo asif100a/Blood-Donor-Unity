@@ -17,8 +17,7 @@ const CreateDonationRequest = () => {
     const [selectedUpazilas, setSelectedUpazilas] = useState([]);
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [time, setTime] = useState('10:00');
-    const blooGroup = [' A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
-    const [validationError, setValidationError] = useState('');
+    const bloodGroup = [' A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
     const [bloodFieldError, setBloodFieldError] = useState('');
     const [districtFieldError, setDistrictFieldError] = useState('');
     const [upazilaFieldError, setUpazilaFieldError] = useState('');
@@ -67,7 +66,6 @@ const CreateDonationRequest = () => {
 
     const onSubmit = async (data) => {
         // Reset the validation error
-        setValidationError('');
         setBloodFieldError('');
         setDistrictFieldError('');
         setUpazilaFieldError('');
@@ -174,7 +172,7 @@ const CreateDonationRequest = () => {
                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
                                 <option disabled value={'choose_blood'}>Choose your blood group</option>
                                 {
-                                    blooGroup.map((group, i) => <option key={i} value={group}>{group}</option>)
+                                    bloodGroup.map((group, i) => <option key={i} value={group}>{group}</option>)
                                 }
                             </select>
                             {bloodFieldError && <p className="text-orange-600">{bloodFieldError}</p>}
