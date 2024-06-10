@@ -27,6 +27,9 @@ import AllRequestsForBlood from "../Pages/Dashboard/VolunteerPages/AllRequestsFo
 import ContentManageVol from "../Pages/Dashboard/VolunteerPages/VolunteerHome/ContentManageVol/ContentManageVol";
 import DonationRequestDetails from "../Pages/DonationRequests/components/DonationRequestDetails/DonationRequestDetails";
 import BlogDetails from "../Pages/Blogs/components/BlogDetails";
+import AdminProfile from "../Pages/Dashboard/AdminPages/AdminProfile/AdminProfile";
+import VolunteerProfile from "../Pages/Dashboard/VolunteerPages/VolunteerProfile/VolunteerProfile";
+import DonorProfile from "../Pages/Dashboard/DonorProfile/DonorProfile";
 
 const Routes = createBrowserRouter([
     {
@@ -72,6 +75,9 @@ const Routes = createBrowserRouter([
         children: [
             // For admin
             {
+                path: '/dashboard/admin_profile',
+                element: <AdminRoute><AdminProfile /></AdminRoute>
+            }, {
                 path: '/dashboard/admin_home',
                 element: <AdminRoute><AdminHome /></AdminRoute>
             }, {
@@ -85,10 +91,13 @@ const Routes = createBrowserRouter([
                 element: <AdminRoute><ContentManagement /></AdminRoute>
             }, {
                 path: '/dashboard/content_management/add_blog',
-                element: <AddBlogs />
+                element: <AdminRoute><AddBlogs /></AdminRoute>
             },
             // For volunteer
             {
+                path: '/dashboard/volunteer_profile',
+                element: <VolunteerProfile />
+            }, {
                 path: '/dashboard/volunteer_home',
                 element: <VolunteerHome />
             }, {
@@ -100,6 +109,9 @@ const Routes = createBrowserRouter([
             },
             // For donator
             {
+                path: '/dashboard/donor_profile',
+                element: <PrivatePage><DonorProfile /></PrivatePage>
+            }, {
                 path: '/dashboard/donor_home',
                 element: <PrivatePage><DonorHome /></PrivatePage>
             }, {

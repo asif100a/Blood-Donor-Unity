@@ -1,21 +1,21 @@
 const ContactUs = () => {
     return (
         <section className="bg-white dark:bg-gray-900">
-            <div className="container lg:px-28 py-12 mx-auto">
+            <div className="container lg:px-28 py-6 lg:py-12 px-6 mx-auto">
                 <div>
                     <div className="mb-6">
-                        <h1 className="text-4xl font-semibold">Contact Us</h1>
+                        <h1 className="text-3xl lg:text-4xl font-semibold text-center md:text-start">Contact Us</h1>
                     </div>
 
                     <div className="flex justify-between gap-12">
-                        <div className="w-1/2">
-                            <h1 className="mt-2 text-xl font-semibold text-gray-800 md:text-3xl dark:text-white">Chat to us</h1>
+                        <div className="text-center md:text-start md:w-1/2">
+                            <h1 className="mt-2 text-lg md:text-xl font-semibold text-gray-800 lg:text-3xl dark:text-white">Chat to us</h1>
 
                             <p className="mt-3 text-gray-500 dark:text-gray-400">You can contact us via email, live chat, ofice, phone.</p>
                         </div>
 
-                        <div className="w-1/2">
-                            <h1 className="mt-2 text-xl font-semibold text-gray-800 md:text-3xl dark:text-white">Send message to us</h1>
+                        <div className="hidden lg:block lg:w-1/2">
+                            <h1 className="mt-2 text-lg md:text-xl font-semibold text-gray-800 lg:text-3xl dark:text-white">Send message to us</h1>
 
                             <p className="mt-3 text-gray-500 dark:text-gray-400">If you have any questions, feel free to message to us:</p>
                         </div>
@@ -23,7 +23,7 @@ const ContactUs = () => {
                 </div>
 
                 <div className="grid grid-cols-1 gap-12 mt-10 lg:grid-cols-2">
-                    <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
+                    <div className="grid grid-cols-1 gap-12 md:grid-cols-2 text-center md:text-start">
                         <div>
                             <span className="inline-block p-3 text-blue-500 rounded-full bg-blue-100/80 dark:bg-gray-800">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-5 h-5">
@@ -75,7 +75,13 @@ const ContactUs = () => {
                         </div>
                     </div>
 
-                    <div className="p-4 py-6 rounded-lg bg-gray-50 dark:bg-gray-800 md:p-8">
+                    <div className="lg:hidden block text-center">
+                        <h1 className="mt-2 text-xl font-semibold text-gray-800 md:text-xl dark:text-white">Send message to us</h1>
+
+                        <p className="mt-3 text-gray-500 dark:text-gray-400">If you have any questions, feel free to message to us:</p>
+                    </div>
+
+                    <div className="p-4 py-3 md:py-6 rounded-lg bg-gray-50 dark:bg-gray-800 md:p-8">
                         <form>
                             <div className="-mx-2 md:items-center md:flex">
                                 <div className="flex-1 px-2">

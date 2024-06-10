@@ -50,10 +50,10 @@ const Sidebar = () => {
             </div>
 
             <div className="mt-6">
-                <a href="#" className="flex items-center px-4 -mx-2">
+                <Link to={role === 'donor' && '/dashboard/donor_profile' || role === 'volunteer' && '/dashboard/volunteer_profile' || role === 'admin' && '/dashboard/admin_profile'} className="flex items-center px-4 -mx-2">
                     <img title={user?.displayName} className="object-cover mx-2 rounded-full h-9 w-9" referrerPolicy='no-referrer' src={user?.photoURL} alt="user photo" />
                     <span className="mx-2 font-medium text-gray-800 dark:text-gray-200">My profile</span>
-                </a>
+                </Link>
             </div>
 
             <div className="flex flex-col justify-between flex-1 mt-6">
