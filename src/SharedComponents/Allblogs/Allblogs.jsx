@@ -127,8 +127,8 @@ const Allblogs = ({ volunteer, admin }) => {
         <section className="bg-white dark:bg-gray-900">
             <div className="container px-6 py-10 mx-auto">
 
-                <div className={`mb-12 text-center ${admin && 'flex items-center text-start'}`}>
-                    <div className="dropdown w-1/2">
+                <div className={`mb-12 text-center ${admin && 'flex flex-col md:flex-row md:items-center md:text-start'}`}>
+                    <div className="dropdown w-full md:w-1/2">
                         <button className="relative inline-flex items-center justify-center p-4 px-12 py-3 overflow-hidden font-medium text-red-600 transition duration-300 ease-out border-2 border-green-500 rounded-full shadow-md group">
                             <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-green-500 group-hover:translate-x-0 ease">
                                 <FaAngleDown className="w-6 h-6" />
@@ -137,13 +137,13 @@ const Allblogs = ({ volunteer, admin }) => {
                             <span className="relative invisible">Sort by</span>
                         </button>
 
-                        <ul tabIndex={0} className={`mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 ${volunteer && 'left-48'}`}>
+                        <ul tabIndex={0} className={`mt-3 z-[1] left-6 md:left-16 lg:left-48 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 ${volunteer && 'left-48'}`}>
                             <li onClick={() => handleDropdown('draft')}><a>draft</a></li>
                             <li onClick={() => handleDropdown('published')}><a>published</a></li>
                         </ul>
                     </div>
 
-                    <div className={`my-6 text-end w-1/2 ${volunteer && 'hidden'}`}>
+                    <div className={`my-6 text-center md:text-end md:w-1/2 ${volunteer && 'hidden'}`}>
                         <Link to={'/dashboard/content_management/add_blog'}><button className="relative inline-flex items-center justify-center p-4 px-12 py-3 overflow-hidden font-medium text-green-600 transition duration-300 ease-out border-2 border-orange-600 rounded-full shadow-md group">
                             <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-orange-600 group-hover:translate-x-0 ease">
                                 <FaArrowRightLong className="w-6 h-6" />

@@ -43,7 +43,7 @@ const Blogs = () => {
     }
 
     return (
-        <div className="lg:px-24">
+        <div className="px-6 lg:px-24">
             <h1 className="text-4xl font-semibold text-center capitalize my-6">Read your favorite blog</h1>
             <p className="text-center max-w-3xl mx-auto">Stay informed and inspired with our dedicated blog on blood donation. Discover heartwarming stories from donors and recipients, get the latest news and research on blood donation, and find valuable tips on how you can make a difference. Join our community and learn how your donation can save lives.</p>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-4 mt-16">

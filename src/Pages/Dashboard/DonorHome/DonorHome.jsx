@@ -79,15 +79,15 @@ const DonorHome = () => {
     }
 
     return (
-        <div>
+        <div className="w-full md:w-screen lg:w-full overflow-hidden">
             <WelcomeSection title={'Donor Dashboard Your Lifesaving Hub'} description={"Welcome to the Donor Dashboard! Here, you're the heartbeat of our mission. Track your contributions, schedule donations, and stay connected with our community of lifesavers. Thank you for your invaluable support in helping save lives through blood donation."} />
 
             <div className={`${recentRequests?.length === 0 && 'hidden'}`}>
                 <div className="mt-3 mb-6">
-                    <h1 className="text-4xl font-semibold text-center">Recent donation requests</h1>
+                    <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center">Recent donation requests</h1>
                 </div>
 
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto w-screen lg:w-auto">
                     <table className="table table-sm">
                         <thead>
                             <tr>

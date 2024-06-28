@@ -2,7 +2,7 @@ import AllDonorRequests from "../../../../SharedComponents/AllDonationRequests/A
 
 const AllRequestsForBlood = () => {
     return (
-        <div>
+        <div className="w-[375px] md:w-full">
             <h1 className="text-4xl font-semibold text-center my-6">All blood donation requests</h1>
 
             <AllDonorRequests volunteer={true} />

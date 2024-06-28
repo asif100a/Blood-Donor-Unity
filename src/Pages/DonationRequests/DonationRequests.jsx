@@ -19,7 +19,7 @@ const DonationRequests = () => {
     }
 
     return (
-        <div className="px-32">
+        <div className="px-6 lg:px-32">
             <h1 className="text-4xl font-semibold text-center capitalize my-6">Blood donation requests</h1>
 
             <div className="overflow-x-auto">

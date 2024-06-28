@@ -101,8 +101,8 @@ const AllUsers = () => {
     }
 
     return (
-        <div className="mt-6">
-            <h1 className="text-4xl font-semibold text-center mb-6">All users</h1>
+        <div className="mt-6 w-auto">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center mb-6">All users</h1>
             <div className="mb-12 text-center">
                 <div className="dropdown ">
                     <button className="relative inline-flex items-center justify-center p-4 px-12 py-3 overflow-hidden font-medium text-red-600 transition duration-300 ease-out border-2 border-green-500 rounded-full shadow-md group">
@@ -120,7 +120,7 @@ const AllUsers = () => {
                 </div>
             </div>
 
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto w-auto">
                 <table className="table table-sm">
                     {/* head */}
                     <thead>

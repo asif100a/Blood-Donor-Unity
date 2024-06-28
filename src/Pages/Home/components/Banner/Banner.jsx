@@ -6,7 +6,7 @@ const Banner = () => {
     const someones = "someone's";
 
     return (
-        <div className="background-img pt-8 lg:pt-24">
+        <div className="background-img pt-8 md:pt-12 lg:pt-24">
             {/* <div className='h-full w-full bg-black opacity-40'>
 
             </div> */}
@@ -19,7 +19,7 @@ const Banner = () => {
                 <p className='text-lg mt-6 w-full lg:w-[58rem]'>Join Blood Donor Unity to make a life-saving impact. Together, we can ensure a steady supply of blood for those in need. Donate today and be a hero in {someones} story!</p>
             </div>
 
-            <div className='mt-3 lg:mt-24 mx-auto flex flex-col md:flex-row w-fit h-fit space-y-2 md:space-y-0 md:space-x-24'>
+            <div className='mt-3 md:mt-8 lg:mt-24 mx-auto flex flex-col md:flex-row w-fit h-fit space-y-2 md:space-y-0 md:space-x-24'>
                 <Link to={'/register'}>
                     <button className="relative inline-flex items-center justify-start py-3 pl-4 pr-12 overflow-hidden font-semibold text-orange-600 transition-all duration-150 ease-in-out hover:pl-10 hover:pr-6 bg-gray-50 bg-opacity-70  group rounded-full border border-orange-600">
                         <span className="absolute bottom-0 left-0 w-full h-1 transition-all duration-150 ease-in-out bg-orange-600 group-hover:h-full"></span>

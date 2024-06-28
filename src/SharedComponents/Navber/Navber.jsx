@@ -5,6 +5,8 @@ import toast from "react-hot-toast";
 import useLoggedUser from "../../Hooks/useLoggedUser";
 import { useState } from "react";
 import { CiMenuFries } from "react-icons/ci";
+import { BiLogInCircle } from "react-icons/bi";
+import './navber.css';
 
 const Navber = () => {
     const { user, logoutUser } = useAuth();
@@ -61,7 +63,7 @@ const Navber = () => {
                     </div>
 
                     <div className={`absolute ${isShow === false && 'hidden'} inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center`}>
-                        <ul className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8 menu">
+                        <ul className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8 menu active-link">
                             {NavLinks}
                             {
                                 loggedUser?.role === 'donor' && <li className="block lg:hidden"><NavLink to={'/dashboard/donor_home'} className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Dashboard</NavLink></li>
@@ -72,7 +74,12 @@ const Navber = () => {
                             {
                                 loggedUser?.role === 'admin' && <li className="block lg:hidden"><NavLink to={'/dashboard/admin_home'} className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Dashboard</NavLink></li>
                             }
-                            <li onClick={handleLogout} className="block lg:hidden"><a className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Logout</a></li>
+                            {
+                                user ?
+                                    <li onClick={handleLogout} className="block lg:hidden"><a className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Logout</a></li>
+                                    :
+                                    <li className="block lg:hidden"><Link to={'/login'} className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Login</Link></li>
+                            }
                         </ul>
 
                         <div className="flex items-center gap-3 mt-4 lg:mt-0">
@@ -96,12 +103,20 @@ const Navber = () => {
                                             {
                                                 loggedUser?.role === 'admin' && <li><Link to={'/dashboard/admin_home'}>Dashboard</Link></li>
                                             }
-                                            <li onClick={handleLogout}><a>Logout</a></li>
+                                            <li onClick={handleLogout}><a className="">Logout</a></li>
                                         </ul>
                                     </div>
                                 </> :
                                     <>
-                                        <Link to={'/login'}><button className="btn">Login</button></Link>
+                                        <Link to={'/login'}>
+                                            <button className="hidden lg:flex rounded-full px-4 py-1 m-1 overflow-hidden relative group cursor-pointer border-2 font-medium border-green-600 text-orange-600">
+                                                <span className="absolute w-64 h-0 transition-all duration-300 origin-center rotate-45 -translate-x-20 bg-green-600 top-1/2 group-hover:h-64 group-hover:-translate-y-32 ease"></span>
+                                                <span className="relative text-orange-600 transition duration-300 group-hover:text-white ease flex justify-center items-center gap-2">
+                                                    <span>Login</span>
+                                                    <BiLogInCircle className="text-lg text-green-600 group-hover:text-orange-600" />
+                                                </span>
+                                            </button>
+                                        </Link>
                                     </>
                             }
                         </div>

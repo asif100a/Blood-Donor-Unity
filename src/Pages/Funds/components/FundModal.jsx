@@ -5,7 +5,7 @@ import { Fragment } from "react";
 import CheckoutForm from "./CheckoutForm";
 import PropTypes from "prop-types";
 
-const FundModal = ({isOpen, closeModal}) => {
+const FundModal = ({ isOpen, closeModal, amount, handleGetAmount, setIsOpen, refetch }) => {
     const stripePromise = loadStripe(import.meta.env.VITE_PUBLISHABLE_KEY);
 
     return (
@@ -39,43 +39,26 @@ const FundModal = ({isOpen, closeModal}) => {
                                     as='h3'
                                     className='text-lg font-medium text-center leading-6 text-gray-900'
                                 >
-                                    Review Info Before Reserve
+                                    Your donation will help others
                                 </DialogTitle>
-                                <div className='mt-2'>
-                                    <p className='text-sm text-gray-500'>
-                                        {/* Room: {bookingInfo.title} */}
-                                    </p>
-                                </div>
-                                <div className='mt-2'>
-                                    <p className='text-sm text-gray-500'>
-                                        {/* Location: {bookingInfo.location} */}
-                                    </p>
-                                </div>
-                                <div className='mt-2'>
-                                    <p className='text-sm text-gray-500'>
-                                        {/* Guest: {bookingInfo.guest.name} */}
-                                    </p>
-                                </div>
-                                <div className='mt-2'>
-                                    <p className='text-sm text-gray-500'>
-                                        {/* From: {format(new Date(bookingInfo.from), 'PP')} - To:{' '}
-                                        {format(new Date(bookingInfo.to), 'PP')} */}
-                                    </p>
-                                </div>
-
-                                <div className='mt-2'>
-                                    <p className='text-sm text-gray-500'>
-                                        {/* Price: $ {bookingInfo.price} */}
-                                    </p>
-                                </div>
+                                <form className='mt-6 text-center'>
+                                    <label htmlFor="amount" className="font-semibold mr-6">Amount:</label>
+                                    <input
+                                        type="text"
+                                        value={amount}
+                                        onChange={handleGetAmount}
+                                        placeholder="Amount"
+                                        className="input input-bordered w-40"
+                                    />
+                                </form>
                                 <hr className='mt-8 ' />
 
                                 <Elements stripe={stripePromise}>
                                     {/* checkout form */}
                                     <CheckoutForm
-                                        // bookingInfo={bookingInfo}
-                                        // closeModal={closeModal}
-                                        // refetch={refetch}
+                                        amount={amount}
+                                        setIsOpen={setIsOpen}
+                                        refetch={refetch}
                                     />
                                 </Elements>
                             </DialogPanel>
@@ -89,7 +72,11 @@ const FundModal = ({isOpen, closeModal}) => {
 
 FundModal.propTypes = {
     isOpen: PropTypes.bool,
-    closeModal: PropTypes.func
+    closeModal: PropTypes.func,
+    amount: PropTypes.string,
+    handleGetAmount: PropTypes.func,
+    setIsOpen: PropTypes.func,
+    refetch: PropTypes.func
 };
 
 export default FundModal;

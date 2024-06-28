@@ -56,7 +56,7 @@ const DonationRequestDetails = () => {
 
     // Open the donate modal
     const handleOpenModal = () => {
-        if(loggedUser?.blood_group !== blood_group) {
+        if (loggedUser?.blood_group !== blood_group) {
             return toast.error(`Need '${blood_group}' blood. Your blood is '${loggedUser?.blood_group}'`);
         }
         setIsOpen(true);
@@ -95,23 +95,21 @@ const DonationRequestDetails = () => {
                                 relative
                                 z-10
                                 overflow-hidden
-                                border border-primary border-opacity-20
+                                border border-green-600 border-opacity-20
                                 shadow-pricing
                                 py-10
-                                px-8
+                                px-6
+                                lg:px-16
                                 sm:p-12
-                                lg:py-10 lg:px-6
+                                lg:py-10 
                                 xl:p-12
                                 mb-10
                                 ">
-                            <span className="text-primary font-semibold text-lg block mb-4">
-                                Personal
+                            <span className="text-orange-600 font-semibold text-lg block mb-4 bg-orange-100 w-fit px-2 rounded-md">
+                                Request
                             </span>
-                            <h2 className="font-bold text-dark mb-5 text-[42px]">
-                                $59
-                                <span className="text-base text-body-color font-medium">
-                                    / year
-                                </span>
+                            <h2 className="font-bold text-dark mb-5 text-2xl">
+                                Details of {recipient_name}
                             </h2>
                             <p
                                 className="

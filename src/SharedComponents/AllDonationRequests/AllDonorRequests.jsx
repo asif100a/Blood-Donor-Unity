@@ -106,7 +106,6 @@ const AllDonorRequests = ({ email, volunteer, admin }) => {
 
     // Change donation status by Admin & Volunteer
     const handleChangeStatus = async (value, id) => {
-        // console.table({value, id});
         try {
             const { data } = await axiosSecure.patch(`/donation-requests-status/${id}`, { donation_status: value });
             console.log(data);
@@ -127,7 +126,7 @@ const AllDonorRequests = ({ email, volunteer, admin }) => {
     }
 
     return (
-        <div>
+        <div className='md:w-full'>
             <div className="mb-12 text-center">
                 <div className="dropdown ">
                     <button className="relative inline-flex items-center justify-center p-4 px-12 py-3 overflow-hidden font-medium text-red-600 transition duration-300 ease-out border-2 border-green-500 rounded-full shadow-md group">
@@ -146,7 +145,7 @@ const AllDonorRequests = ({ email, volunteer, admin }) => {
                 </div>
             </div>
 
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto w-screen lg:w-auto">
                 <table className="table table-sm">
                     <thead>
                         <tr>

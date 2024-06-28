@@ -63,7 +63,15 @@ const RequestTbody = ({ data, index, handleDelete, volunteer, admin, handleChang
                 <td className='flex gap-2 items-center'>
                     <p className={`${donation_status === 'pending' && 'bg-yellow-400'} ${donation_status === 'in progress' && 'bg-blue-400'}  ${donation_status === 'complete' && 'bg-green-500'} w-2 h-2`}></p><p>{donation_status}</p>
                 </td>
-                <td>{ }</td>
+                <td>
+                    { 
+                        data?.donor ? <div>
+                            <p>{data?.donor?.name}</p>
+                            <p className='text-sm'>{data?.donor?.email}</p>
+                        </div> :
+                        ''
+                    }
+                </td>
                 {
                     (volunteer || admin) && <td>
                         <select

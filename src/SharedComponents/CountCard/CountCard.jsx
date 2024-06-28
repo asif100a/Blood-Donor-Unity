@@ -23,7 +23,7 @@ const CountCard = () => {
 
     return (
         <div className="bg-white dark:bg-gray-900">
-            <div className="container px-6 py-4 mx-auto">
+            <div className="container px-6 py-4 mx-auto mt-6 lg:mt-0">
                 <h1 className="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl dark:text-white">At a glance statistics</h1>
 
                 {/* Total users */}
@@ -59,7 +59,7 @@ const CountCard = () => {
                                 Funds
                             </div>
 
-                            <h2 className="text-2xl font-semibold text-[#FF1493] dark:text-blue-500 sm:text-3xl">[]</h2>
+                            <h2 className="text-2xl font-semibold text-[#FF1493] dark:text-blue-500 sm:text-3xl">${data?.total_donation}</h2>
                         </div>
                     </div>
 

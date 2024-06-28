@@ -1,15 +1,39 @@
 import { useState } from "react";
 import FundModal from "./components/FundModal";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import FundTRow from "./components/FundTRow";
+import LoadingSpiner from "../../SharedComponents/LoadingSpiner/LoadingSpiner";
 
 const Funds = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [amount, setAmount] = useState('');
+    const axiosSecure = useAxiosSecure();
+
+    const handleGetAmount = (e) => {
+        console.log(e.target.value);
+        setAmount(e.target.value);
+    };
 
     const handleCloseModal = () => {
         setIsOpen(false);
     };
 
+    const { data: fundData = [], isLoading, refetch } = useQuery({
+        queryKey: ['donation-data'],
+        queryFn: async () => {
+            const { data } = await axiosSecure('/donation-fund');
+            return data;
+        }
+    });
+    console.log(fundData);
+
+    if(isLoading) {
+        return <LoadingSpiner />;
+    }
+
     return (
-        <div className="px-32">
+        <div className="px-6 lg:px-32">
             <h1 className="text-4xl font-semibold text-center capitalize my-6">Donate to Our <br /> Blood Donation Fund</h1>
             <p className="mt-3 text-center max-w-xl mx-auto">Your contribution can save lives. By donating to our Blood Donation Fund, you support essential blood drives, medical supplies, and outreach programs that ensure a steady supply of life-saving blood for those in need.</p>
 
@@ -19,15 +43,22 @@ const Funds = () => {
                     <span className="relative">Give fund</span>
                 </button>
 
-                <FundModal isOpen={isOpen} closeModal={handleCloseModal} />
+                <FundModal
+                    isOpen={isOpen}
+                    closeModal={handleCloseModal}
+                    amount={amount}
+                    handleGetAmount={handleGetAmount}
+                    setIsOpen={setIsOpen}
+                    refetch={refetch}
+                />
             </div>
 
             <div className="overflow-x-auto mt-6">
-                <table className="table table-sm">
+                <table className="table table-lg">
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Fund donor</th>
+                            <th>Donor name</th>
                             <th>Donor email</th>
                             <th>Amount</th>
                             <th>Donation date</th>
@@ -35,7 +66,7 @@ const Funds = () => {
                     </thead>
                     <tbody>
                         {
-                            // requests.map((request, i) => <TableBody key={request?._id} i={i} request={request} />)
+                            fundData?.map((data, i) => <FundTRow key={data?._id} i={i} data={data} />)
                         }
                     </tbody>
                 </table>

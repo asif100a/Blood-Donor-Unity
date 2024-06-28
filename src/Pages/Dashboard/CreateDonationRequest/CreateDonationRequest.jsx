@@ -101,11 +101,11 @@ const CreateDonationRequest = () => {
     };
 
     return (
-        <div>
+        <div className="w-[calc(100%)-32px] lg:w-auto">
             <div>
-                <h1 className="text-4xl font-semibold text-center">Create a donation request</h1>
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center">Create a donation request</h1>
             </div>
-            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            <div className="mt-10 sm:mx-auto w-full sm:w-full sm:max-w-sm">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" action="#" method="POST">
                     <div>
                         <label htmlFor="requester_name" className="block text-sm font-medium leading-6 text-gray-900">

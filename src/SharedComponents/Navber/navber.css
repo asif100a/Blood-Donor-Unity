@@ -1,0 +1,19 @@
+.menu li > *:not(ul, .menu-title, details, .btn):active,
+.menu li > *:not(ul, .menu-title, details, .btn).active,
+.menu li > details > summary:active {
+    background-color: rgb(255, 255, 255);
+    color: #16a34a;
+    font-weight: 600;
+    border-bottom: 2px solid #ea580c;
+    border-radius: 12px;
+}
+
+.menu li > *:not(ul, .menu-title, details, .btn){
+    height: fit-content;
+    padding: 5px 12px;
+}
+
+.menu li:hover > *:not(ul, .menu-title, details, .btn){
+    background-color: #fff;
+    color: #ea580c;
+}

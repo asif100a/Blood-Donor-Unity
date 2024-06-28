@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { FaUser } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { GiHomeGarage } from "react-icons/gi";
@@ -74,6 +73,10 @@ const ProfilePage = () => {
         setDistrictFieldError('');
         setUpazilaFieldError('');
 
+        if(data.upazila === 'user?.upazila') {
+            console.log('upazila ture')
+        }
+
         if (data?.blood_group === 'choose_blood') {
             return setBloodFieldError('Please choose 1 category');
         }
@@ -85,23 +88,21 @@ const ProfilePage = () => {
         }
 
         console.table(data);
-
-
+        const upazila = data.upazila === 'user?.upazila' ? user.upazila : data?.upazila;
 
 
         // Save the changes to the database
         try {
+            console.log(data?.image)
+            const updatedImage = data.image[0] ? data?.image[0] : user?.image;
             // Upload the image on imgBB
-            const { data: imageData } = await uploadImage(data?.image[0]);
+            const { data: imageData } = await uploadImage(updatedImage);
             const uploadedImage = imageData?.display_url;
-            console.log(uploadedImage);
-
-            const { data: updatedData } = await axiosSecure.put(`/users/${user?._id}`, { ...data, image: uploadedImage });
+            const { data: updatedData } = await axiosSecure.put(`/users/${user?._id}`, { ...data, image: uploadedImage, upazila: upazila });
             console.log(updatedData);
-            if (updatedData?.modifiedCount > 0) {
                 toast.success('Your profile successfully updated');
                 setIsClicked(false);
-            }
+
         } catch (err) {
             console.error(err);
         }
@@ -205,7 +206,7 @@ const ProfilePage = () => {
                                                 name="image"
                                                 type="file"
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
-                                                {...register("image", { required: true })}
+                                                {...register("image")}
                                             />
                                         </div>
                                     </div>
