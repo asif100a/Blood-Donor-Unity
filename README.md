@@ -61,8 +61,8 @@ Make sure you have the following installed on your machine:
 - **npm** (Node Package Manager).
 
 ### Installation
--**npm**: For client-side and server-side
--**Firebase**: For client side
+- **npm**: For client-side and server-side
+- **Firebase**: For client side
 
 #### Backend (Node.js and Express.js)
 
