@@ -9,6 +9,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import useAuth from "../../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import "./createDonation.css";
 
 const CreateDonationRequest = () => {
     const [districts, setDistricts] = useState([]);
@@ -100,13 +101,13 @@ const CreateDonationRequest = () => {
         }
     };
 
-    return (
-        <div className="w-[calc(100%)-32px] lg:w-auto">
+    return ( 
+        <div className="my-6 contain-width mx-auto overflow-hidden border-red-500">
             <div>
-                <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center">Create a donation request</h1>
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center w-[200px] sm:w-auto mx-auto">Create a donation request</h1>
             </div>
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[880px] border-2 border-dashed border-orange-600 sm:p-6 p-3 rounded-xl">
-                <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 sm:grid-cols-2 gap-6" action="#" method="POST">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-6" action="#" method="POST">
                     <div>
                         <label htmlFor="requester_name" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
                             Rrequester name
@@ -272,7 +273,7 @@ const CreateDonationRequest = () => {
                                 dateFormat={'dd/MM/yyyy'}
                                 showYearDropdown
                                 scrollableMonthYearDropdown
-                                className="block w-[25.1rem] rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
+                                className="block date-width rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
                             />
                             {errors.donation_date && <span className="text-orange-600">This field is required</span>}
                         </div>
@@ -300,17 +301,7 @@ const CreateDonationRequest = () => {
                                 //         }
                                 //     }
                                 // }}
-                                slotProps={{
-                                    textField: {
-                                      sx: {
-                                        borderRadius: 6,
-                                        fieldset: { borderRadius: 6 },
-                                      /* Use FilledInputClasses if your TextField variant changed to "filled" otherwise use below */
-                                      
-                                     },
-                                    },
-                                  }}
-                                className="block w-[25.1rem] rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
+                                className="block date-width rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
                             />
                             {errors.donation_date && <span className="text-orange-600">This field is required</span>}
                         </div>
@@ -335,7 +326,7 @@ const CreateDonationRequest = () => {
                         </div>
                     </div>
 
-                    <div className='col-span-1 sm:col-span-2 text-center'>
+                    <div className='col-span-1 sm:col-span-2 text-center mt-6'>
                         <button type='submit' className="relative rounded-full w-full sm:w-[402px] px-5 py-2 overflow-hidden group bg-orange-500 hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-orange-400 transition-all ease-out duration-300">
                             <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
                             <span className="relative">Create donation request</span>

@@ -145,7 +145,7 @@ const AllDonorRequests = ({ email, volunteer, admin }) => {
                 </div>
             </div>
 
-            <div className="overflow-x-auto w-screen lg:w-auto">
+            <div className="overflow-x-auto w-screen lg:w-auto mx-auto border">
                 <table className="table table-sm">
                     <thead>
                         <tr>

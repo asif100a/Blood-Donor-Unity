@@ -110,13 +110,13 @@ const ProfilePage = () => {
 
     return (
         <section className="bg-white dark:bg-gray-800">
-            <div className="container px-6 py-8 mx-auto">
+            <div className="container px-0 md:px-6 py-8 mx-auto">
                 <div>
                     <h2 className="text-3xl font-bold text-gray-800 capitalize text-center dark:text-gray-100">My profile</h2>
                 </div>
 
-                <div className="max-w-xl mt-12 mx-auto">
-                    <div className="px-6 py-4 transition-colors duration-200 transform rounded-lg border">
+                <div className="max-w-full md:max-w-xl mt-12 mx-auto">
+                    <div className="px-3 sm:px-6 py-4 transition-colors duration-200 transform rounded-lg border-2 border-dashed border-green-600">
                         <div className="text-center">
                             <div className="avatar">
                                 <div className="w-24 rounded-full ring ring-orange-600 ring-offset-base-100 ring-offset-2">

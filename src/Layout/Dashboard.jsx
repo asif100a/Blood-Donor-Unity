@@ -4,9 +4,9 @@ import './dashboard.css';
 
 const Dashboard = () => {
     return (
-        <div className="flex w-screen lg:w-auto ">
+        <div className="w-auto flex">
             <Sidebar />
-            <div className="flex-1 p-6 mini-width">
+            <div className="flex-1">
                 <Outlet />
             </div>
         </div>

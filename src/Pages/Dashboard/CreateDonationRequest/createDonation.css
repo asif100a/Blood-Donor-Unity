@@ -1,0 +1,52 @@
+.contain-width{
+    width: 100%;
+}
+
+.date-width{
+    width: 25.1rem;
+}
+
+@media screen and (min-width: 300px) and (max-width: 365px) {
+    .contain-width{
+        width: 280px;
+    }
+    .date-width{
+        width: 252.8px;
+    }
+}
+
+@media screen and (min-width: 366px) and (max-width: 415px) {
+    .contain-width{
+        width: 320px;
+    }
+    .date-width{
+        width: 292.8px;
+    }
+}
+
+@media screen and (min-width: 416px) and (max-width: 500px) {
+    .contain-width{
+        width: 380px;
+    }
+    .date-width{
+        width: 352.8px;
+    }
+}
+
+@media screen and (min-width: 600px) and (max-width: 900px) {
+    .contain-width{
+        width: 600px;
+    }
+    .date-width{
+        width: 262.4px;
+    }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1200px) {
+    .contain-width{
+        width: 700px;
+    }
+    .date-width{
+        width: 312.4px;
+    }
+}

@@ -120,7 +120,7 @@ const AllUsers = () => {
                 </div>
             </div>
 
-            <div className="overflow-x-auto w-auto">
+            <div className="overflow-x-auto w-screen lg:w-auto mx-auto borderauto">
                 <table className="table table-sm">
                     {/* head */}
                     <thead>

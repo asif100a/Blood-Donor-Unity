@@ -61,7 +61,7 @@ const AddBlogs = () => {
                 blogger
             });
             console.log(insertedData);
-            if(insertedData?.insertedId) {
+            if (insertedData?.insertedId) {
                 toast.success('You have created your blog successfully');
                 reset();
                 setContent('');
@@ -74,12 +74,12 @@ const AddBlogs = () => {
     }
 
     return (
-        <div>
-            <h1 className="text-4xl font-semibold text-center my-6">Create your blog</h1>
+        <div className="m-6">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center my-6">Create your blog</h1>
 
-            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-3xl">
+            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[880px] border-2 border-dashed border-orange-600 sm:p-6 p-3 rounded-xl">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" action="#" method="POST">
-                    <div className="flex justify-between gap-6">
+                    <div className="flex flex-col sm:flex-row justify-between gap-6">
                         <div className="w-full">
                             <label htmlFor="title" className="block text-sm font-medium leading-6 text-gray-900">
                                 Title
@@ -91,7 +91,7 @@ const AddBlogs = () => {
                                     type="text"
                                     placeholder='Title of the blog'
                                     {...register("title", { required: true })}
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+                                    className="block w-full rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
                                 />
                                 {errors.title && <span className="text-orange-600">Please fill up this field</span>}
                             </div>
@@ -107,7 +107,7 @@ const AddBlogs = () => {
                                     type="file"
                                     placeholder='Thumbnail image'
                                     {...register("image", { required: true })}
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+                                    className="block w-full rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
                                 />
                                 {errors.image && <span className="text-orange-600">Please fill up this field</span>}
                             </div>
@@ -120,16 +120,16 @@ const AddBlogs = () => {
                             config={editorConfig}
                             tabIndex={1} // tabIndex of textarea
                             onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-                        // placeholder={'Write your blog'}
                         />
                         {validationError && <p className="text-orange-600">{validationError}</p>}
                     </div>
                     <div>
-                        <input
-                            type="submit"
-                            value={'Create the blog'}
-                            className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:cursor-pointer"
-                        />
+                        <div className='col-span-1 sm:col-span-2 text-center'>
+                            <button type='submit' className="relative rounded-full w-full sm:w-[402px] px-5 py-2 overflow-hidden group bg-orange-500 hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-orange-400 transition-all ease-out duration-300">
+                                <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                                <span className="relative">Create the blog</span>
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>
