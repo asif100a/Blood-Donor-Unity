@@ -3,7 +3,7 @@ import logo from '../../assets/Blood.png'
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import useLoggedUser from "../../Hooks/useLoggedUser";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CiMenuFries } from "react-icons/ci";
 import { BiLogInCircle } from "react-icons/bi";
 import './navber.css';
@@ -12,6 +12,7 @@ const Navber = () => {
     const { user, logoutUser } = useAuth();
     const loggedUser = useLoggedUser();
     const [isShow, setIsShow] = useState(false);
+    const dropdownRef = useRef(null);
 
     const NavLinks = <>
         <li><NavLink to={'/'} className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Home</NavLink></li>
@@ -35,6 +36,23 @@ const Navber = () => {
     const handleHideMenu = () => {
         setIsShow(false);
     }
+
+    // // 
+    // const htm = () => {
+    //     return document.removeEventListener('mousedown', handleHideMenu);
+    // };
+
+    // When user click on outside of the nav modal it will close
+    useEffect(() => {
+        if (!dropdownRef) {
+            document.addEventListener('mousedown', handleHideMenu);
+
+            return () => {
+                document.removeEventListener('mousedown', handleHideMenu);
+            }
+        }
+    }, []);
+
 
     return (
         <nav className="relative bg-white shadow dark:bg-gray-800">
@@ -62,8 +80,8 @@ const Navber = () => {
                         </div>
                     </div>
 
-                    <div className={`absolute ${isShow === false && 'hidden'} inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center`}>
-                        <ul className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8 menu active-link">
+                    <div className={`absolute ${isShow === false && 'hidden'} inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center border-y-2 border-t-orange-600 border-b-green-600 lg:border-none mt-6 rounded-xl lg:rounded-none`}>
+                        <ul ref={dropdownRef} className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8 menu active-link">
                             {NavLinks}
                             {
                                 loggedUser?.role === 'donor' && <li className="block lg:hidden"><NavLink to={'/dashboard/donor_home'} className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Dashboard</NavLink></li>
@@ -78,7 +96,7 @@ const Navber = () => {
                                 user ?
                                     <li onClick={handleLogout} className="block lg:hidden"><a className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Logout</a></li>
                                     :
-                                    <li className="block lg:hidden"><Link to={'/login'} className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Login</Link></li>
+                                    <li className="block lg:hidden"><NavLink to={'/login'} className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Login</NavLink></li>
                             }
                         </ul>
 

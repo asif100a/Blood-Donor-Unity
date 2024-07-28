@@ -110,7 +110,7 @@ const SearchPage = () => {
                 <h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white text-center">Search donation request</h2>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="mt-3">
-                    <div className="flex gap-3">
+                    <div className="flex flex-col sm:flex-row gap-3">
                         <div className="">
                             <label htmlFor="image" className="block text-sm font-medium leading-6 text-gray-900">
                                 Select blood group
@@ -120,7 +120,7 @@ const SearchPage = () => {
                                     name='blood_group'
                                     {...register("blood_group", { required: true })}
                                     defaultValue={'choose_blood'}
-                                    className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                                    className="block w-[216px] px-4 py-2 mt-2 text-gray-700 bg-white border border-orange-500 rounded-full dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-orange-500 focus:ring-orange-400 focus:ring-opacity-40 dark:focus:border-orange-500 focus:outline-none focus:ring">
                                     <option disabled value={'choose_blood'}>Choose a blood group</option>
                                     {
                                         bloodGroup.map((group, i) => <option key={i} value={group}>{group}</option>)
@@ -140,7 +140,7 @@ const SearchPage = () => {
                                     {...register("district", { required: true })}
                                     onChange={(e) => handleSelectDistrict(e)}
                                     defaultValue={'choose_district'}
-                                    className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                                    className="block w-[216px] px-4 py-2 mt-2 text-gray-700 bg-white border border-orange-500 rounded-full dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-orange-500 focus:ring-orange-400 focus:ring-opacity-40 dark:focus:border-orange-500 focus:outline-none focus:ring">
                                     <option disabled value={'choose_district'}>Choose a district</option>
                                     {
                                         districts.map(district => <option key={district?.id} value={district?.name}>{district?.name}</option>)
@@ -159,7 +159,7 @@ const SearchPage = () => {
                                     name='upazila'
                                     {...register("upazila", { required: true })}
                                     defaultValue={'choose_upazila'}
-                                    className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring">
+                                    className="block w-[216px] px-4 py-2 mt-2 text-gray-700 bg-white border border-orange-500 rounded-full dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-orange-500 focus:ring-orange-400 focus:ring-opacity-40 dark:focus:border-orange-500 focus:outline-none focus:ring">
                                     <option disabled value={'choose_upazila'}>Choose a upazila</option>
                                     {
                                         selectedUpazilas?.map((upazila, i) => <option key={i} value={upazila?.name}>{upazila?.name}</option>)
@@ -171,7 +171,7 @@ const SearchPage = () => {
                     </div>
 
                     <div className="flex justify-center mt-6">
-                        <button className="relative rounded px-5 py-2.5 overflow-hidden group bg-green-500 hover:bg-gradient-to-r hover:from-green-500 hover:to-green-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-green-400 transition-all ease-out duration-300">
+                        <button className="relative rounded-full px-8 py-2.5 overflow-hidden group bg-green-500 hover:bg-gradient-to-r hover:from-green-500 hover:to-green-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-green-400 transition-all ease-out duration-300">
                             <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
                             <span className="relative">Button Text</span>
                         </button>

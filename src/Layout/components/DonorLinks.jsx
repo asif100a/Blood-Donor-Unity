@@ -1,5 +1,6 @@
 import { FcDonate, FcHome, FcInspection } from "react-icons/fc";
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const DonorLinks = ({status}) => {
     console.log(status)
@@ -30,6 +31,10 @@ const DonorLinks = ({status}) => {
             </li>
         </>
     );
+};
+
+DonorLinks.propTypes = {
+    status: PropTypes.any
 };
 
 export default DonorLinks;
