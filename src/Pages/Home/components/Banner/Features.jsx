@@ -4,7 +4,7 @@ const Features = () => {
     return (
         <section className="bg-white dark:bg-gray-900 mt-0 md:mt-16">
             <div className="container py-10 mx-auto">
-                <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white lg:ml-20"> The key features</h1>
+                <h1 className="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white text-center md:text-start md:ml-6 lg:ml-20"> The key features</h1>
 
                 <div style={{
                     backgroundImage: `url(${backgroundImage})`, 
@@ -12,9 +12,8 @@ const Features = () => {
                     backgroundSize: 'cover', 
                     backgroundRepeat: 'no-repeat',
                     width: '100%',
-                    height: '650px'
-                }} className="mt-8 xl:mt-12 flex justify-end items-center">
-                    <div className="grid w-fit grid-cols-1 gap-6 lg:w-1/2 xl:gap-16 md:grid-cols-2 mx-12">
+                }} className="mt-8 xl:mt-12 flex justify-end items-center py-6 lg:py-16">
+                    <div className="grid w-fit grid-cols-1 gap-6 lg:w-1/2 xl:gap-16 md:grid-cols-2 mx-6 lg:mx-12">
                         {/* 1 card */}
                         <div className="p-6 bg-white bg-opacity-30 border rounded-xl border-r-gray-200 dark:border-gray-700 h-fit">
                             <div className="md:flex md:items-start md:-mx-4">

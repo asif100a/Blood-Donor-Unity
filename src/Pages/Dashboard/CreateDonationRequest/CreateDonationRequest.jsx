@@ -23,7 +23,7 @@ const CreateDonationRequest = () => {
     const [upazilaFieldError, setUpazilaFieldError] = useState('');
 
     const axiosSecure = useAxiosSecure();
-    const {user} = useAuth();
+    const { user } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -87,7 +87,7 @@ const CreateDonationRequest = () => {
 
         // Save donation request data to the database
         try {
-            const {data: donationRequestData} = await axiosSecure.post('/donation-requests', {...data, selectedDate, time, donation_status});
+            const { data: donationRequestData } = await axiosSecure.post('/donation-requests', { ...data, selectedDate, time, donation_status });
             console.log(donationRequestData);
             reset();
             setSelectedDate(new Date());
@@ -105,10 +105,10 @@ const CreateDonationRequest = () => {
             <div>
                 <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center">Create a donation request</h1>
             </div>
-            <div className="mt-10 sm:mx-auto w-full sm:w-full sm:max-w-sm">
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" action="#" method="POST">
+            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[880px] border-2 border-dashed border-orange-600 sm:p-6 p-3 rounded-xl">
+                <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 sm:grid-cols-2 gap-6" action="#" method="POST">
                     <div>
-                        <label htmlFor="requester_name" className="block text-sm font-medium leading-6 text-gray-900">
+                        <label htmlFor="requester_name" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
                             Rrequester name
                         </label>
                         <div className="mt-2">
@@ -119,14 +119,14 @@ const CreateDonationRequest = () => {
                                 value={user?.displayName}
                                 placeholder='Rrequester name'
                                 {...register("requester_name", { required: true })}
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+                                className="block w-full rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
                             />
                             {errors.requester_name && <span className="text-orange-600">This field is required</span>}
                         </div>
                     </div>
 
                     <div>
-                        <label htmlFor="requester_email" className="block text-sm font-medium leading-6 text-gray-900">
+                        <label htmlFor="requester_email" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
                             Requester email
                         </label>
                         <div className="mt-2">
@@ -137,14 +137,14 @@ const CreateDonationRequest = () => {
                                 value={user?.email}
                                 placeholder='Requester email'
                                 {...register("requester_email", { required: true })}
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+                                className="block w-full rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
                             />
                             {errors.requester_email && <span className="text-orange-600">This field is required</span>}
                         </div>
                     </div>
 
                     <div>
-                        <label htmlFor="recipient_name" className="block text-sm font-medium leading-6 text-gray-900">
+                        <label htmlFor="recipient_name" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
                             Recipient name
                         </label>
                         <div className="mt-2">
@@ -154,14 +154,14 @@ const CreateDonationRequest = () => {
                                 type="name"
                                 placeholder='Recipient name'
                                 {...register("recipient_name", { required: true })}
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+                                className="block w-full rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
                             />
                             {errors.recipient_name && <span className="text-orange-600">This field is required</span>}
                         </div>
                     </div>
 
                     <div>
-                        <label htmlFor="image" className="block text-sm font-medium leading-6 text-gray-900">
+                        <label htmlFor="image" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
                             Recipient blood group
                         </label>
                         <div className="mt-2">
@@ -169,7 +169,8 @@ const CreateDonationRequest = () => {
                                 name='blood_group'
                                 {...register("blood_group", { required: true })}
                                 defaultValue={'choose_blood'}
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
+                                className="block w-full rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
+                            >
                                 <option disabled value={'choose_blood'}>Choose your blood group</option>
                                 {
                                     bloodGroup.map((group, i) => <option key={i} value={group}>{group}</option>)
@@ -180,7 +181,7 @@ const CreateDonationRequest = () => {
                     </div>
 
                     <div>
-                        <label htmlFor="district" className="block text-sm font-medium leading-6 text-gray-900">
+                        <label htmlFor="district" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
                             {"Recipient's"} district
                         </label>
                         <div className="mt-2">
@@ -189,7 +190,8 @@ const CreateDonationRequest = () => {
                                 {...register("district", { required: true })}
                                 onChange={(e) => handleSelectDistrict(e)}
                                 defaultValue={'choose_district'}
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
+                                className="block w-full rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
+                            >
                                 <option disabled value={'choose_district'}>Choose your district</option>
                                 {
                                     districts.map(district => <option key={district?.id} value={district?.name}>{district?.name}</option>)
@@ -200,15 +202,16 @@ const CreateDonationRequest = () => {
                     </div>
 
                     <div>
-                        <label htmlFor="upazila" className="block text-sm font-medium leading-6 text-gray-900">
-                        {"Recipient's"} upazila
+                        <label htmlFor="upazila" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
+                            {"Recipient's"} upazila
                         </label>
                         <div className="mt-2">
                             <select
                                 name='upazila'
                                 {...register("upazila", { required: true })}
                                 defaultValue={'choose_upazila'}
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
+                                className="block w-full rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
+                            >
                                 <option disabled value={'choose_upazila'}>Choose your upazila</option>
                                 {
                                     selectedUpazilas?.map((upazila, i) => <option key={i} value={upazila?.name}>{upazila?.name}</option>)
@@ -220,7 +223,7 @@ const CreateDonationRequest = () => {
 
                     <div>
                         <div className="flex items-center justify-between">
-                            <label htmlFor="hospital_name" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="hospital_name" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
                                 Hospital name
                             </label>
                         </div>
@@ -231,14 +234,14 @@ const CreateDonationRequest = () => {
                                 type="text"
                                 placeholder='Hospital name'
                                 {...register("hospital_name", { required: true, })}
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+                                className="block w-full rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
                             />
                             {errors.hospital_name && <span className="text-orange-600">This field is required</span>}
                         </div>
                     </div>
                     <div>
                         <div className="flex items-center justify-between">
-                            <label htmlFor="full_address" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="full_address" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
                                 Full address
                             </label>
                         </div>
@@ -249,7 +252,7 @@ const CreateDonationRequest = () => {
                                 type="text"
                                 placeholder='Full address'
                                 {...register("full_address", { required: true })}
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+                                className="block w-full rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
                             />
                             {errors.full_address && <span className="text-orange-600">This field is required</span>}
                         </div>
@@ -257,7 +260,7 @@ const CreateDonationRequest = () => {
 
                     <div>
                         <div className="flex items-center justify-between">
-                            <label htmlFor="donation_date" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="donation_date" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
                                 Donation date
                             </label>
                         </div>
@@ -269,14 +272,15 @@ const CreateDonationRequest = () => {
                                 dateFormat={'dd/MM/yyyy'}
                                 showYearDropdown
                                 scrollableMonthYearDropdown
-                                className="block w-[24rem] rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3" />
+                                className="block w-[25.1rem] rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
+                            />
                             {errors.donation_date && <span className="text-orange-600">This field is required</span>}
                         </div>
                     </div>
 
                     <div>
                         <div className="flex items-center justify-between">
-                            <label htmlFor="donation_time" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="donation_time" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
                                 Donation time
                             </label>
                         </div>
@@ -288,14 +292,33 @@ const CreateDonationRequest = () => {
                                 format="hh:mm a"
                                 hourPlaceholder="hh"
                                 minutePlaceholder="mm"
-                                className="block w-[24rem] rounded-md border-0" />
+                                // slotProps={{
+                                //     textField: {
+                                //         sx: {
+                                //             borderRadius: 6,
+                                //             fieldset: {borderRadius: 6}
+                                //         }
+                                //     }
+                                // }}
+                                slotProps={{
+                                    textField: {
+                                      sx: {
+                                        borderRadius: 6,
+                                        fieldset: { borderRadius: 6 },
+                                      /* Use FilledInputClasses if your TextField variant changed to "filled" otherwise use below */
+                                      
+                                     },
+                                    },
+                                  }}
+                                className="block w-[25.1rem] rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
+                            />
                             {errors.donation_date && <span className="text-orange-600">This field is required</span>}
                         </div>
                     </div>
 
-                    <div>
+                    <div className="col-span-2">
                         <div className="flex items-center justify-between">
-                            <label htmlFor="request_message" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="request_message" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
                                 Request message
                             </label>
                         </div>
@@ -306,18 +329,17 @@ const CreateDonationRequest = () => {
                                 type="password"
                                 placeholder='Request message'
                                 {...register("request_message", { required: true })}
-                                className="textarea textarea-primary block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+                                className="block w-full h-32 py-2.5 rounded-xl border text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
                             ></textarea>
                             {errors.request_message && <span className="text-orange-600">This field is required</span>}
                         </div>
                     </div>
 
-                    <div>
-                        <input
-                            type="submit"
-                            value={'Create donation request'}
-                            className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:cursor-pointer"
-                        />
+                    <div className='col-span-1 sm:col-span-2 text-center'>
+                        <button type='submit' className="relative rounded-full w-full sm:w-[402px] px-5 py-2 overflow-hidden group bg-orange-500 hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-orange-400 transition-all ease-out duration-300">
+                            <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                            <span className="relative">Create donation request</span>
+                        </button>
                     </div>
                 </form>
             </div>

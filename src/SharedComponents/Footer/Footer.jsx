@@ -69,11 +69,11 @@ const Footer = () => {
 
                             <div>
                                 <h3 className="text-gray-700 uppercase font-semibold dark:text-white">Quick Links</h3>
-                                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline hover:text-orange-600">Home</span>
-                                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline hover:text-orange-600">Contact us</span>
-                                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline hover:text-orange-600">
+                                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline hover:text-orange-600 hover:cursor-pointer">Home</span>
+                                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline hover:text-orange-600 hover:cursor-pointer">Contact us</span>
+                                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline hover:text-orange-600 hover:cursor-pointer">
                                     Privacy Policy</span>
-                                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline hover:text-orange-600">
+                                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline hover:text-orange-600 hover:cursor-pointer">
                                     Terms of Service</span>
                             </div>
 

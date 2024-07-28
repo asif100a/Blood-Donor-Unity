@@ -81,7 +81,7 @@ const ContactUs = () => {
                         <p className="mt-3 text-gray-500 dark:text-gray-400">If you have any questions, feel free to message to us:</p>
                     </div>
 
-                    <div className="p-4 py-3 md:py-6 rounded-lg bg-white border-2 border-dashed border-orange-500 md:p-8">
+                    <div className="p-4 md:py-6 rounded-lg bg-white border-2 border-dashed border-orange-500 md:p-8">
                         <form>
                             <div className="-mx-2 md:items-center md:flex">
                                 <div className="flex-1 px-2">
