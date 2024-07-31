@@ -117,8 +117,13 @@ const DonorHome = () => {
                     </table>
                 </div>
 
-                <div className="mt-10 text-center">
-                    <Link to={'/dashboard/my_donation_requests'}><button className="btn">View my all request</button></Link>
+                <div className="mt-10 mb-6 text-center">
+                    <Link to={'/dashboard/my_donation_requests'}>
+                        <button type="button" className={`t-6 relative rounded-full px-3 py-2 overflow-hidden group bg-green-600 hover:bg-gradient-to-r hover:from-green-600 hover:to-green-500 text-white hover:ring-2 hover:ring-offset-2 hover:ring-green-500 transition-all ease-out duration-300`}>
+                            <span className="absolute right-0 w-6 h-24 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                            <span className="relative">View all requests</span>
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>

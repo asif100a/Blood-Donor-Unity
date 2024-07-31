@@ -167,11 +167,11 @@ const Allblogs = ({ volunteer, admin }) => {
                                 </div>
 
                                 <div className="mt-0">
-                                    <h1 className="mt-4 text-xl font-semibold text-gray-800 dark:text-white">
+                                    <h1 className="mt-4 text-xl font-semibold text-gray-800">
                                         {blog?.title}
                                     </h1>
 
-                                    {/* <div className="mt-2 text-gray-500 dark:text-gray-400" dangerouslySetInnerHTML={{__html: blog?.content.split(0, 20)}}>
+                                    {/* <div className="mt-2 text-gray-500" dangerouslySetInnerHTML={{__html: blog?.content.split(0, 20)}}>
                                     </div> */}
 
                                     <div className="flex items-center justify-between mt-2">
