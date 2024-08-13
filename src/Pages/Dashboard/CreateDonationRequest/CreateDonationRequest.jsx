@@ -102,9 +102,9 @@ const CreateDonationRequest = () => {
     };
 
     return ( 
-        <div className="my-6 contain-width mx-auto overflow-hidden border-red-500">
+        <section className="my-6 contain-width mx-auto overflow-hidden border-red-500">
             <div>
-                <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center w-[200px] sm:w-auto mx-auto">Create a donation request</h1>
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center w-[200px] sm:w-auto mx-auto capitalize">Create a donation request</h1>
             </div>
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[880px] border-2 border-dashed border-orange-600 sm:p-6 p-3 rounded-xl">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-6" action="#" method="POST">
@@ -334,7 +334,7 @@ const CreateDonationRequest = () => {
                     </div>
                 </form>
             </div>
-        </div>
+        </section>
     );
 };
 

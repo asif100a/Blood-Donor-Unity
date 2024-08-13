@@ -6,7 +6,7 @@ const MyDonationRequests = () => {
 
     return (
         <div className="w-auto mt-6">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center mb-16 w-[200px] sm:w-auto mx-auto">My donation requests</h1>
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center mb-16 w-[200px] sm:w-auto mx-auto capitalize">My donation requests</h1>
             
             <div>
                 <AllDonorRequests email={user?.email} />

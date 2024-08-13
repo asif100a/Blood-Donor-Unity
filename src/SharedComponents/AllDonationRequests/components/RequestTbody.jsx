@@ -7,14 +7,9 @@ const RequestTbody = ({ data, index, handleDelete, volunteer, admin, handleChang
     console.log(data);
     const {
         _id,
-        requester_name,
-        requester_email,
         recipient_name,
         district,
         upazila,
-        hospital_name,
-        full_address,
-        request_message,
         selectedDate,
         time,
         donation_status
@@ -60,16 +55,19 @@ const RequestTbody = ({ data, index, handleDelete, volunteer, admin, handleChang
                 <td>{upazila}, {district}</td>
                 <td>{donation_date}</td>
                 <td>{donation_time}</td>
-                <td className='flex gap-2 items-center'>
-                    <p className={`${donation_status === 'pending' && 'bg-yellow-400'} ${donation_status === 'in progress' && 'bg-blue-400'}  ${donation_status === 'complete' && 'bg-green-500'} w-2 h-2`}></p><p>{donation_status}</p>
+                <td>
+                    <div className='flex gap-2 items-center'>
+                        <p className={`${donation_status === 'pending' && 'bg-yellow-400'} ${donation_status === 'in progress' && 'bg-blue-400'}  ${donation_status === 'complete' && 'bg-green-500'} w-2 h-2`}></p>
+                        <p>{donation_status}</p>
+                    </div>
                 </td>
                 <td>
-                    { 
+                    {
                         data?.donor ? <div>
                             <p>{data?.donor?.name}</p>
                             <p className='text-sm'>{data?.donor?.email}</p>
                         </div> :
-                        ''
+                            ''
                     }
                 </td>
                 {
