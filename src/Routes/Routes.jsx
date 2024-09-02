@@ -53,14 +53,14 @@ const Routes = createBrowserRouter([
             }, {
                 path: '/donation_request_details/:id',
                 element: <PrivatePage><DonationRequestDetails /></PrivatePage>,
-                loader: ({params}) => fetch(`${import.meta.env.VITE_URL}/pending-requests/${params.id}`)
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_URL}/pending-requests/${params.id}`)
             }, {
                 path: '/blogs',
                 element: <Blogs />
             }, {
                 path: '/blog-details/:id',
                 element: <BlogDetails />,
-                loader: ({params}) => fetch(`${import.meta.env.VITE_URL}/published-blogs/${params.id}`)
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_URL}/published-blogs/${params.id}`)
             }, {
                 path: '/funds',
                 element: <PrivatePage><Funds /></PrivatePage>
@@ -96,7 +96,7 @@ const Routes = createBrowserRouter([
             }, {
                 path: '/dashboard/content_management/edit_blog/:id',
                 // loader: ({params}) => fetch(`${import.meta.env.VITE_URL}/blogs/${params.id}`),
-                element: <AdminRoute><EditBlog /></AdminRoute>
+                element: <EditBlog />
             },
             // For volunteer
             {
@@ -111,6 +111,10 @@ const Routes = createBrowserRouter([
             }, {
                 path: '/dashboard/content_manage_vol',
                 element: <ContentManageVol />
+            }, {
+                path: '/dashboard/content_management/edit_blog/:id',
+                // loader: ({params}) => fetch(`${import.meta.env.VITE_URL}/blogs/${params.id}`),
+                element: <EditBlog />
             },
             // For donator
             {
@@ -125,10 +129,10 @@ const Routes = createBrowserRouter([
             }, {
                 path: '/dashboard/my_donation_requests',
                 element: <PrivatePage><MyDonationRequests /></PrivatePage>
-            },  {
+            }, {
                 path: '/dashboard/edit_donor_request/:id',
                 element: <PrivatePage><EditDonorRequest /></PrivatePage>,
-                loader: ({params}) => fetch(`${import.meta.env.VITE_URL}/donation-requests-field/${params?.id}`)
+                loader: ({ params }) => fetch(`${import.meta.env.VITE_URL}/donation-requests-field/${params?.id}`)
             }, {
                 path: '/dashboard/block_page',
                 element: <PrivatePage><BlockPage /></PrivatePage>

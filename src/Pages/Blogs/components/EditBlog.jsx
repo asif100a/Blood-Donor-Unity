@@ -7,6 +7,7 @@ import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import LoadingSpiner from "../../../SharedComponents/LoadingSpiner/LoadingSpiner";
+import useLoggedUser from "../../../Hooks/useLoggedUser";
 
 const EditBlog = () => {
     // States
@@ -17,6 +18,8 @@ const EditBlog = () => {
 
     // User info
     const { user } = useAuth();
+    const userRole = useLoggedUser();
+    console.log(userRole);
     // Hooks
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
@@ -98,7 +101,7 @@ const EditBlog = () => {
             console.log(insertedData);
             if (insertedData?.modifiedCount > 0) {
                 toast.success('You have updated your blog successfully');
-                navigate('/dashboard/content_management');
+                navigate(userRole.role === 'admin' ? '/dashboard/content_management' : '/dashboard/content_manage_vol');
             }
 
         } catch (error) {
