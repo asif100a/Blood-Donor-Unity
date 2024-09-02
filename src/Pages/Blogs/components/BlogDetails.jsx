@@ -8,8 +8,8 @@ const BlogDetails = () => {
     const newPostedDate = new Date(posted_date).toLocaleDateString('en-GB');
 
     return (
-        <section className="bg-white dark:bg-gray-900 px-6 md:px-8 lg:px-24">
-            <div className="container px-6 py-16 mx-auto text-center">
+        <section className="bg-white dark:bg-gray-900 px-3 md:px-8 xl:px-24">
+            <div className="container py-16 mx-auto text-center">
                 <div className="w-full lg:max-w-xl mx-auto">
                     <h1 className="text-2xl font-semibold text-gray-800 dark:text-white capitalize lg:text-4xl">{title}</h1>
                     {/* <p className="mt-6 text-gray-500 dark:text-gray-300">Blood donation is a simple, safe, and impactful way to contribute to your community. By setting aside just a small amount of time, you can make a significant difference in {"someone's"} life.</p> */}

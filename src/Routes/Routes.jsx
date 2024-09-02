@@ -30,6 +30,7 @@ import BlogDetails from "../Pages/Blogs/components/BlogDetails";
 import AdminProfile from "../Pages/Dashboard/AdminPages/AdminProfile/AdminProfile";
 import VolunteerProfile from "../Pages/Dashboard/VolunteerPages/VolunteerProfile/VolunteerProfile";
 import DonorProfile from "../Pages/Dashboard/DonorProfile/DonorProfile";
+import EditBlog from "../Pages/Blogs/components/EditBlog";
 
 const Routes = createBrowserRouter([
     {
@@ -92,6 +93,10 @@ const Routes = createBrowserRouter([
             }, {
                 path: '/dashboard/content_management/add_blog',
                 element: <AdminRoute><AddBlogs /></AdminRoute>
+            }, {
+                path: '/dashboard/content_management/edit_blog/:id',
+                // loader: ({params}) => fetch(`${import.meta.env.VITE_URL}/blogs/${params.id}`),
+                element: <AdminRoute><EditBlog /></AdminRoute>
             },
             // For volunteer
             {

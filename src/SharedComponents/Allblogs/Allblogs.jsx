@@ -175,7 +175,7 @@ const Allblogs = ({ volunteer, admin }) => {
                                     </div> */}
 
                                     <div className="flex items-center justify-between mt-2">
-                                        <Link to={''}><button className={`btn bg-white border-none shadow-none hover:bg-white`}><FaRegEdit className='h-5 w-5 hover:transform hover:scale-125 text-green-600' /></button></Link>
+                                        <Link to={`/dashboard/content_management/edit_blog/${blog._id}`}><button className={`btn bg-white border-none shadow-none hover:bg-white`}><FaRegEdit className='h-5 w-5 hover:transform hover:scale-125 text-green-600' /></button></Link>
 
                                         <button
                                             onClick={volunteer ? '' : () => handleDelete(blog?._id)}
@@ -198,7 +198,8 @@ const Allblogs = ({ volunteer, admin }) => {
 };
 
 Allblogs.propTypes = {
-    volunteer: PropTypes.bool
+    volunteer: PropTypes.bool,
+    admin: PropTypes.bool,
 };
 
 export default Allblogs;
