@@ -75,7 +75,7 @@ const Navber = () => {
                         </div>
                     </div>
 
-                    <div className={`absolute ${isShow === false && 'hidden'} inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center border-y-2 border-t-orange-600 border-b-green-600 lg:border-none mt-6 rounded-xl lg:rounded-none`}>
+                    <div className={`absolute ${isShow === false && 'hidden'} inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-900 lg:dark:bg-transparent lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center border-y-2 border-t-orange-600 border-b-green-600 lg:border-none mt-6 rounded-xl lg:rounded-none`}>
                         <ul ref={dropdownRef} className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8 menu active-link">
                             {NavLinks}
                             {
@@ -106,7 +106,7 @@ const Navber = () => {
                                                 <img referrerPolicy="no-referrer" src={user?.photoURL} />
                                             </div>
                                         </div>
-                                        <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                                        <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 dark:text-gray-100">
                                             {
                                                 loggedUser?.role === 'donor' && <li><Link to={'/dashboard/donor_home'}>Dashboard</Link></li>
                                             }
