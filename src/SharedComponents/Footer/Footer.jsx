@@ -4,22 +4,22 @@ import logo from '../../assets/Blood.png';
 const Footer = () => {
     return (
         <footer className="bg-white dark:bg-gray-900 border-t">
-            <div className="container p-6 mx-auto text-center sm:text-start">
+            <div className="p-6 mx-auto text-center sm:text-start">
                 <div className="lg:flex">
                     <div className="w-full sm:-mx-6 lg:w-2/5 mx-auto">
                         <div className="px-6">
                             <div className=''>
                                 <Link to="/">
                                     <img className="w-[56px] h-[64px] mx-auto sm:mx-0" src={logo} alt="Logo" />
-                                    <span className='text-xl font-semibold'>Blood Donor Unity</span>
+                                    <span className='text-xl font-semibold dark:text-gray-100'>Blood Donor Unity</span>
                                 </Link>
 
-                                <p className="max-w-sm mt-2 text-gray-500 dark:text-gray-400">Our mission is to facilitate timely blood donations and promote awareness about the importance of blood donation.</p>
+                                <p className="max-w-sm mt-2 text-gray-500 dark:text-gray-300">Our mission is to facilitate timely blood donations and promote awareness about the importance of blood donation.</p>
                             </div>
 
                             <div className="flex mt-6 -mx-2 justify-center sm:justify-start">
                                 <a href="#"
-                                    className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-orange-600 dark:hover:text-blue-400"
+                                    className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-orange-600"
                                     aria-label="Reddit">
                                     <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -29,7 +29,7 @@ const Footer = () => {
                                 </a>
 
                                 <a href="#"
-                                    className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-orange-600 dark:hover:text-blue-400"
+                                    className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-orange-600"
                                     aria-label="Facebook">
                                     <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -39,7 +39,7 @@ const Footer = () => {
                                 </a>
 
                                 <a href="#"
-                                    className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-orange-600 dark:hover:text-blue-400"
+                                    className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-orange-600"
                                     aria-label="Github">
                                     <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -54,34 +54,34 @@ const Footer = () => {
                     <div className="mt-6 lg:mt-10 lg:flex-1">
                         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                             <div>
-                                <h3 className="text-gray-700 uppercase font-semibold dark:text-white">About</h3>
-                                <a href="#" className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline hover:text-orange-600">Blood donation</a>
-                                <a href="#" className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline hover:text-orange-600">Support</a>
-                                <a href="#" className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline hover:text-orange-600">Feedbacks</a>
+                                <h3 className="text-gray-700 uppercase font-semibold dark:text-gray-100">About</h3>
+                                <a href="#" className="block mt-2 text-sm text-gray-600 dark:text-gray-300 hover:underline hover:text-orange-600">Blood donation</a>
+                                <a href="#" className="block mt-2 text-sm text-gray-600 dark:text-gray-300 hover:underline hover:text-orange-600">Support</a>
+                                <a href="#" className="block mt-2 text-sm text-gray-600 dark:text-gray-300 hover:underline hover:text-orange-600">Feedbacks</a>
                             </div>
 
                             <div>
-                                <h3 className="text-gray-700 uppercase font-semibold dark:text-white">Follow Us</h3>
-                                <a href="#" className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline hover:text-orange-600">Facebook</a>
-                                <a href="#" className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline hover:text-orange-600">Twitter</a>
-                                <a href="#" className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline hover:text-orange-600">Instagram</a>
+                                <h3 className="text-gray-700 uppercase font-semibold dark:text-gray-100">Follow Us</h3>
+                                <a href="#" className="block mt-2 text-sm text-gray-600 dark:text-gray-300 hover:underline hover:text-orange-600">Facebook</a>
+                                <a href="#" className="block mt-2 text-sm text-gray-600 dark:text-gray-300 hover:underline hover:text-orange-600">Twitter</a>
+                                <a href="#" className="block mt-2 text-sm text-gray-600 dark:text-gray-300 hover:underline hover:text-orange-600">Instagram</a>
                             </div>
 
                             <div>
-                                <h3 className="text-gray-700 uppercase font-semibold dark:text-white">Quick Links</h3>
-                                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline hover:text-orange-600 hover:cursor-pointer">Home</span>
-                                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline hover:text-orange-600 hover:cursor-pointer">Contact us</span>
-                                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline hover:text-orange-600 hover:cursor-pointer">
+                                <h3 className="text-gray-700 uppercase font-semibold dark:text-gray-100">Quick Links</h3>
+                                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-300 hover:underline hover:text-orange-600 hover:cursor-pointer">Home</span>
+                                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-300 hover:underline hover:text-orange-600 hover:cursor-pointer">Contact us</span>
+                                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-300 hover:underline hover:text-orange-600 hover:cursor-pointer">
                                     Privacy Policy</span>
-                                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline hover:text-orange-600 hover:cursor-pointer">
+                                <span className="block mt-2 text-sm text-gray-600 dark:text-gray-300 hover:underline hover:text-orange-600 hover:cursor-pointer">
                                     Terms of Service</span>
                             </div>
 
                             <div>
-                                <h3 className="text-gray-700 uppercase font-semibold dark:text-white">Contact Information</h3>
-                                <a href="#" className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline hover:text-orange-600">Email: blooddonatorUnity@gmail.com</a>
-                                <a href="#" className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline hover:text-orange-600">Phone: +1-234-567-890</a>
-                                <a href="#" className="block mt-2 text-sm text-gray-600 dark:text-gray-400 hover:underline hover:text-orange-600">Address: 190/1 Baro Moghbazar, Wireless Railgate, Dhaka 1217</a>
+                                <h3 className="text-gray-700 uppercase font-semibold dark:text-gray-100">Contact Information</h3>
+                                <a href="#" className="block mt-2 text-sm text-gray-600 dark:text-gray-300 hover:underline hover:text-orange-600">Email: blooddonatorUnity@gmail.com</a>
+                                <a href="#" className="block mt-2 text-sm text-gray-600 dark:text-gray-300 hover:underline hover:text-orange-600">Phone: +1-234-567-890</a>
+                                <a href="#" className="block mt-2 text-sm text-gray-600 dark:text-gray-300 hover:underline hover:text-orange-600">Address: 190/1 Baro Moghbazar, Wireless Railgate, Dhaka 1217</a>
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,7 @@ const Footer = () => {
                 <hr className="h-px my-6 bg-gray-200 border-none dark:bg-gray-700" />
 
                 <div>
-                    <p className="text-center text-gray-500 dark:text-gray-400">© Blood Donator Unity - All rights reserved</p>
+                    <p className="text-center text-gray-500 dark:text-gray-300">© Blood Donator Unity - All rights reserved</p>
                 </div>
             </div>
         </footer>

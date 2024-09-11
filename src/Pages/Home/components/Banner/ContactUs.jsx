@@ -1,23 +1,23 @@
 const ContactUs = () => {
     return (
-        <section className="bg-white dark:bg-gray-900">
-            <div className="container lg:px-28 py-6 lg:py-12 px-6 mx-auto">
+        <section className="bg-white dark:bg-[#292929] pb-14">
+            <div className="lg:px-28 px-6 mx-auto">
                 <div>
                     <div className="mb-6">
-                        <h1 className="text-3xl lg:text-4xl font-semibold text-center md:text-start">Contact Us</h1>
+                        <h1 className="text-3xl lg:text-4xl font-semibold text-center md:text-start dark:text-gray-100">Contact Us</h1>
                     </div>
 
                     <div className="flex justify-between gap-12">
                         <div className="text-center md:text-start md:w-1/2">
-                            <h1 className="mt-2 text-lg md:text-xl font-semibold text-gray-800 lg:text-3xl dark:text-white">Chat to us</h1>
+                            <h1 className="mt-2 text-lg md:text-xl font-semibold text-gray-800 lg:text-3xl dark:text-gray-100">Chat to us</h1>
 
-                            <p className="mt-3 text-gray-500 dark:text-gray-400">You can contact us via email, live chat, ofice, phone.</p>
+                            <p className="mt-3 text-gray-500 dark:text-gray-200">You can contact us via email, live chat, ofice, phone.</p>
                         </div>
 
                         <div className="hidden lg:block lg:w-1/2">
-                            <h1 className="mt-2 text-lg md:text-xl font-semibold text-gray-800 lg:text-3xl dark:text-white">Send message to us</h1>
+                            <h1 className="mt-2 text-lg md:text-xl font-semibold text-gray-800 lg:text-3xl dark:text-gray-100">Send message to us</h1>
 
-                            <p className="mt-3 text-gray-500 dark:text-gray-400">If you have any questions, feel free to message to us:</p>
+                            <p className="mt-3 text-gray-500 dark:text-gray-200">If you have any questions, feel free to message to us:</p>
                         </div>
                     </div>
                 </div>
@@ -31,8 +31,8 @@ const ContactUs = () => {
                                 </svg>
                             </span>
 
-                            <h2 className="mt-4 text-base font-medium text-gray-800 dark:text-white">Email</h2>
-                            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">Our friendly team is here to help.</p>
+                            <h2 className="mt-4 text-base font-medium text-gray-800 dark:text-gray-100">Email</h2>
+                            <p className="mt-2 text-sm text-gray-500 dark:text-gray-200">Our friendly team is here to help.</p>
                             <a href="#" className="mt-2 text-sm text-green-500 dark:text-blue-400">blooddonatorUnity@gmail.com</a>
                         </div>
 
@@ -44,8 +44,8 @@ const ContactUs = () => {
                                 </svg>
                             </span>
 
-                            <h2 className="mt-4 text-base font-medium text-gray-800 dark:text-white">Live chat</h2>
-                            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">Our friendly team is here to help.</p>
+                            <h2 className="mt-4 text-base font-medium text-gray-800 dark:text-gray-100">Live chat</h2>
+                            <p className="mt-2 text-sm text-gray-500 dark:text-gray-200">Our friendly team is here to help.</p>
                             <a href="#" className="mt-2 text-sm text-green-500 dark:text-blue-400">Start new chat</a>
                         </div>
 
@@ -57,8 +57,8 @@ const ContactUs = () => {
                                 </svg>
                             </span>
 
-                            <h2 className="mt-4 text-base font-medium text-gray-800 dark:text-white">Office</h2>
-                            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">Come say hello at our office HQ.</p>
+                            <h2 className="mt-4 text-base font-medium text-gray-800 dark:text-gray-100">Office</h2>
+                            <p className="mt-2 text-sm text-gray-500 dark:text-gray-200">Come say hello at our office HQ.</p>
                             <a href="#" className="mt-2 text-sm text-green-500 dark:text-blue-400">100 Smith Street Collingwood VIC 3066 AU</a>
                         </div>
 
@@ -69,19 +69,21 @@ const ContactUs = () => {
                                 </svg>
                             </span>
 
-                            <h2 className="mt-4 text-base font-medium text-gray-800 dark:text-white">Phone</h2>
-                            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">Mon-Fri from 8am to 5pm.</p>
+                            <h2 className="mt-4 text-base font-medium text-gray-800 dark:text-gray-100">Phone</h2>
+                            <p className="mt-2 text-sm text-gray-500 dark:text-gray-200">Mon-Fri from 8am to 5pm.</p>
                             <a href="#" className="mt-2 text-sm text-green-500 dark:text-blue-400">+1 (555) 000-0000</a>
                         </div>
                     </div>
 
-                    <div className="lg:hidden block text-center">
-                        <h1 className="mt-2 text-xl font-semibold text-gray-800 md:text-xl dark:text-white">Send message to us</h1>
+                    {/* Contact message part */}
+                    <div className="lg:hidden block md:text-start text-center">
+                        <h1 className="mt-2 text-xl font-semibold text-gray-800 md:text-xl dark:text-gray-100">Send message to us</h1>
 
-                        <p className="mt-3 text-gray-500 dark:text-gray-400">If you have any questions, feel free to message to us:</p>
+                        <p className="mt-3 text-gray-500 dark:text-gray-200">If you have any questions, feel free to message to us:</p>
                     </div>
 
-                    <div className="p-4 md:py-6 rounded-lg bg-white border-2 border-dashed border-orange-500 md:p-8">
+                    {/* Contact Form */}
+                    <div className="p-4 md:py-6 rounded-lg bg-white dark:bg-transparent border-2 border-dashed border-orange-500 md:p-8">
                         <form>
                             <div className="-mx-2 md:items-center md:flex">
                                 <div className="flex-1 px-2">
@@ -89,7 +91,7 @@ const ContactUs = () => {
                                     <input
                                         type="text"
                                         placeholder="First name"
-                                        className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-green-500 rounded-full dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-green-500 dark:focus:border-blue-400 focus:ring-green-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                        className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-green-500 rounded-full dark:placeholder-gray-400 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-500 focus:border-green-500 dark:focus:border-green-500 focus:ring-green-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                     />
                                 </div>
 
@@ -98,7 +100,7 @@ const ContactUs = () => {
                                     <input
                                         type="text"
                                         placeholder="Last name"
-                                        className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-green-500 rounded-full dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-green-500 dark:focus:border-blue-400 focus:ring-green-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                        className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-green-500 rounded-full dark:placeholder-gray-400 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-500 focus:border-green-500 dark:focus:border-green-500 focus:ring-green-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                     />
                                 </div>
                             </div>
@@ -108,22 +110,22 @@ const ContactUs = () => {
                                 <input
                                     type="email"
                                     placeholder="Your email address"
-                                    className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-green-500 rounded-full dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-green-500 dark:focus:border-blue-400 focus:ring-green-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                    className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-green-500 rounded-full dark:placeholder-gray-400 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-500 focus:border-green-500 dark:focus:border-green-500 focus:ring-green-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                 />
                             </div>
 
                             <div className="w-full mt-4">
                                 <label className="block mb-2 text-sm font-semibold text-gray-600 dark:text-gray-200 pl-3">Message</label>
                                 <textarea
-                                    className="block w-full h-32 px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-green-500 rounded-xl md:h-56 dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-green-500 dark:focus:border-green-500 focus:ring-green-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                    className="block w-full h-32 px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-green-500 rounded-xl md:h-56 dark:placeholder-gray-400 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-500 focus:border-green-500 dark:focus:border-green-500 focus:ring-green-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                     placeholder="Send your message"
                                 ></textarea>
                             </div>
 
                             <button type='submit' className="mt-6 relative rounded-full w-full px-5 py-2 overflow-hidden group bg-orange-500 hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-orange-400 transition-all ease-out duration-300">
-                            <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
-                            <span className="relative">Send message</span>
-                        </button>
+                                <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+                                <span className="relative">Send message</span>
+                            </button>
                         </form>
                     </div>
                 </div>

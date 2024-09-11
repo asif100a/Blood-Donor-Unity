@@ -1,25 +1,63 @@
-.background-img{
+.background-img {
     background-image: url('../../../../assets/Blood-Donation-2.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     width: 100%;
     height: 720px;
+    transition: background-color 0.3s ease;
+}
+
+.background-img::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 1;
+    transition: background-color 0.3s ease;
+    pointer-events: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    .background-img::before {
+        background-color: #0000001a;
+        height: 720px;
+        margin-top: 80px;
+    }
 }
 
 @media screen and (min-width: 300px) and (max-width: 360px) {
-    .background-img{
+    .background-img {
         height: 556px;
+    }
+    .background-img::before {
+        background-color: #0000001a;
+        height: 556px;
+        margin-top: 80px;
     }
 }
 
 @media screen and (min-width: 361px) and (max-width: 600px) {
-    .background-img{
+    .background-img {
         height: 480px;
+    }
+    .background-img::before {
+        background-color: #0000001a;
+        height: 480px;
+        margin-top: 80px;
     }
 }
 
 @media screen and (min-width: 600px) and (max-width: 992px) {
-    .background-img{
+    .background-img {
         height: 380px;
+    }
+}
+
+@media screen and (min-width: 993px) and (max-width: 1200px) {
+    .background-img::before {
+        height: 720px;
     }
 }

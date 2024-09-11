@@ -15,12 +15,12 @@ const Navber = () => {
     const dropdownRef = useRef(null);
 
     const NavLinks = <>
-        <li><NavLink to={'/'} className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Home</NavLink></li>
-        <li><NavLink to={'/donation_requests'} className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Donation requests</NavLink></li>
-        <li><NavLink to={'/blogs'} className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Blogs</NavLink></li>
+        <li><NavLink to={'/'} className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-100 dark:hover:bg-black">Home</NavLink></li>
+        <li><NavLink to={'/donation_requests'} className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-100 ">Donation requests</NavLink></li>
+        <li><NavLink to={'/blogs'} className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-100 ">Blogs</NavLink></li>
 
         {
-            user && <li><NavLink to={'/funds'} className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Funds</NavLink></li>
+            user && <li><NavLink to={'/funds'} className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-100 ">Funds</NavLink></li>
         }
     </>;
 
@@ -37,11 +37,6 @@ const Navber = () => {
         setIsShow(false);
     }
 
-    // // 
-    // const htm = () => {
-    //     return document.removeEventListener('mousedown', handleHideMenu);
-    // };
-
     // When user click on outside of the nav modal it will close
     useEffect(() => {
         if (!dropdownRef) {
@@ -55,13 +50,13 @@ const Navber = () => {
 
 
     return (
-        <nav className="relative bg-white shadow dark:bg-gray-800">
+        <nav className="relative bg-white shadow dark:bg-[#292929]">
             <div className="container px-6 py-2 mx-auto">
                 <div className="lg:flex lg:items-center lg:justify-between">
                     <div className="flex items-center justify-between">
                         <Link to={'/'} className="flex justify-center items-center gap-2">
                             <img src={logo} alt="" className="w-[56px] h-[64px]" />
-                            <span className="text-2xl font-semibold">Blood Donor Unity</span>
+                            <span className="text-2xl font-semibold dark:text-gray-100">Blood Donor Unity</span>
                         </Link>
 
                         <div className="flex lg:hidden">
@@ -84,7 +79,7 @@ const Navber = () => {
                         <ul ref={dropdownRef} className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8 menu active-link">
                             {NavLinks}
                             {
-                                loggedUser?.role === 'donor' && <li className="block lg:hidden"><NavLink to={'/dashboard/donor_home'} className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Dashboard</NavLink></li>
+                                loggedUser?.role === 'donor' && <li className="block lg:hidden"><NavLink to={'/dashboard/donor_home'} className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">Dashboard</NavLink></li>
                             }
                             {
                                 loggedUser?.role === 'volunteer' && <li className="block lg:hidden"><NavLink to={'/dashboard/volunteer_home'} className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Dashboard</NavLink></li>
