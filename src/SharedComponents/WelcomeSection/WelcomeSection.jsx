@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import logo from '../../assets/Blood.png';
+import logo from '../../assets/Blood_Donor_Unity.png';
 
 const WelcomeSection = ({title, description}) => {
     return (

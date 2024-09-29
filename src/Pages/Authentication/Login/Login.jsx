@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import logo from '../../../assets/Blood.png';
+import logo from '../../../assets/Blood_Donor_Unity.png';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../../Hooks/useAuth';
 import toast from 'react-hot-toast';

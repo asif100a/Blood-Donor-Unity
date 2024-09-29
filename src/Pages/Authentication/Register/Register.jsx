@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../../../assets/Blood.png';
+import logo from '../../../assets/Blood_Donor_Unity.png';
 import districts from './components/district.json';
 import upazilas from './components/upazila.json';
 import { useForm } from 'react-hook-form';

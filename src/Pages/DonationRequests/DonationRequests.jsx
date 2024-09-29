@@ -19,9 +19,9 @@ const DonationRequests = () => {
     }
 
     return (
-        <section className="dark:bg-[#292929] mx-auto py-5 my-1">
+        <section className="dark:bg-[#292929] min-h-[calc(100vh-389px)] py-3 md:py-6 mx-auto my-1">
             <div className="px-6 lg:px-32">
-                <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center capitalize dark:text-gray-100 mb-6">Blood donation requests</h1>
+                <h1 className="text-xl md:text-3xl lg:text-4xl font-semibold text-center capitalize dark:text-gray-100 mb-6">Blood donation requests</h1>
 
                 <div className="overflow-x-auto">
                     <table className="table table-sm">

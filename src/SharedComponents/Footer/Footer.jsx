@@ -1,23 +1,22 @@
 import { Link } from 'react-router-dom';
-import logo from '../../assets/Blood.png';
+import logo from '../../assets/Blood_Donor_Unity.png';
 
 const Footer = () => {
     return (
-        <footer className="bg-white dark:bg-gray-900 border-t">
+        <footer className="bg-white dark:bg-[#292929] border-t">
             <div className="p-6 mx-auto text-center sm:text-start">
                 <div className="lg:flex">
                     <div className="w-full sm:-mx-6 lg:w-2/5 mx-auto">
                         <div className="px-6">
                             <div className=''>
                                 <Link to="/">
-                                    <img className="w-[56px] h-[64px] mx-auto sm:mx-0" src={logo} alt="Logo" />
-                                    <span className='text-xl font-semibold dark:text-gray-100'>Blood Donor Unity</span>
+                                    <img className="block w-auto h-16 mx-auto sm:mx-0" src={logo} alt="Logo" />
                                 </Link>
 
-                                <p className="max-w-sm mt-2 text-gray-500 dark:text-gray-300">Our mission is to facilitate timely blood donations and promote awareness about the importance of blood donation.</p>
+                                <p className="max-w-sm mt-2 ml-0 md:ml-4 text-gray-500 dark:text-gray-300">Our mission is to facilitate timely blood donations and promote awareness about the importance of blood donation.</p>
                             </div>
 
-                            <div className="flex mt-6 -mx-2 justify-center sm:justify-start">
+                            <div className="flex mt-6 -mx-2 ml-0 md:ml-2 justify-center sm:justify-start">
                                 <a href="#"
                                     className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-orange-600"
                                     aria-label="Reddit">
