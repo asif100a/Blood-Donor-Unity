@@ -33,8 +33,8 @@ const Funds = () => {
     }
 
     return (
-        <div className="px-6 lg:px-32">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center capitalize my-6">Donate to Our <br /> Blood Donation Fund</h1>
+        <div className="px-6 lg:px-32 min-h-[calc(100vh-389px)] dark:bg-[#292929] pt-6">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center capitalize">Donate to Our <br /> Blood Donation Fund</h1>
             <p className="mt-3 text-center max-w-xl mx-auto">Your contribution can save lives. By donating to our Blood Donation Fund, you support essential blood drives, medical supplies, and outreach programs that ensure a steady supply of life-saving blood for those in need.</p>
 
             <div className="text-center mt-12">

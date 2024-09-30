@@ -40,15 +40,15 @@ const TableBody = ({ i, request }) => {
                 <td>{request_time}</td>
                 <td>
                     <Link to={`/donation_request_details/${_id}`}>
-                        <button className="relative inline-flex items-center justify-start py-2 pl-4 pr-12 overflow-hidden font-semibold text-green-600 transition-all duration-150 ease-in-out hover:pl-10 hover:pr-6 bg-gray-50 bg-opacity-90 group rounded-full border border-green-500">
+                        <button className="relative inline-flex items-center justify-start py-1 pl-3 pr-8 overflow-hidden font-semibold text-green-600 transition-all duration-150 ease-in-out hover:pl-8 hover:pr-3 bg-gray-50 bg-opacity-90 group rounded-full border border-green-500">
                             <span className="absolute bottom-0 left-0 w-full h-1 transition-all duration-150 ease-in-out bg-green-500 group-hover:h-full"></span>
-                            <span className="absolute right-0 pr-4 duration-200 ease-out group-hover:translate-x-12">
-                                <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            <span className="absolute right-0 pr-3 duration-200 ease-out group-hover:translate-x-8">
+                                <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                             </span>
-                            <span className="absolute left-0 pl-2.5 -translate-x-12 group-hover:translate-x-0 ease-out duration-200">
-                                <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            <span className="absolute left-0 pl-1 -translate-x-8 group-hover:translate-x-0 ease-out duration-200">
+                                <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                             </span>
-                            <span className="relative w-full text-left transition-colors duration-200 ease-in-out group-hover:text-white flex gap-1"><span>View</span> <span>Details</span></span>
+                            <span className="relative w-full text-left text-sm transition-colors duration-200 ease-in-out group-hover:text-white flex gap-1"><span>View</span> <span>Details</span></span>
                         </button>
                     </Link>
                 </td>

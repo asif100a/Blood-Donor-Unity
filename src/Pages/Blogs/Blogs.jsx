@@ -20,7 +20,7 @@ const Blogs = () => {
     }
 
     return (
-        <div className="px-6 lg:px-24 min-h-[calc(100vh-389px)] my-3 md:my-6 dark:text-gray-100">
+        <div className="px-6 lg:px-24 dark:bg-[#292929] min-h-[calc(100vh-389px)] py-3 md:py-6 dark:text-gray-100">
             <h1 className="text-xl md:text-3xl lg:text-4xl font-semibold text-center capitalize mb-3 md:mb-6">Read your favorite blogs</h1>
             <p className="text-center text-sm md:text-base max-w-3xl mx-auto">Stay informed and inspired with our dedicated blog on blood donation. Discover heartwarming stories from donors and recipients, get the latest news and research on blood donation, and find valuable tips on how you can make a difference. Join our community and learn how your donation can save lives.</p>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-4 mt-6 lg:mt-16">
@@ -36,7 +36,7 @@ const Blogs = () => {
                             </div>
 
                             <div className="mt-0">
-                                <h1 className="mt-4 text-xl font-semibold text-gray-800 dark:text-gray-100 h-24">
+                                <h1 className="mt-4 text-lg font-semibold text-gray-800 dark:text-gray-100 h-24">
                                     {blog?.title}
                                 </h1>
 

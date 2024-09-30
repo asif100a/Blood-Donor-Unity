@@ -50,10 +50,10 @@ const Navber = () => {
 
 
     return (
-        <nav className="relative bg-white shadow-md dark:bg-[#292929]">
+        <nav className="relative bg-white shadow-md dark:shadow-lg dark:bg-[#292929]">
             <div className="container px-3 md:px-6 py-2 mx-auto">
                 <div className="lg:flex lg:items-center lg:justify-between">
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between -ml-3 ">
                         <Link to={'/'} className="flex justify-center items-center">
                             <img src={logo} alt="" className="block w-auto h-16" />
                         </Link>
