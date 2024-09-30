@@ -4,7 +4,7 @@ import logo from '../../assets/Blood_Donor_Unity.png';
 const Footer = () => {
     return (
         <footer className="bg-white dark:bg-[#292929] border-t overflow-hidden">
-            <div className="p-6 mx-auto text-center sm:text-start">
+            <div className="p-6 pt-3 lg:pt-6 mx-auto text-center sm:text-start">
                 <div className="lg:flex">
                     <div className="w-full sm:-mx-6 lg:w-2/5 mx-auto">
                         <div className="px-0 md:px-2">
@@ -13,7 +13,7 @@ const Footer = () => {
                                     <img className="block w-auto h-16 mx-auto sm:mx-0" src={logo} alt="Logo" />
                                 </Link>
 
-                                <p className="w-full md:max-w-sm lg:max-w-xs xl:max-w-sm mt-2 ml-0 md:ml-4 text-gray-500 dark:text-gray-300">Our mission is to facilitate timely blood donations and promote awareness about the importance of blood donation.</p>
+                                <p className="w-full md:max-w-sm lg:max-w-xs xl:max-w-sm ml-0 md:ml-4 text-gray-500 dark:text-gray-300">Our mission is to facilitate timely blood donations and promote awareness about the importance of blood donation.</p>
                             </div>
 
                             <div className="flex mt-6 -mx-2 ml-0 md:ml-2 justify-center sm:justify-start">

@@ -19,12 +19,12 @@ const DonationRequests = () => {
     }
 
     return (
-        <section className="dark:bg-[#292929] min-h-[calc(100vh-389px)] py-3 md:py-6 mx-auto my-1">
+        <section className="dark:bg-[#292929] min-h-[calc(100vh-389px)] py-3 md:py-6 mx-auto">
             <div className="px-6 lg:px-32">
-                <h1 className="text-lg font-semibold text-center capitalize dark:text-gray-100 mb-6 block md:hidden">Blood donation requests</h1>
+                <h1 className="text-2xl font-semibold text-center capitalize dark:text-gray-100 mb-6 block md:hidden">Blood donation requests</h1>
 
                 <div className="overflow-x-auto">
-                    <table className="table table-sm">
+                    <table className="table table-sm md:table-md">
                         <caption>
                             <h1 className="md:text-3xl xl:text-4xl font-semibold text-center capitalize dark:text-gray-100 mb-8 hidden md:block">Blood donation requests</h1>
                         </caption>

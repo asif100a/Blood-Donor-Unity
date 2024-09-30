@@ -26,18 +26,18 @@ const Funds = () => {
             return data;
         }
     });
-    console.log(fundData);
+    // console.log(fundData);
 
     if(isLoading) {
         return <LoadingSpiner />;
     }
 
     return (
-        <div className="px-6 lg:px-32 min-h-[calc(100vh-389px)] dark:bg-[#292929] pt-6">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center capitalize">Donate to Our <br /> Blood Donation Fund</h1>
+        <div className="px-6 lg:px-32 min-h-[calc(100vh-389px)] dark:bg-[#292929] dark:text-gray-100 py-6">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center capitalize">Donate to Our Fund</h1>
             <p className="mt-3 text-center max-w-xl mx-auto">Your contribution can save lives. By donating to our Blood Donation Fund, you support essential blood drives, medical supplies, and outreach programs that ensure a steady supply of life-saving blood for those in need.</p>
 
-            <div className="text-center mt-12">
+            <div className="text-center mt-6">
                 <button onClick={() => setIsOpen(true)} className="relative rounded-full px-5 py-2.5 overflow-hidden group bg-orange-500 hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-orange-400 transition-all ease-out duration-300">
                     <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
                     <span className="relative">Give fund</span>
@@ -54,7 +54,7 @@ const Funds = () => {
             </div>
 
             <div className="overflow-x-auto mt-6">
-                <table className="table table-lg">
+                <table className="table table-sm md:table-md">
                     <thead>
                         <tr>
                             <th></th>
