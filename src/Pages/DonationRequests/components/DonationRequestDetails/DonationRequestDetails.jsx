@@ -69,18 +69,18 @@ const DonationRequestDetails = () => {
 
     return (
         <section
-            className="bg-white pt-12 lg:pt-8 pb-12 lg:pb-[90px] relative overflow-hidden"
+            className="bg-white dark:bg-[#292929] min-h-[calc(100vh-389px)] pt-12 lg:pt-8 pb-12 lg:pb-[90px] relative overflow-hidden"
         >
             <div className="container">
                 <div className="flex flex-wrap -mx-4">
                     <div className="w-full px-4">
                         <div className="text-center mx-auto mb-[60px] lg:mb-20 max-w-[510px]">
                             <h2
-                                className="font-bold text-3xl sm:text-4xl md:text-[40px] text-dark mb-4"
+                                className="font-bold text-3xl sm:text-4xl md:text-[40px] text-dark mb-4 capitalize dark:text-gray-100"
                             >
                                 Blood donation request details
                             </h2>
-                            <p className="text-base text-body-color">
+                            <p className="text-base text-body-color dark:text-gray-200">
                                 Blood Donator Unity is dedicated to connecting blood donors with those in need. Our mission is to facilitate timely blood donations and promote awareness about the importance of blood donation.
                             </p>
                         </div>
@@ -91,6 +91,8 @@ const DonationRequestDetails = () => {
                         <div
                             className="
                                 bg-white
+                                dark:bg-inherit
+                                dark:text-gray-100
                                 rounded-xl
                                 relative
                                 z-10
@@ -116,7 +118,8 @@ const DonationRequestDetails = () => {
                                 text-base text-body-color
                                 pb-8
                                 mb-8
-                                border-b border-[#F2F2F2]
+                                border-b 
+                                border-[#F2F2F2]
                                 ">
                                 Perfect for using in a personal website or a client project.
                             </p>
