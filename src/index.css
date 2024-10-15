@@ -3,3 +3,7 @@
 @tailwind utilities;
 
 
+.blog-content-bg{
+    background: inherit !important;
+    background-color: inherit !important;
+}
