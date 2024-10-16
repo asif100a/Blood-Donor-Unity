@@ -46,10 +46,9 @@ const Sidebar = () => {
 
     return (
         <>
-            <aside className="hidden lg:flex lg:flex-col w-64 h-screen px-4 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700 relative">
-                <div className='flex gap-3 items-center'>
+            <aside className="hidden lg:flex lg:flex-col w-64 h-screen px-4 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-[#292929] dark:border-gray-700 relative">
+                <div className='flex items-center'>
                     <img className="w-auto h-14" src={logo} alt="Blood Donator Unity" />
-                    <p className='text-lg font-bold'>Blood Donator Unity</p>
                 </div>
 
                 <div className="mt-6">
