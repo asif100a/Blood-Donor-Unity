@@ -42,13 +42,13 @@ const FundModal = ({ isOpen, closeModal, amount, handleGetAmount, setIsOpen, ref
                                     Your donation will help others
                                 </DialogTitle>
                                 <form className='mt-6 text-center'>
-                                    <label htmlFor="amount" className="font-semibold mr-6">Amount:</label>
+                                    <label htmlFor="amount" className="font-semibold mr-6 dark:text-gray-800">Amount:</label>
                                     <input
                                         type="text"
                                         value={amount}
                                         onChange={handleGetAmount}
                                         placeholder="Amount"
-                                        className="input input-bordered w-40"
+                                        className="input input-bordered dark:bg-white w-40"
                                     />
                                 </form>
                                 <hr className='mt-8 ' />

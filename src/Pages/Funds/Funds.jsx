@@ -55,7 +55,7 @@ const Funds = () => {
 
             <div className="overflow-x-auto mt-6">
                 <table className="table table-sm md:table-md">
-                    <thead>
+                    <thead className="dark:text-gray-300">
                         <tr>
                             <th></th>
                             <th>Donor name</th>

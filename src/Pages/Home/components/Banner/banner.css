@@ -22,7 +22,7 @@
 
 @media (prefers-color-scheme: dark) {
     .background-img::before {
-        background-color: #0000001a;
+        background-color: #0000000D;
         height: 720px;
         margin-top: 80px;
     }
@@ -33,7 +33,7 @@
         height: 556px;
     }
     .background-img::before {
-        background-color: #0000001a;
+        background-color: #0000000D;
         height: 556px;
         margin-top: 80px;
     }
@@ -44,7 +44,7 @@
         height: 480px;
     }
     .background-img::before {
-        background-color: #0000001a;
+        background-color: #0000000D;
         height: 480px;
         margin-top: 80px;
     }
