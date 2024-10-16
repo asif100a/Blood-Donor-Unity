@@ -91,7 +91,7 @@ const ContactUs = () => {
                                     <input
                                         type="text"
                                         placeholder="First name"
-                                        className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-green-500 rounded-full dark:placeholder-gray-400 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-500 focus:border-green-500 dark:focus:border-green-500 focus:ring-green-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                        className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-green-500 rounded-full dark:placeholder-gray-400 dark:bg-inherit dark:text-gray-100 focus:border-green-500 dark:focus:border-green-500 focus:ring-green-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                     />
                                 </div>
 
@@ -100,7 +100,7 @@ const ContactUs = () => {
                                     <input
                                         type="text"
                                         placeholder="Last name"
-                                        className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-green-500 rounded-full dark:placeholder-gray-400 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-500 focus:border-green-500 dark:focus:border-green-500 focus:ring-green-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                        className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-green-500 rounded-full dark:placeholder-gray-400 dark:bg-inherit dark:text-gray-100 focus:border-green-500 dark:focus:border-green-500 focus:ring-green-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                     />
                                 </div>
                             </div>
@@ -110,14 +110,14 @@ const ContactUs = () => {
                                 <input
                                     type="email"
                                     placeholder="Your email address"
-                                    className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-green-500 rounded-full dark:placeholder-gray-400 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-500 focus:border-green-500 dark:focus:border-green-500 focus:ring-green-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                    className="block w-full px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-green-500 rounded-full dark:placeholder-gray-400 dark:bg-inherit dark:text-gray-100 focus:border-green-500 dark:focus:border-green-500 focus:ring-green-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                 />
                             </div>
 
                             <div className="w-full mt-4">
                                 <label className="block mb-2 text-sm font-semibold text-gray-600 dark:text-gray-200 pl-3">Message</label>
                                 <textarea
-                                    className="block w-full h-32 px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-green-500 rounded-xl md:h-56 dark:placeholder-gray-400 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-500 focus:border-green-500 dark:focus:border-green-500 focus:ring-green-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                                    className="block w-full h-32 px-5 py-2.5 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-green-500 rounded-xl md:h-56 dark:placeholder-gray-400 dark:bg-inherit dark:text-gray-100 focus:border-green-500 dark:focus:border-green-500 focus:ring-green-400 focus:outline-none focus:ring focus:ring-opacity-40"
                                     placeholder="Send your message"
                                 ></textarea>
                             </div>
