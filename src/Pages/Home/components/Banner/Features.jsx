@@ -13,7 +13,7 @@ const Features = () => {
                     backgroundRepeat: 'no-repeat',
                     width: '100%',
                 }} >
-                    <div className="mt-8 xl:mt-12 flex justify-end items-center py-6 lg:py-16 bg-transparent dark:bg-[#0000001a]">
+                    <div className="mt-8 xl:mt-12 flex justify-end items-center py-6 lg:py-16 bg-transparent dark:bg-[#0000000F]">
                         <div className="grid w-fit grid-cols-1 gap-6 lg:w-1/2 xl:gap-16 md:grid-cols-2 mx-6 lg:mx-12">
                             {/* 1 card */}
                             <div className="p-6 bg-white bg-opacity-30 dark:bg-opacity-45 border rounded-xl border-r-gray-200 dark:border-gray-700 h-fit">
