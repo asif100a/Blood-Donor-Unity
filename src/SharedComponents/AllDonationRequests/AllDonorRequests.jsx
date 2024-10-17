@@ -17,23 +17,7 @@ const AllDonorRequests = ({ email, volunteer, admin }) => {
     const [donationRequests, setDonationRequests] = useState([]);
     const [isPending, setIspending] = useState(true);
     const [sortedValue, setSortedValue] = useState('');
-    // const [refetch, setRefetch] = useState(null);
     const refresh = useRefresh();
-
-    // const { data: donationRequests = [], isError, error, isPending, refetch } = useQuery({
-    //     queryKey: ['donationRequests', email],
-    //     queryFn: async () => {
-    //         if (email) {
-    //             const { data } = await axiosSecure(`/donation-requests/${email}?status=${sortedValue}`);
-    //             return data;
-
-    //         } else {
-    //             const { data } = await axiosSecure(`/donation-requests`);
-    //             return data;
-    //         }
-    //     }
-    // });
-    // console.log(refetch)
 
     useEffect(() => {
         donationRequestsData();
@@ -137,7 +121,7 @@ const AllDonorRequests = ({ email, volunteer, admin }) => {
                         <span className="relative invisible">Sort by</span>
                     </button>
 
-                    <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 -right-6">
+                    <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 -right-6 dark:text-gray-100">
                         <li onClick={() => handleDropdown('pending')}><a>pending</a></li>
                         <li onClick={() => handleDropdown('in progress')}><a>in progress</a></li>
                         <li onClick={() => handleDropdown('complete')}><a>complete</a></li>
@@ -148,7 +132,7 @@ const AllDonorRequests = ({ email, volunteer, admin }) => {
             <div className="overflow-x-auto w-screen lg:w-auto mx-auto border">
                 <table className="table table-sm">
                     <thead>
-                        <tr>
+                        <tr className='dark:text-gray-300'>
                             <th></th>
                             <th>Recipient name</th>
                             <th>Recipient location</th>
