@@ -4,7 +4,7 @@ import './dashboard.css';
 
 const Dashboard = () => {
     return (
-        <div className="w-auto flex">
+        <div className="w-auto flex dark:bg-[#292929]">
             <Sidebar />
             <div className="flex-1">
                 <Outlet />

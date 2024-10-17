@@ -69,13 +69,13 @@ const Sidebar = () => {
 
                     <nav>
                         <hr className="my-6 border-gray-200 dark:border-gray-600" />
-                        <Link to={'/'} className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href="#">
+                        <Link to={'/'} className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href="#">
                             <FaHouseDamage className='w-5 h-5' />
 
                             <span className="mx-4 font-medium">Home</span>
                         </Link>
 
-                        <a onClick={handleLogout} className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:cursor-pointer">
+                        <a onClick={handleLogout} className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:cursor-pointer">
                             <BiLogOut className='w-6 h-6' />
 
                             <span className="mx-4 font-medium">Log out</span>
@@ -117,7 +117,7 @@ const Sidebar = () => {
 
                         <hr className="my-6 border-gray-200 dark:border-gray-600" />
                         <li>
-                            <Link to={'/'} className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href="#">
+                            <Link to={'/'} className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href="#">
                                 <FaHouseDamage className='w-5 h-5' />
 
                                 <span className="mx-4 font-medium">Home</span>
@@ -125,7 +125,7 @@ const Sidebar = () => {
                         </li>
 
                         <li>
-                            <a onClick={handleLogout} className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:cursor-pointer">
+                            <a onClick={handleLogout} className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700 hover:cursor-pointer">
                                 <BiLogOut className='w-6 h-6' />
 
                                 <span className="mx-4 font-medium">Log out</span>
