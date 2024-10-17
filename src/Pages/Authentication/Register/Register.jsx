@@ -118,12 +118,12 @@ const Register = () => {
     }
 
     return (
-        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+        <div className="dark:bg-[#292929] flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <div className="flex justify-center items-center gap-2">
-                    <img src={logo} alt="" className="w-[72px] h-[80px]" />
+                    <img src={logo} alt="" className="block w-auto h-16" />
                 </div>
-                <h2 className="mt-6 text-center text-3xl font-medium leading-9 tracking-tight text-gray-900 capitalize">
+                <h2 className="mt-3 text-center text-3xl font-medium leading-9 tracking-tight text-gray-900 dark:text-gray-100 capitalize">
                     Register your account
                 </h2>
             </div>
@@ -131,7 +131,7 @@ const Register = () => {
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[880px] border-2 border-dashed border-orange-600 sm:p-6 p-3 rounded-xl">
                 <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 sm:grid-cols-2 gap-6" action="#" method="POST">
                     <div>
-                        <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
+                        <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200 pl-3">
                             Your name
                         </label>
                         <div>
@@ -141,14 +141,14 @@ const Register = () => {
                                 type="text"
                                 placeholder='Your name'
                                 {...register("name", { required: true })}
-                                className="block w-full rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
+                                className="block w-full rounded-full border py-2 text-gray-900 dark:text-gray-100 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
                             />
                             {errors.name && <span className="text-orange-600">This field is required</span>}
                         </div>
                     </div>
 
                     <div>
-                        <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
+                        <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200 pl-3">
                             Email address
                         </label>
                         <div>
@@ -158,14 +158,14 @@ const Register = () => {
                                 type="email"
                                 placeholder='Your email'
                                 {...register("email", { required: true })}
-                                className="block w-full rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
+                                className="block w-full rounded-full border py-2 text-gray-900 dark:text-gray-100 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
                             />
                             {errors.email && <span className="text-orange-600">This field is required</span>}
                         </div>
                     </div>
 
                     <div>
-                        <label htmlFor="image" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
+                        <label htmlFor="image" className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200 pl-3">
                             Upload your image
                         </label>
                         <div>
@@ -175,14 +175,14 @@ const Register = () => {
                                 type="file"
                                 placeholder='Your image'
                                 {...register("image", { required: true })}
-                                className="block w-full rounded-full border py-1.5 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
+                                className="block w-full rounded-full border py-1.5 text-gray-900 dark:text-gray-100 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
                             />
                             {errors.image && <span className="text-orange-600">This field is required</span>}
                         </div>
                     </div>
 
                     <div>
-                        <label htmlFor="image" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
+                        <label htmlFor="image" className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200 pl-3">
                             Select your blood group
                         </label>
                         <div>
@@ -190,7 +190,7 @@ const Register = () => {
                                 name='blood_group'
                                 {...register("blood_group", { required: true })}
                                 defaultValue={'choose_blood'}
-                                className="block w-full rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4">
+                                className="block w-full rounded-full border py-2 text-gray-900 dark:text-gray-100 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4">
                                 <option disabled value={'choose_blood'}>Choose your blood group</option>
                                 {
                                     blooGroup.map((group, i) => <option key={i} value={group}>{group}</option>)
@@ -201,7 +201,7 @@ const Register = () => {
                     </div>
 
                     <div>
-                        <label htmlFor="image" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
+                        <label htmlFor="image" className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200 pl-3">
                             Select your district
                         </label>
                         <div>
@@ -210,7 +210,7 @@ const Register = () => {
                                 {...register("district", { required: true })}
                                 onChange={(e) => handleSelectDistrict(e)}
                                 defaultValue={'choose_district'}
-                                className="block w-full rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4">
+                                className="block w-full rounded-full border py-2 text-gray-900 dark:text-gray-100 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4">
                                 <option disabled value={'choose_district'}>Choose your district</option>
                                 {
                                     districts.map(district => <option key={district?.id} value={district?.name}>{district?.name}</option>)
@@ -221,7 +221,7 @@ const Register = () => {
                     </div>
 
                     <div>
-                        <label htmlFor="image" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
+                        <label htmlFor="image" className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200 pl-3">
                             Select your upazila
                         </label>
                         <div>
@@ -229,7 +229,7 @@ const Register = () => {
                                 name='upazila'
                                 {...register("upazila", { required: true })}
                                 defaultValue={'choose_upazila'}
-                                className="block w-full rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4">
+                                className="block w-full rounded-full border py-2 text-gray-900 dark:text-gray-100 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4">
                                 <option disabled value={'choose_upazila'}>Choose your upazila</option>
                                 {
                                     selectedUpazilas?.map((upazila, i) => <option key={i} value={upazila?.name}>{upazila?.name}</option>)
@@ -241,7 +241,7 @@ const Register = () => {
 
                     <div>
                         <div className="flex items-center justify-between">
-                            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
+                            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200 pl-3">
                                 Password
                             </label>
                         </div>
@@ -258,7 +258,7 @@ const Register = () => {
                                     pattern:
                                         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/
                                 })}
-                                className="block w-full rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
+                                className="block w-full rounded-full border py-2 text-gray-900 dark:text-gray-100 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
                             />
                             {errors.password && <span className="text-orange-600">This field is required</span>}
                             {errors.password?.type === 'pattern' && <p className="text-orange-600">Password must be at least 6 character, 1 uppercase, 1 lowercas, 1 number and 1 special character</p>}
@@ -266,7 +266,7 @@ const Register = () => {
                     </div>
                     <div>
                         <div className="flex items-center justify-between">
-                            <label htmlFor="confirm_password" className="block text-sm font-medium leading-6 text-gray-900 pl-3">
+                            <label htmlFor="confirm_password" className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200 pl-3">
                                 Confirm confirm_password
                             </label>
                         </div>
@@ -277,7 +277,7 @@ const Register = () => {
                                 type="password"
                                 placeholder='Confirm password'
                                 {...register("confirm_password", { required: true })}
-                                className="block w-full rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
+                                className="block w-full rounded-full border py-2 text-gray-900 dark:text-gray-100 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
                             />
                             {errors.confirm_password && <span className="text-orange-600">This field is required</span>}
                             {confirmPasswordError && <p className='text-orange-600'>{confirmPasswordError}</p>}
@@ -292,7 +292,7 @@ const Register = () => {
                     </div>
                 </form>
 
-                <p className="mt-6 text-center text-sm text-gray-500 space-x-2">
+                <p className="mt-6 text-center text-sm text-gray-500 dark:text-gray-300 space-x-2">
                     <span>Already registered to {'"Blood Donator Unity"'}?</span>
                     <Link to={'/login'} className="font-medium leading-6 text-green-600 hover:text-green-500 hover:underline">
                         Login now.
