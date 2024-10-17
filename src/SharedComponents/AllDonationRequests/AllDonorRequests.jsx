@@ -129,7 +129,7 @@ const AllDonorRequests = ({ email, volunteer, admin }) => {
                 </div>
             </div>
 
-            <div className="overflow-x-auto w-screen lg:w-auto mx-auto border">
+            <div className="overflow-x-auto w-screen lg:w-auto mx-auto border dark:border-gray-600">
                 <table className="table table-sm">
                     <thead>
                         <tr className='dark:text-gray-300'>
