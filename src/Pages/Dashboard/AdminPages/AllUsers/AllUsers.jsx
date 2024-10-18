@@ -17,15 +17,6 @@ const AllUsers = () => {
     const [status, setStatus] = useState('');
     const [sortedValue, setSortedValue] = useState('');
 
-    // const { data: users = [], error, isError, isLoading, refetch } = useQuery({
-    //     queryKey: ['users'],
-    //     queryFn: async () => {
-    //         const { data } = await axiosSecure('/users');
-    //         return data;
-    //     }
-    // });
-    // console.log(users);
-
     useEffect(() => {
         fetchedData();
 
@@ -102,7 +93,7 @@ const AllUsers = () => {
 
     return (
         <div className="mt-6 w-auto">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center mb-6">All users</h1>
+            <h1 className="text-2xl md:text-3xl lg:text-4xl dark:text-gray-100 font-semibold text-center capitalize mb-6">All users</h1>
             <div className="mb-12 text-center">
                 <div className="dropdown ">
                     <button className="relative inline-flex items-center justify-center p-4 px-12 py-3 overflow-hidden font-medium text-red-600 transition duration-300 ease-out border-2 border-green-500 rounded-full shadow-md group">
@@ -113,7 +104,7 @@ const AllUsers = () => {
                         <span className="relative invisible">Sort by</span>
                     </button>
 
-                    <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 -right-6">
+                    <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 -right-6 dark:text-gray-100">
                         <li onClick={() => handleDropdown('active')}><a>active</a></li>
                         <li onClick={() => handleDropdown('blocked')}><a>blocked</a></li>
                     </ul>
@@ -124,7 +115,7 @@ const AllUsers = () => {
                 <table className="table table-sm">
                     {/* head */}
                     <thead>
-                        <tr>
+                        <tr className="dark:text-gray-300">
                             <th></th>
                             <th>Image</th>
                             <th>Name</th>

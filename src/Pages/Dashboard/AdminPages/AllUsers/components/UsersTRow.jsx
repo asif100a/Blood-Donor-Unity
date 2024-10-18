@@ -6,7 +6,7 @@ const UsersTRow = ({
     handleSelectedRole,
     isDisable
 }) => {
-    const { _id, name, email, image, role, status } = user;
+    const { name, email, image, role, status } = user;
     console.log(isDisable)
 
     // Handle the changes of activitey selection
@@ -21,7 +21,7 @@ const UsersTRow = ({
 
     return (
         <>
-            <tr>
+            <tr className='dark:text-gray-100'>
                 <th>
                     <p></p>
                 </th>
