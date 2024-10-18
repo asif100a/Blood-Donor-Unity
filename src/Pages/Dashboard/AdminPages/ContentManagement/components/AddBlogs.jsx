@@ -75,13 +75,13 @@ const AddBlogs = () => {
 
     return (
         <div className="m-6">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center my-6">Create your blog</h1>
+            <h1 className="text-2xl md:text-3xl lg:text-4xl dark:text-gray-100 font-semibold text-center capitalize my-6">Create your blog</h1>
 
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[880px] border-2 border-dashed border-orange-600 sm:p-6 p-3 rounded-xl">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" action="#" method="POST">
                     <div className="flex flex-col sm:flex-row justify-between gap-6">
                         <div className="w-full">
-                            <label htmlFor="title" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="title" className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100">
                                 Title
                             </label>
                             <div className="mt-2">
@@ -91,7 +91,7 @@ const AddBlogs = () => {
                                     type="text"
                                     placeholder='Title of the blog'
                                     {...register("title", { required: true })}
-                                    className="block w-full rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
+                                    className="block w-full rounded-full border py-2 text-gray-900 dark:text-gray-100 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
                                 />
                                 {errors.title && <span className="text-orange-600">Please fill up this field</span>}
                             </div>
@@ -107,7 +107,7 @@ const AddBlogs = () => {
                                     type="file"
                                     placeholder='Thumbnail image'
                                     {...register("image", { required: true })}
-                                    className="block w-full rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
+                                    className="block w-full rounded-full border py-2 text-gray-900 dark:text-gray-100 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
                                 />
                                 {errors.image && <span className="text-orange-600">Please fill up this field</span>}
                             </div>
