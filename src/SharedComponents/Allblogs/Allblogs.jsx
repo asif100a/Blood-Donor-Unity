@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-// import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { Link } from "react-router-dom";
 import { FaAngleDown, FaRegEdit } from "react-icons/fa";
@@ -23,15 +22,6 @@ const Allblogs = ({ volunteer, admin }) => {
     const [isPending, setIsPending] = useState(true);
     const [sortedValue, setSortedValue] = useState('');
 
-    // const { data: blogs = [], isError, error, isPending, refetch } = useQuery({
-    //     queryKey: ['blogs'],
-    //     queryFn: async () => {
-    //         const { data } = await axiosPublic.get('/blogs');
-    //         return data;
-    //     }
-    // });
-    // console.log(blogs);
-
     useEffect(() => {
         BlogData();
 
@@ -47,9 +37,6 @@ const Allblogs = ({ volunteer, admin }) => {
     if (isPending) {
         return <LoadingSpiner />;
     }
-    // if (isError) {
-    //     console.error(error);
-    // }
 
     // Sort the blog
     const handleDropdown = (status) => {
@@ -124,7 +111,7 @@ const Allblogs = ({ volunteer, admin }) => {
     };
 
     return (
-        <section className="bg-white dark:bg-gray-900">
+        <section className="bg-white dark:bg-inherit">
             <div className="container px-6 py-10 mx-auto">
 
                 <div className={`mb-12 text-center ${admin && 'flex flex-col md:flex-row md:items-center md:text-start'}`}>
@@ -137,7 +124,7 @@ const Allblogs = ({ volunteer, admin }) => {
                             <span className="relative invisible">Sort by</span>
                         </button>
 
-                        <ul tabIndex={0} className={`mt-3 z-[1] left-6 md:left-16 lg:left-48 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 ${volunteer && 'left-48'}`}>
+                        <ul tabIndex={0} className={`mt-3 z-[1] left-6 md:left-16 lg:left-48 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 dark:text-gray-100 ${volunteer && 'left-48'}`}>
                             <li onClick={() => handleDropdown('draft')}><a>draft</a></li>
                             <li onClick={() => handleDropdown('published')}><a>published</a></li>
                         </ul>
@@ -161,25 +148,26 @@ const Allblogs = ({ volunteer, admin }) => {
                                 <div className="relative">
                                     <img className="object-cover object-center w-full h-40 rounded-lg lg:h-64" src={blog?.image} alt="Blog image" />
 
-                                    <div className="absolute top-3 right-3 px-3 py-1 rounded-md bg-white bg-opacity-80 ">
-                                        <p className="font-bold">{blog?.status}</p>
+                                    <div className="absolute top-3 right-3 px-3 py-1 rounded-md bg-white bg-opacity-80  dark:bg-black dark:bg-opacity-40">
+                                        <p className="font-bold dark:text-gray-100">{blog?.status}</p>
                                     </div>
                                 </div>
 
                                 <div className="mt-0">
-                                    <h1 className="mt-4 text-xl font-semibold text-gray-800">
+                                    <h1 className="mt-4 text-xl font-semibold text-gray-800 dark:text-gray-100">
                                         {blog?.title}
                                     </h1>
 
-                                    {/* <div className="mt-2 text-gray-500" dangerouslySetInnerHTML={{__html: blog?.content.split(0, 20)}}>
-                                    </div> */}
-
                                     <div className="flex items-center justify-between mt-2">
-                                        <Link to={`/dashboard/content_management/edit_blog/${blog._id}`}><button className={`btn bg-white border-none shadow-none hover:bg-white`}><FaRegEdit className='h-5 w-5 hover:transform hover:scale-125 text-green-600' /></button></Link>
+                                        <Link to={`/dashboard/content_management/edit_blog/${blog._id}`}>
+                                            <button className={`btn bg-white dark:bg-inherit border-none shadow-none hover:bg-white hover:dark:bg-inherit`}>
+                                                <FaRegEdit className='h-5 w-5 hover:transform hover:scale-125 text-green-600' />
+                                            </button>
+                                        </Link>
 
                                         <button
                                             onClick={volunteer ? '' : () => handleDelete(blog?._id)}
-                                            className={`${volunteer ? 'opacity-60 cursor-not-allowed' : 'btn'} bg-white border-none shadow-none hover:bg-white`}><MdDeleteForever className='h-6 w-6 hover:transform hover:scale-125 text-red-600' /></button>
+                                            className={`${volunteer ? 'opacity-60 cursor-not-allowed' : 'btn'} bg-white dark:bg-inherit border-none shadow-none hover:bg-white hover:dark:bg-inherit`}><MdDeleteForever className='h-6 w-6 hover:transform hover:scale-125 text-red-600' /></button>
                                     </div>
 
                                     <div className="text-center">
