@@ -84,7 +84,7 @@ const DonorHome = () => {
 
             <div className={`${recentRequests?.length === 0 && 'hidden'}`}>
                 <div className="mt-3 mb-6">
-                    <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center">Recent donation requests</h1>
+                    <h1 className="text-2xl md:text-3xl lg:text-4xl dark:text-gray-100 font-semibold text-center">Recent donation requests</h1>
                 </div>
 
                 <div className="overflow-x-auto w-screen lg:w-auto border dark:border-gray-600">

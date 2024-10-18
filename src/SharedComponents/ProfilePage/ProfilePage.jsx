@@ -109,7 +109,7 @@ const ProfilePage = () => {
     }
 
     return (
-        <section className="bg-white dark:bg-gray-800">
+        <section className="bg-white dark:bg-inherit">
             <div className="container px-0 md:px-6 py-8 mx-auto">
                 <div>
                     <h2 className="text-3xl font-bold text-gray-800 capitalize text-center dark:text-gray-100">My profile</h2>
@@ -134,18 +134,18 @@ const ProfilePage = () => {
                         <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-8">
                             <div className="flex items-center h-[36px] space-x-3 pb-2">
                                 <div className="mt-2">
-                                    <FaUser className="text-lg" />
+                                    <FaUser className="text-lg dark:text-gray-100" />
                                 </div>
 
                                 <div className="mt-2 flex gap-2 items-center w-full">
-                                    <span className="font-semibold">Name:</span>
+                                    <label className="font-semibold dark:text-gray-200">Name:</label>
                                     <input
                                         id="name"
                                         name="name"
                                         type="text"
                                         readOnly
                                         value={user?.name}
-                                        className={`block ${isClicked && 'hidden'} w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3`}
+                                        className={`block ${isClicked && 'hidden'} w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3`}
                                     />
                                     {
                                         isClicked && (
@@ -154,7 +154,7 @@ const ProfilePage = () => {
                                                 name="name"
                                                 type="text"
                                                 defaultValue={user?.name}
-                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                                                 {...register("name", { required: true })}
                                             />
                                         )
@@ -164,31 +164,19 @@ const ProfilePage = () => {
 
                             <div className={`flex ${isClicked && 'hidden'} items-center h-[36px] space-x-3 pb-2`}>
                                 <div className="mt-2">
-                                    <HiOutlineMail className="text-2xl" />
+                                    <HiOutlineMail className="text-2xl dark:text-gray-100" />
                                 </div>
 
                                 <div className="mt-2 flex gap-2 items-center w-full">
-                                    <span className="font-semibold">Email:</span>
+                                    <label className="font-semibold dark:text-gray-200">Email:</label>
                                     <input
                                         id="email"
                                         name="email"
                                         type="email"
                                         readOnly
                                         value={user?.email}
-                                        className={`block ${isClicked && 'hidden'} w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3`}
+                                        className={`block ${isClicked && 'hidden'} w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3`}
                                     />
-                                    {/* {
-                                        isClicked && (
-                                            <input
-                                                id="email"
-                                                name="email"
-                                                type="email"
-                                                defaultValue={user?.email}
-                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
-                                                {...register("email", { required: true })}
-                                            />
-                                        )
-                                    } */}
                                 </div>
                             </div>
 
@@ -196,16 +184,16 @@ const ProfilePage = () => {
                                 isClicked && (
                                     <div className="flex items-center h-[36px] space-x-3 pb-2">
                                         <div className="mt-2">
-                                            <MdInsertPhoto className="text-lg" />
+                                            <MdInsertPhoto className="text-lg dark:text-gray-100" />
                                         </div>
                                         <div className="mt-2 flex gap-2 items-center w-full">
-                                            <span className="font-semibold">Image:</span>
+                                            <label className="font-semibold dark:text-gray-200">Image:</label>
 
                                             <input
                                                 id="image"
                                                 name="image"
                                                 type="file"
-                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
+                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3"
                                                 {...register("image")}
                                             />
                                         </div>
@@ -219,14 +207,14 @@ const ProfilePage = () => {
                                 </div>
 
                                 <div className="mt-2 flex gap-2 items-center w-full">
-                                    <p className="font-semibold flex gap-1"><span>Blood</span> <span>group:</span></p>
+                                    <label className="font-semibold flex gap-1 dark:text-gray-200"><span>Blood</span> <span>group:</span></label>
                                     <input
                                         id="blood_group"
                                         name="blood_group"
                                         type="text"
                                         readOnly
                                         value={user?.blood_group}
-                                        className={`block ${isClicked && 'hidden'} w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3`}
+                                        className={`block ${isClicked && 'hidden'} w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3`}
                                     />
                                     {
                                         isClicked && (
@@ -234,7 +222,7 @@ const ProfilePage = () => {
                                                 name='blood_group'
                                                 {...register("blood_group", { required: true })}
                                                 defaultValue={user?.blood_group}
-                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
+                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
                                                 <option disabled value={'choose_blood'}>Choose your blood group</option>
                                                 {
                                                     blooGroup.map((group, i) => <option key={i} value={group}>{group}</option>)
@@ -248,18 +236,18 @@ const ProfilePage = () => {
 
                             <div className="flex items-center h-[36px] space-x-3 pb-2">
                                 <div className="mt-2">
-                                    <GiHomeGarage className="text-xl" />
+                                    <GiHomeGarage className="text-xl dark:text-gray-100" />
                                 </div>
 
                                 <div className="mt-2 flex gap-2 items-center w-full">
-                                    <span className="font-semibold">District:</span>
+                                    <label className="font-semibold dark:text-gray-200">District:</label>
                                     <input
                                         id="district"
                                         name="district"
                                         type="text"
                                         readOnly
                                         value={user?.district}
-                                        className={`block ${isClicked && 'hidden'} w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3`}
+                                        className={`block ${isClicked && 'hidden'} w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3`}
                                     />
 
                                     {
@@ -269,7 +257,7 @@ const ProfilePage = () => {
                                                 {...register("district", { required: true })}
                                                 onChange={(e) => handleSelectDistrict(e)}
                                                 defaultValue={user?.district}
-                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
+                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
                                                 <option disabled value={'choose_district'}>Choose your district</option>
                                                 {
                                                     districts.map(district => <option key={district?.id} value={district?.name}>{district?.name}</option>)
@@ -283,18 +271,18 @@ const ProfilePage = () => {
 
                             <div className="flex items-center h-[36px] space-x-3 pb-2">
                                 <div className="mt-2">
-                                    <MdHomeWork className="text-xl" />
+                                    <MdHomeWork className="text-xl dark:text-gray-100" />
                                 </div>
 
                                 <div className="mt-2 flex gap-2 items-center w-full">
-                                    <span className="font-semibold">Upazila:</span>
+                                    <label className="font-semibold dark:text-gray-200">Upazila:</label>
                                     <input
                                         id="upazila"
                                         name="upazila"
                                         type="text"
                                         readOnly
                                         value={user?.upazila}
-                                        className={`block ${isClicked && 'hidden'} w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3`}
+                                        className={`block ${isClicked && 'hidden'} w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3`}
                                     />
                                     {
                                         isClicked && (
@@ -302,7 +290,7 @@ const ProfilePage = () => {
                                                 name='upazila'
                                                 {...register("upazila", { required: true })}
                                                 defaultValue={'user?.upazila'}
-                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
+                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-3">
                                                 <option disabled value={'choose_upazila'}>Choose your upazila</option>
                                                 <option disabled value={'user?.upazila'}>{user?.upazila}</option>
                                                 {
