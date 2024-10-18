@@ -22,9 +22,9 @@ const CountCard = () => {
     }
 
     return (
-        <div className="bg-white">
+        <div className="bg-white dark:bg-inherit">
             <div className="container px-6 py-4 mx-auto mt-6 lg:mt-0">
-                <h1 className="text-2xl font-semibold text-center text-gray-800 capitalize lg:text-3xl">At a glance statistics</h1>
+                <h1 className="text-2xl font-semibold text-center text-gray-800 dark:text-gray-100 capitalize lg:text-3xl">At a glance statistics</h1>
 
                 {/* Total users */}
                 <div className="grid grid-cols-1 gap-8 mt-6 lg:grid-cols-3 xl:mt-12">
@@ -63,13 +63,12 @@ const CountCard = () => {
                         </div>
                     </div>
 
-                    {/* Total blood dontaion request */}
+                    {/* Total blood donation request */}
                     <div className="flex items-center justify-between px-8 py-4 border border-orange-600 cursor-pointer rounded-xl">
                         <div className="flex flex-col space-y-1">
-                            {/* <p>🩸</p> */}
                             <BiSolidDonateBlood className="text-3xl ml-12 text-orange-600" />
 
-                            <h2 className="text-lg font-medium text-blue-500 sm:text-xl capitalize ">Total blood dontaion request</h2>
+                            <h2 className="text-lg font-medium text-blue-500 sm:text-xl capitalize ">Total blood donation request</h2>
                         </div>
 
 
