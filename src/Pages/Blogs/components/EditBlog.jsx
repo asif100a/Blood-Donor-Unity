@@ -111,7 +111,7 @@ const EditBlog = () => {
 
     return (
         <div className="m-6">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center my-6 capitalize">Update your blog</h1>
+            <h1 className="text-2xl md:text-3xl lg:text-4xl dark:text-gray-100 font-semibold text-center my-6 capitalize">Update the blog</h1>
 
             {
                 isLoading ? (
@@ -121,7 +121,7 @@ const EditBlog = () => {
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" action="#" method="POST">
                             <div className="flex flex-col sm:flex-row justify-between gap-6">
                                 <div className="w-full">
-                                    <label htmlFor="title" className="block text-sm font-medium leading-6 text-gray-900">
+                                    <label htmlFor="title" className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200">
                                         Title
                                     </label>
                                     <div className="mt-2">
@@ -130,13 +130,13 @@ const EditBlog = () => {
                                             name="title"
                                             type="text"
                                             defaultValue={blogData?.title}
-                                            className="block w-full rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
+                                            className="block w-full rounded-full border py-2 text-gray-900 dark:text-gray-100 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
                                         />
                                         {blogTitleError && <p className="text-orange-600">{blogTitleError}</p>}
                                     </div>
                                 </div>
                                 <div className="w-full">
-                                    <label htmlFor="image" className="block text-sm font-medium leading-6 text-gray-900">
+                                    <label htmlFor="image" className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200">
                                         Image
                                     </label>
                                     <div className="mt-2">
@@ -145,7 +145,7 @@ const EditBlog = () => {
                                             name="image"
                                             type="file"
                                             {...register("image", { required: true })}
-                                            className="block w-full rounded-full border py-2 text-gray-900 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
+                                            className="block w-full rounded-full border py-2 text-gray-900 dark:text-gray-100 shadow-sm border-green-500 placeholder:text-gray-400 focus:ring-2 focus:ring-green-400 focus:outline-none focus:ring-opacity-40 focus:border-green-500 sm:text-sm sm:leading-6 px-4"
                                         />
                                         {errors.image && <span className="text-orange-600">Please fill up this field</span>}
                                     </div>
