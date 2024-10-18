@@ -87,10 +87,10 @@ const DonorHome = () => {
                     <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-center">Recent donation requests</h1>
                 </div>
 
-                <div className="overflow-x-auto w-screen lg:w-auto">
+                <div className="overflow-x-auto w-screen lg:w-auto border dark:border-gray-600">
                     <table className="table table-sm">
                         <thead>
-                            <tr>
+                            <tr className="dark:text-gray-300">
                                 <th></th>
                                 <th>Recipient name</th>
                                 <th>Recipient location</th>
